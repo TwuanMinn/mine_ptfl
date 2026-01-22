@@ -70,7 +70,7 @@ export const Hero = ({
                 </p>
                 <p className={`text-base sm:text-lg ${darkMode ? 'text-blue-200' : 'text-blue-700'} mb-12 max-w-2xl mx-auto min-h-24 sm:min-h-32`}>
                     {displayedText}
-                    <span className={`inline-block w-0.5 h-5 ${darkMode ? 'bg-blue-400' : 'bg-blue-500'} ml-1`} style={{ animation: `pulse-custom 1s cubic-bezier(0.4, 0, 0.6, 1) infinite` }}></span>
+                    <span className={`inline-block w-1.5 h-6 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} ml-1`} style={{ animation: `pulse-custom 1s cubic-bezier(0.4, 0, 0.6, 1) infinite`, verticalAlign: 'middle' }}></span>
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
