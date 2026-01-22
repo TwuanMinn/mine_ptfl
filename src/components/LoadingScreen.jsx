@@ -7,10 +7,10 @@ const LoadingScreen = ({ onLoadingComplete }) => {
     const [currentLine, setCurrentLine] = useState(0);
 
     useEffect(() => {
-        // Animate 16 code lines appearing - spread over 4.5 seconds
+        // Animate 25 code lines appearing - fast typing over 3 seconds
         const lineTimers = [];
-        // Calculate delays for 16 lines (approx 280ms per line)
-        const delays = Array.from({ length: 17 }, (_, i) => i * 260);
+        // Calculate delays for 25 lines (approx 120ms per line)
+        const delays = Array.from({ length: 26 }, (_, i) => i * 120);
 
         delays.forEach((delay, index) => {
             const timer = setTimeout(() => {
@@ -19,17 +19,17 @@ const LoadingScreen = ({ onLoadingComplete }) => {
             lineTimers.push(timer);
         });
 
-        // Complete loading after ~7.5 seconds (4.2s animation + 3s pause)
+        // Complete loading after 8 seconds (3s typing + 5s pause)
         const completeTimer = setTimeout(() => {
             setIsLoading(false);
-        }, 7500);
+        }, 8000);
 
         // Call onLoadingComplete after exit animation
         const callbackTimer = setTimeout(() => {
             if (onLoadingComplete) {
                 onLoadingComplete();
             }
-        }, 8000);
+        }, 8500);
 
         return () => {
             lineTimers.forEach(t => clearTimeout(t));
@@ -38,24 +38,32 @@ const LoadingScreen = ({ onLoadingComplete }) => {
         };
     }, []); // Empty dependency array - run once on mount
 
-    // 16 lines of code
+    // 25 lines of code
     const codeLines = [
         { text: 'import { Bio, Skill } from "life";' },
         { text: '' },
         { text: 'const developer = {' },
         { text: '  name: "Minh Tuấn",' },
+        { text: '  age: 23,' },
         { text: '  role: "Software Engineer",' },
+        { text: '  email: "tuandev@gmail.com",' },
+        { text: '  location: "Vietnam",' },
         { text: '  skills: ["React", "Node", "Design"],' },
         { text: '  hardWorker: true,' },
         { text: '  quickLearner: true,' },
         { text: '  problemSolver: true,' },
+        { text: '  coffee: true,' },
+        { text: '  sleep: false,' },
         { text: '  passion: "Crafting intuitive and",' },
         { text: '           "visually appealing UI/UX",' },
+        { text: '  hobbies: ["Coding", "Writing"],' },
         { text: '  hireable: function() {' },
         { text: '    return this.hardWorker;' },
+        { text: '  },' },
+        { text: '  start: () => {' },
+        { text: '    console.log("Ready!");' },
         { text: '  }' },
         { text: '};' },
-        { text: '' },
         { text: 'developer.init();' },
     ];
 
@@ -184,15 +192,16 @@ const LoadingScreen = ({ onLoadingComplete }) => {
                                                     <span className="text-white">],</span>
                                                 </>
                                             )}
-                                            {(line.text.includes('hardWorker:') || line.text.includes('quickLearner:') || line.text.includes('problemSolver:')) && (
+                                            {/* Generic Key-Value Handling */}
+                                            {(line.text.includes('email:') || line.text.includes('location:')) && (
                                                 <>
                                                     <span className="text-blue-300">  {line.text.split(':')[0].trim()}</span>
                                                     <span className="text-white">: </span>
-                                                    <span className="text-orange-400">true</span>
+                                                    <span className="text-green-400">{line.text.split(':')[1].trim().replace(',', '')}</span>
                                                     <span className="text-white">,</span>
                                                 </>
                                             )}
-                                            {line.text.includes('passion:') && (
+                                            {(line.text.includes('passion:') && !line.text.includes('visually')) && (
                                                 <>
                                                     <span className="text-blue-300">  passion</span>
                                                     <span className="text-white">: </span>
@@ -206,6 +215,24 @@ const LoadingScreen = ({ onLoadingComplete }) => {
                                                     <span className="text-white">,</span>
                                                 </>
                                             )}
+                                            {(line.text.includes('hardWorker:') || line.text.includes('quickLearner:') || line.text.includes('problemSolver:') || line.text.includes('coffee:') || line.text.includes('sleep:') || line.text.includes('age:')) && (
+                                                <>
+                                                    <span className="text-blue-300">  {line.text.split(':')[0].trim()}</span>
+                                                    <span className="text-white">: </span>
+                                                    <span className="text-orange-400">{line.text.includes('true') || line.text.includes('false') ? (line.text.includes('true') ? 'true' : 'false') : line.text.match(/\d+/)[0]}</span>
+                                                    <span className="text-white">,</span>
+                                                </>
+                                            )}
+                                            {line.text.includes('hobbies:') && (
+                                                <>
+                                                    <span className="text-blue-300">  hobbies</span>
+                                                    <span className="text-white">: [</span>
+                                                    <span className="text-green-400">"Coding"</span>
+                                                    <span className="text-white">, </span>
+                                                    <span className="text-green-400">"Writing"</span>
+                                                    <span className="text-white">],</span>
+                                                </>
+                                            )}
                                             {line.text.includes('hireable:') && (
                                                 <>
                                                     <span className="text-blue-300">  hireable</span>
@@ -214,11 +241,32 @@ const LoadingScreen = ({ onLoadingComplete }) => {
                                                     <span className="text-white">() {'{'}</span>
                                                 </>
                                             )}
+                                            {line.text.includes('start:') && (
+                                                <>
+                                                    <span className="text-blue-300">  start</span>
+                                                    <span className="text-white">: </span>
+                                                    <span className="text-purple-400">()</span>
+                                                    <span className="text-purple-400"> {'=>'} </span>
+                                                    <span className="text-white">{'{'}</span>
+                                                </>
+                                            )}
+                                            {line.text.includes('console.log') && (
+                                                <>
+                                                    <span className="text-white">    console.</span>
+                                                    <span className="text-yellow-300">log</span>
+                                                    <span className="text-white">(</span>
+                                                    <span className="text-green-400">"Ready!"</span>
+                                                    <span className="text-white">);</span>
+                                                </>
+                                            )}
                                             {line.text.includes('return') && (
                                                 <>
                                                     <span className="text-purple-400">    return this</span>
                                                     <span className="text-white">.hardWorker;</span>
                                                 </>
+                                            )}
+                                            {line.text.trim() === '},' && (
+                                                <span className="text-white">  {'},'}</span>
                                             )}
                                             {line.text.trim() === '}' && (
                                                 <span className="text-white">  {'}'}</span>
@@ -264,7 +312,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
                                             }}
                                             initial={{ width: '0%' }}
                                             animate={{ width: '100%' }}
-                                            transition={{ duration: 7.5, ease: 'easeInOut' }}
+                                            transition={{ duration: 8.0, ease: 'easeInOut' }}
                                         />
                                     </motion.div>
                                     <div className="flex items-center gap-2">
