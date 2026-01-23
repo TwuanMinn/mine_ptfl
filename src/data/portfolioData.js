@@ -116,7 +116,8 @@ export const getPortfolioData = (bioText) => ({
 });
 
 export const texts = [
-    "Hi, I'm a developer passionate about building clean, intuitive, and visually engaging user interfaces. I focus on creating smooth user experiences, thoughtful interactions, and modern, responsive designs that feel great to use. I am committed to continually setting higher standards for myself to expand my knowledge and expertise.",
+    "Hi, I'm a developer passionate about building clean, intuitive, and visually engaging user interfaces. I focus on creating smooth user experiences, thoughtful interactions, and modern, responsive designs that feel great to use.",
+    "I am committed to continually setting higher standards for myself to expand my knowledge and expertise.",
     "I believe great software isn't just functional—it's delightful. Every pixel matters, every animation tells a story, and every interaction should feel natural. Let's build something beautiful together."
 ];
 

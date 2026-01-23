@@ -322,7 +322,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
                                             }}
                                             initial={{ width: '0%' }}
                                             animate={{ width: '100%' }}
-                                            transition={{ duration: 8.0, ease: 'easeInOut' }}
+                                            transition={{ duration: 12.0, ease: 'easeInOut' }}
                                         />
                                     </motion.div>
                                     <div className="flex items-center gap-2">

@@ -441,19 +441,22 @@ code {
   height: 200%;
   background: conic-gradient(from 180deg at 50% 50%,
       transparent 0deg,
-      #22d3ee 15deg,
-      #ffffff 30deg,
-      #22d3ee 45deg,
-      #ffffff 60deg,
-      transparent 80deg);
-  animation: border-rotate 6s linear infinite;
+      #00ffff 20deg,
+      #60a5fa 40deg,
+      #a78bfa 60deg,
+      #ffffff 80deg,
+      #a78bfa 100deg,
+      #60a5fa 120deg,
+      #00ffff 140deg,
+      transparent 160deg);
+  animation: border-rotate 3s linear infinite;
   z-index: 0;
 }
 
 .border-trace::after {
   content: '';
   position: absolute;
-  inset: 5px;
+  inset: 4px;
   background: inherit;
   border-radius: inherit;
   z-index: 1;
