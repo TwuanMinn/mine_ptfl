@@ -314,7 +314,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
                             <div className="bg-slate-800/50 px-4 py-2 border-t border-slate-700/50">
                                 <div className="flex items-center gap-3">
                                     <motion.div
-                                        className="flex-1 h-1.5 bg-slate-700 rounded-full overflow-hidden"
+                                        className="flex-1 h-3 bg-slate-700 rounded-full overflow-hidden"
                                     >
                                         <motion.div
                                             className="h-full rounded-full"

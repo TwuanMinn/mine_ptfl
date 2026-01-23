@@ -65,7 +65,10 @@ export const Hero = ({
                 <h1 className={`text-3xl sm:text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r ${darkMode ? 'from-blue-200 via-white to-blue-200' : 'from-blue-700 via-blue-500 to-blue-700'} bg-clip-text text-transparent`} style={{ animation: `pulse-custom 2s cubic-bezier(0.4, 0, 0.6, 1) infinite` }}>
                     {portfolioData.name}
                 </h1>
-                <p className={`text-xl sm:text-2xl md:text-3xl ${darkMode ? 'text-blue-300' : 'text-blue-600'} mb-8 font-semibold`}>
+                <p
+                    className={`text-xl sm:text-2xl md:text-3xl ${darkMode ? 'text-blue-300' : 'text-blue-600'} mb-8`}
+                    style={{ fontFamily: "'Google Sans Code', 'Fira Code', monospace", fontWeight: 200 }}
+                >
                     {t('hero.title')}
                 </p>
                 <p
