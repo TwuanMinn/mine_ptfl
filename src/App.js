@@ -137,7 +137,7 @@ export default function Portfolio() {
       timer = setTimeout(() => {
         const nextLength = displayedText.length + (isDeleting ? -1 : 1);
         setDisplayedText(currentText.substring(0, Math.max(nextLength, 0)));
-      }, isDeleting ? 20 : 45);
+      }, isDeleting ? 5 : 10);
     }
 
     return () => clearTimeout(timer);
