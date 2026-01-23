@@ -18,6 +18,8 @@ import { Toolbar } from './components/Toolbar.jsx';
 import { QrModal } from './components/QrModal.jsx';
 import ScrollProgress from './components/ScrollProgress.jsx';
 import CustomCursor from './components/CustomCursor.jsx';
+import { Hero } from './components/Hero.jsx';
+import { About } from './components/About.jsx';
 
 // Data
 import { getPortfolioData, texts, popupMessages } from './data/portfolioData';
@@ -27,9 +29,7 @@ import './App.css';
 import './glass.css';
 import './i18n';
 
-// Lazy loaded components for performance
-const Hero = lazy(() => import('./components/Hero.jsx').then(m => ({ default: m.Hero })));
-const About = lazy(() => import('./components/About.jsx').then(m => ({ default: m.About })));
+// Lazy loaded components for performance (non-critical, below the fold)
 const Skills = lazy(() => import('./components/Skills.jsx').then(m => ({ default: m.Skills })));
 const Certificates = lazy(() => import('./components/Certificates').then(m => ({ default: m.Certificates })));
 const Projects = lazy(() => import('./components/Projects').then(m => ({ default: m.Projects })));
@@ -437,21 +437,19 @@ export default function Portfolio() {
               transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
             >
               {/* Hero Section */}
-              <Suspense fallback={<SectionLoader height="100vh" />}>
-                <SectionErrorBoundary sectionName="Hero">
-                  <Hero
-                    portfolioData={portfolioData}
-                    darkMode={darkMode}
-                    displayedText={displayedText}
-                    popupVisible={popupVisible}
-                    popupMessages={popupMessages}
-                    popupMessageIndex={popupMessageIndex}
-                    chatOpen={chatOpen}
-                    setChatOpen={setChatOpen}
-                    scrollToSection={scrollToSection}
-                  />
-                </SectionErrorBoundary>
-              </Suspense>
+              <SectionErrorBoundary sectionName="Hero">
+                <Hero
+                  portfolioData={portfolioData}
+                  darkMode={darkMode}
+                  displayedText={displayedText}
+                  popupVisible={popupVisible}
+                  popupMessages={popupMessages}
+                  popupMessageIndex={popupMessageIndex}
+                  chatOpen={chatOpen}
+                  setChatOpen={setChatOpen}
+                  scrollToSection={scrollToSection}
+                />
+              </SectionErrorBoundary>
 
               {/* Scroll to Top Button */}
               <ScrollToTopButton
@@ -461,16 +459,14 @@ export default function Portfolio() {
               />
 
               {/* About Section */}
-              <Suspense fallback={<SectionLoader />}>
-                <SectionErrorBoundary sectionName="About">
-                  <About
-                    portfolioData={portfolioData}
-                    darkMode={darkMode}
-                    aboutHeadingVisible={aboutHeadingVisible}
-                    aboutWordsVisible={aboutWordsVisible}
-                  />
-                </SectionErrorBoundary>
-              </Suspense>
+              <SectionErrorBoundary sectionName="About">
+                <About
+                  portfolioData={portfolioData}
+                  darkMode={darkMode}
+                  aboutHeadingVisible={aboutHeadingVisible}
+                  aboutWordsVisible={aboutWordsVisible}
+                />
+              </SectionErrorBoundary>
 
               {/* Skills Section */}
               <Suspense fallback={<SectionLoader />}>
