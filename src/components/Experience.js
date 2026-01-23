@@ -120,7 +120,7 @@ export const Experience = ({ portfolioData, darkMode }) => {
                             {portfolioData.experience.map((job, index) => (
                                 <div
                                     key={index}
-                                    className="relative flex gap-4 pb-16 group/item pl-32"
+                                    className="relative flex gap-4 pb-16 group/item pl-36"
                                 >
                                     {/* Timeline Node/Connector */}
                                     <div className="absolute left-0 top-2 z-20 flex items-center justify-center">
