@@ -1,7 +1,7 @@
 import React, { Suspense, memo } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import ErrorBoundary, { SectionErrorBoundary } from '../components/common/ErrorBoundary';
+import { SectionErrorBoundary } from '../components/common/ErrorBoundary';
 
 // Pages
 import Home from '../pages/Home';

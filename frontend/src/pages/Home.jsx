@@ -5,7 +5,7 @@ import { ArrowUp } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 // Components
-import ErrorBoundary, { SectionErrorBoundary } from '../components/common/ErrorBoundary';
+import { SectionErrorBoundary } from '../components/common/ErrorBoundary';
 import { Hero } from '../components/sections/Hero.jsx';
 import { About } from '../components/sections/About.jsx';
 import { Projects } from '../components/sections/Projects';
@@ -63,7 +63,7 @@ export default function Home({
     handleHeartClick,
     heartAnimating
 }) {
-    const { t } = useTranslation();
+    const { t: _t } = useTranslation();
     const location = useLocation();
 
     // Typing animation state
