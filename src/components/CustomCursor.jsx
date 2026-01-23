@@ -6,7 +6,14 @@ export default function CustomCursor({ darkMode }) {
 
 
     useEffect(() => {
+        // Only enable custom cursor logic on non-touch/desktop devices
+        const mediaQuery = window.matchMedia('(min-width: 768px) and (hover: hover)');
+        if (!mediaQuery.matches) return;
+
         const handleMouseMove = (e) => {
+            // Use requestAnimationFrame for smoother updates if possible, 
+            // but for now direct state update is okay if optimized elsewhere.
+            // Actually, let's keep it simple as the heavy part is the rendering.
             setMousePosition({ x: e.clientX, y: e.clientY });
         };
 

@@ -59,7 +59,7 @@ const getTechColor = (tech, darkMode) => {
 
 export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick, heartAnimating }) => {
     return (
-        <section id="projects" className="py-16 px-2" style={{ maxWidth: '100vw' }}>
+        <section id="projects" className="py-16 px-2">
             <Reveal width="100%">
                 <div className="max-w-6xl mx-auto w-full" style={{ padding: '0 0.5rem' }}>
                     <h2 className={`text-3xl font-bold mb-6 ${darkMode ? 'text-blue-100' : 'text-blue-800'}`} style={{ fontSize: '2rem' }}>Projects</h2>

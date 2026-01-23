@@ -73,7 +73,10 @@ const ParticleBackground = ({ darkMode }) => {
 
         const init = () => {
             particles = [];
-            const numberOfParticles = (canvas.width * canvas.height) / 15000;
+            const isMobile = window.innerWidth < 768;
+            const densityDivisor = isMobile ? 30000 : 15000; // Fewer particles on mobile
+            const numberOfParticles = (canvas.width * canvas.height) / densityDivisor;
+
             for (let i = 0; i < numberOfParticles; i++) {
                 particles.push(new Particle());
             }
