@@ -45,7 +45,7 @@ const StatusBadge = ({ darkMode }) => {
 
     return (
         <div
-            className={`fixed top-16 sm:top-20 left-4 sm:left-8 z-[9990] flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full backdrop-blur-xl border transition-all duration-500 ${darkMode
+            className={`fixed top-4 sm:top-6 left-4 sm:left-8 z-[9990] flex items-center gap-1.5 sm:gap-3 px-2 sm:px-4 py-1.5 sm:py-2.5 rounded-full backdrop-blur-xl border transition-all duration-500 ${darkMode
                 ? 'bg-slate-900/60 border-cyan-500/30 hover:bg-slate-800/70 hover:border-cyan-400/50'
                 : 'bg-white/70 border-blue-300/60 hover:bg-white/90'
                 } shadow-lg hover:shadow-cyan-500/20 hover:scale-105 group cursor-default select-none ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
@@ -58,24 +58,24 @@ const StatusBadge = ({ darkMode }) => {
         >
 
             {/* Radar Dot Container */}
-            <div className="relative flex items-center justify-center w-4 h-4">
+            <div className="relative flex items-center justify-center w-3.5 sm:w-4 h-3.5 sm:h-4">
                 {/* Ping Animation */}
                 <span className={`absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping duration-1000 ${isBlue ? 'bg-cyan-400' : 'bg-white'
                     }`}></span>
 
                 {/* Main Dot */}
-                <span className={`relative inline-flex rounded-full h-3 w-3 transition-colors duration-1000 ${isBlue ? 'bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.6)]' : 'bg-white shadow-[0_0_8px_rgba(255,255,255,0.6)]'
+                <span className={`relative inline-flex rounded-full h-2.5 sm:h-3 w-2.5 sm:w-3 transition-colors duration-1000 ${isBlue ? 'bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.6)]' : 'bg-white shadow-[0_0_8px_rgba(255,255,255,0.6)]'
                     }`}></span>
             </div>
 
             {/* Swapping Text Container */}
-            <div className="relative w-28 h-5 overflow-hidden">
-                <div className={`absolute w-full h-full flex items-center text-sm font-semibold tracking-wide transition-all duration-700 transform ${status === 'Open for work' ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+            <div className="relative w-24 sm:w-28 h-4 sm:h-5 overflow-hidden">
+                <div className={`absolute w-full h-full flex items-center text-[10px] sm:text-sm font-semibold tracking-wide transition-all duration-700 transform ${status === 'Open for work' ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
                     } ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>
                     Open for Work
                 </div>
 
-                <div className={`absolute w-full h-full flex items-center text-sm font-semibold tracking-wide transition-all duration-700 transform ${status === 'Available' ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
+                <div className={`absolute w-full h-full flex items-center text-[10px] sm:text-sm font-semibold tracking-wide transition-all duration-700 transform ${status === 'Available' ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
                     } ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>
                     Available
                 </div>
