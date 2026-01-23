@@ -31,31 +31,7 @@ const techIcons = {
     'Chart.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/d3js/d3js-original.svg',
 };
 
-// Get gradient color based on tech name
-const getTechColor = (tech, darkMode) => {
-    const colors = {
-        'React': darkMode ? 'from-cyan-500/20 to-cyan-600/10 border-cyan-500/40' : 'from-cyan-100 to-cyan-200 border-cyan-300',
-        'React Native': darkMode ? 'from-cyan-500/20 to-cyan-600/10 border-cyan-500/40' : 'from-cyan-100 to-cyan-200 border-cyan-300',
-        'Firebase': darkMode ? 'from-amber-500/20 to-orange-600/10 border-amber-500/40' : 'from-amber-100 to-orange-200 border-amber-300',
-        'JavaScript': darkMode ? 'from-yellow-500/20 to-yellow-600/10 border-yellow-500/40' : 'from-yellow-100 to-yellow-200 border-yellow-300',
-        'TypeScript': darkMode ? 'from-blue-500/20 to-blue-600/10 border-blue-500/40' : 'from-blue-100 to-blue-200 border-blue-300',
-        'Python': darkMode ? 'from-blue-500/20 to-yellow-600/10 border-blue-500/40' : 'from-blue-100 to-yellow-200 border-blue-300',
-        'PyTorch': darkMode ? 'from-orange-500/20 to-red-600/10 border-orange-500/40' : 'from-orange-100 to-red-200 border-orange-300',
-        'Machine Learning': darkMode ? 'from-orange-500/20 to-orange-600/10 border-orange-500/40' : 'from-orange-100 to-orange-200 border-orange-300',
-        'Tailwind CSS': darkMode ? 'from-teal-500/20 to-cyan-600/10 border-teal-500/40' : 'from-teal-100 to-cyan-200 border-teal-300',
-        'Node.js': darkMode ? 'from-green-500/20 to-green-600/10 border-green-500/40' : 'from-green-100 to-green-200 border-green-300',
-        'Vercel': darkMode ? 'from-slate-400/20 to-slate-500/10 border-slate-400/40' : 'from-slate-100 to-slate-200 border-slate-300',
-        'Next.js': darkMode ? 'from-slate-400/20 to-slate-500/10 border-slate-400/40' : 'from-slate-100 to-slate-200 border-slate-300',
-        'MongoDB': darkMode ? 'from-green-500/20 to-green-600/10 border-green-500/40' : 'from-green-100 to-green-200 border-green-300',
-        'PostgreSQL': darkMode ? 'from-blue-500/20 to-blue-600/10 border-blue-500/40' : 'from-blue-100 to-blue-200 border-blue-300',
-        'Vue.js': darkMode ? 'from-emerald-500/20 to-green-600/10 border-emerald-500/40' : 'from-emerald-100 to-green-200 border-emerald-300',
-        'Stripe': darkMode ? 'from-purple-500/20 to-indigo-600/10 border-purple-500/40' : 'from-purple-100 to-indigo-200 border-purple-300',
-        'Socket.io': darkMode ? 'from-slate-400/20 to-slate-500/10 border-slate-400/40' : 'from-slate-100 to-slate-200 border-slate-300',
-        'REST API': darkMode ? 'from-teal-500/20 to-emerald-600/10 border-teal-500/40' : 'from-teal-100 to-emerald-200 border-teal-300',
-        'Chart.js': darkMode ? 'from-pink-500/20 to-rose-600/10 border-pink-500/40' : 'from-pink-100 to-rose-200 border-pink-300',
-    };
-    return colors[tech] || (darkMode ? 'from-blue-500/20 to-purple-600/10 border-blue-500/40' : 'from-blue-100 to-purple-200 border-blue-300');
-};
+
 
 export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick, heartAnimating }) => {
     return (

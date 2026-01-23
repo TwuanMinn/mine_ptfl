@@ -216,7 +216,7 @@ export const borderRadius = {
     full: '9999px',
 };
 
-export default {
+const theme = {
     colors,
     gradients,
     typography,
@@ -228,3 +228,5 @@ export default {
     zIndex,
     borderRadius,
 };
+
+export default theme;

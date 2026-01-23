@@ -3,7 +3,7 @@
  * Centralized helper functions for common operations
  */
 
-import { ERROR_MESSAGES, STORAGE_KEYS } from '../constants';
+import { ERROR_MESSAGES } from '../constants';
 
 /**
  * Safe clipboard write with fallback
