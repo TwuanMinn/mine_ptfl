@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Reveal } from './Reveal';
+import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { GraduationCap, Code2, MapPin, Languages, Sparkles, Play, Terminal } from 'lucide-react';
 
 // Code tokens for the interactive code block - 16 lines
@@ -103,6 +104,55 @@ const aboutCodeTokens = [
     ]
 ];
 
+
+
+
+const TiltCard = ({ children, className, style }) => {
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+
+    const mouseX = useSpring(x, { stiffness: 150, damping: 10 });
+    const mouseY = useSpring(y, { stiffness: 150, damping: 10 });
+
+    const rotateX = useTransform(mouseY, [-0.5, 0.5], [15, -15]);
+    const rotateY = useTransform(mouseX, [-0.5, 0.5], [-15, 15]);
+
+    const handleMouseMove = (e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+        const mouseXVal = e.clientX - rect.left;
+        const mouseYVal = e.clientY - rect.top;
+        const xPct = mouseXVal / width - 0.5;
+        const yPct = mouseYVal / height - 0.5;
+        x.set(xPct);
+        y.set(yPct);
+    };
+
+    const handleMouseLeave = () => {
+        x.set(0);
+        y.set(0);
+    };
+
+    return (
+        <motion.div
+            className={className}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{
+                ...style,
+                rotateX,
+                rotateY,
+                transformStyle: "preserve-3d",
+            }}
+        >
+            <div style={{ transform: "translateZ(20px)", transformStyle: "preserve-3d" }}>
+                {children}
+            </div>
+        </motion.div>
+    );
+};
+
 export const About = ({ portfolioData, darkMode, aboutHeadingVisible, aboutWordsVisible }) => {
     const [isRunning, setIsRunning] = useState(false);
     const [showOutput, setShowOutput] = useState(false);
@@ -185,7 +235,16 @@ export const About = ({ portfolioData, darkMode, aboutHeadingVisible, aboutWords
                         </h2>
                     </div>
 
-                    <div className={`border-trace rounded-3xl ${darkMode ? 'bg-[#0f111a]' : 'bg-white'} shadow-2xl`}>
+                    <motion.div
+                        className={`border-trace rounded-3xl ${darkMode ? 'bg-[#0f111a]' : 'bg-white'} shadow-2xl cursor-pointer`}
+                        whileHover={{
+                            scale: 1.01,
+                            boxShadow: darkMode
+                                ? '0 0 50px rgba(34, 211, 238, 0.12), 0 0 100px rgba(59, 130, 246, 0.08)'
+                                : '0 25px 60px -15px rgba(59, 130, 246, 0.2)'
+                        }}
+                        transition={{ duration: 0.4, ease: 'easeOut' }}
+                    >
                         <div className={`relative border-trace-inner p-6 sm:p-10 ${darkMode ? 'bg-[#0f111a]/90' : 'bg-white/90'} rounded-3xl`}>
                             {/* Bio text */}
                             <p className={`${darkMode ? 'text-blue-100' : 'text-blue-900'} leading-relaxed text-lg sm:text-xl mb-8`}>
@@ -265,11 +324,11 @@ export const About = ({ portfolioData, darkMode, aboutHeadingVisible, aboutWords
                             {/* Info cards grid */}
                             <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4 pt-8 border-t ${darkMode ? 'border-white/10' : 'border-blue-100'}`}>
                                 {infoItems.map((item, index) => (
-                                    <div
+                                    <TiltCard
                                         key={index}
-                                        className={`group flex items-start gap-4 p-4 rounded-2xl transition-all duration-300 hover:scale-[1.02] ${darkMode
-                                            ? 'bg-slate-800/40 hover:bg-slate-700/50 border border-white/5 hover:border-cyan-500/30'
-                                            : 'bg-blue-50/50 hover:bg-blue-100/70 border border-blue-100 hover:border-blue-300'
+                                        className={`group flex items-start gap-4 p-4 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${darkMode
+                                            ? 'bg-slate-800/40 hover:bg-slate-800/60 border border-white/5 hover:border-cyan-400/50 hover:shadow-cyan-500/20'
+                                            : 'bg-blue-50/50 hover:bg-white border border-blue-100 hover:border-blue-400 hover:shadow-blue-500/20'
                                             }`}
                                         style={{
                                             opacity: aboutWordsVisible[0] ? 1 : 0,
@@ -280,10 +339,10 @@ export const About = ({ portfolioData, darkMode, aboutHeadingVisible, aboutWords
                                         <div className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${darkMode
                                             ? 'bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-500/30'
                                             : 'bg-gradient-to-br from-blue-100 to-blue-200 border border-blue-300/50'
-                                            }`}>
+                                            }`} style={{ transform: "translateZ(30px)" }}>
                                             <item.icon className={`w-5 h-5 ${darkMode ? 'text-cyan-400' : 'text-blue-600'}`} />
                                         </div>
-                                        <div className="flex-1 min-w-0">
+                                        <div className="flex-1 min-w-0" style={{ transform: "translateZ(20px)" }}>
                                             <p className={`text-sm font-medium ${darkMode ? 'text-blue-300' : 'text-blue-600'}`}>
                                                 {item.label}
                                             </p>
@@ -291,11 +350,11 @@ export const About = ({ portfolioData, darkMode, aboutHeadingVisible, aboutWords
                                                 {item.value}
                                             </p>
                                         </div>
-                                    </div>
+                                    </TiltCard>
                                 ))}
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </Reveal>
         </section>

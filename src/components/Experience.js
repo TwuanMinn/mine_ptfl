@@ -1,6 +1,52 @@
 import React from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion, useScroll, useSpring, useMotionValue, useTransform } from 'framer-motion';
 import { Reveal } from './Reveal';
+
+
+const TiltCard = ({ children, className }) => {
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+
+    const mouseX = useSpring(x, { stiffness: 150, damping: 10 });
+    const mouseY = useSpring(y, { stiffness: 150, damping: 10 });
+
+    const rotateX = useTransform(mouseY, [-0.5, 0.5], [15, -15]);
+    const rotateY = useTransform(mouseX, [-0.5, 0.5], [-15, 15]);
+
+    const handleMouseMove = (e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+        const mouseXVal = e.clientX - rect.left;
+        const mouseYVal = e.clientY - rect.top;
+        const xPct = mouseXVal / width - 0.5;
+        const yPct = mouseYVal / height - 0.5;
+        x.set(xPct);
+        y.set(yPct);
+    };
+
+    const handleMouseLeave = () => {
+        x.set(0);
+        y.set(0);
+    };
+
+    return (
+        <motion.div
+            className={className}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{
+                rotateX,
+                rotateY,
+                transformStyle: "preserve-3d",
+            }}
+        >
+            <div style={{ transform: "translateZ(50px)", transformStyle: "preserve-3d" }}>
+                {children}
+            </div>
+        </motion.div>
+    );
+};
 
 export const Experience = ({ portfolioData, darkMode }) => {
     const timelineRef = React.useRef(null);
@@ -69,18 +115,17 @@ export const Experience = ({ portfolioData, darkMode }) => {
                                         </div>
                                     </div>
 
-                                    <div className="flex-1">
-                                        <div
+                                    <div className="flex-1 perspective-1000">
+                                        <TiltCard
                                             className={`relative glass-card rounded-2xl p-8 transition-all duration-500 group-hover:-translate-y-2 animate-card-wave overflow-hidden min-h-[220px] flex flex-col justify-center ${darkMode
                                                 ? 'border border-white/10 hover:border-cyan-400/50 hover:shadow-[0_0_40px_rgba(34,211,238,0.2)] bg-[#0f111a]/80'
                                                 : 'hover:shadow-xl border-blue-100 hover:border-blue-300'}`}
-                                            style={{ animationDelay: `${index * 0.4}s` }}
                                         >
                                             {/* Decorative Background Blob */}
-                                            <div className={`absolute -top-10 -right-10 w-40 h-40 rounded-full blur-3xl transition-opacity duration-500 group-hover:opacity-70 ${darkMode ? 'bg-cyan-500/10 opacity-0' : 'bg-blue-200/40 opacity-0'}`} />
+                                            <div className={`absolute -top-10 -right-10 w-40 h-40 rounded-full blur-3xl transition-opacity duration-500 group-hover:opacity-70 ${darkMode ? 'bg-cyan-500/10 opacity-0' : 'bg-blue-200/40 opacity-0'}`} style={{ transform: "translateZ(-20px)" }} />
 
                                             {/* Content */}
-                                            <div className="relative z-10">
+                                            <div className="relative z-10" style={{ transform: "translateZ(30px)" }}>
                                                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
                                                     <div className="w-fit">
                                                         <h3 className={`text-2xl font-bold ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-200 group-hover:from-cyan-300 group-hover:to-blue-300' : 'text-blue-900'} transition-all duration-300`}>
@@ -100,7 +145,7 @@ export const Experience = ({ portfolioData, darkMode }) => {
                                                     {job.description}
                                                 </p>
                                             </div>
-                                        </div>
+                                        </TiltCard>
                                     </div>
                                 </div>
                             ))}
