@@ -249,7 +249,7 @@ export const About = ({ portfolioData, darkMode, aboutHeadingVisible, aboutWords
                             {/* Bio text */}
                             <p
                                 className={`${darkMode ? 'text-blue-100' : 'text-blue-900'} leading-relaxed text-lg sm:text-xl mb-8`}
-                                style={{ fontFamily: "'Google Sans Code', 'Fira Code', monospace" }}
+                                style={{ fontFamily: "'Google Sans Code', 'Fira Code', monospace", fontWeight: 200 }}
                             >
                                 {portfolioData.bio.split(' ').map((word, idx) => (
                                     <span key={idx} className="inline-block mr-1.5" style={{
