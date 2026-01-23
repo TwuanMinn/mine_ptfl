@@ -68,7 +68,10 @@ export const Hero = ({
                 <p className={`text-xl sm:text-2xl md:text-3xl ${darkMode ? 'text-blue-300' : 'text-blue-600'} mb-8 font-semibold`}>
                     {t('hero.title')}
                 </p>
-                <p className={`text-base sm:text-lg ${darkMode ? 'text-blue-200' : 'text-blue-700'} mb-12 max-w-2xl mx-auto min-h-24 sm:min-h-32`}>
+                <p
+                    className={`text-base sm:text-lg ${darkMode ? 'text-blue-200' : 'text-blue-700'} mb-12 max-w-2xl mx-auto min-h-24 sm:min-h-32`}
+                    style={{ fontFamily: "'Press Start 2P', cursive", fontSize: 'clamp(0.65rem, 1.2vw, 0.85rem)', lineHeight: '1.8' }}
+                >
                     {displayedText}
                     <span className={`inline-block w-1.5 h-6 ${darkMode ? 'bg-blue-400' : 'bg-blue-600'} ml-1`} style={{ animation: `pulse-custom 1s cubic-bezier(0.4, 0, 0.6, 1) infinite`, verticalAlign: 'middle' }}></span>
                 </p>
