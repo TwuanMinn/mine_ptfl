@@ -70,13 +70,13 @@ export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick,
                                 className="relative group perspective-1000 h-full"
                             >
                                 <div className="relative h-full transform-style-3d transition-transform duration-500 hover:rotate-x-2 hover:rotate-y-2 hover:scale-105">
-                                    <div className={`absolute -inset-0.5 bg-gradient-to-r ${darkMode ? 'from-blue-500 via-cyan-500 to-blue-500' : 'from-blue-400 via-blue-300 to-blue-400'} rounded-lg opacity-50 blur-sm group-hover:opacity-100 transition duration-500`} style={{
+                                    <div className={`absolute -inset-0.5 bg-gradient-to-r ${darkMode ? 'from-blue-500 via-cyan-500 to-blue-500' : 'from-blue-400 via-blue-300 to-blue-400'} rounded-lg opacity-50 blur-sm group-hover:opacity-100 transition duration-500 z-0`} style={{
                                         background: darkMode ? 'linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.8), transparent)' : 'linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.8), transparent)',
                                         backgroundSize: '200% 100%',
                                         animation: 'borderFlow 3s linear infinite',
                                         animationDelay: `${index * 0.3}s`
                                     }}></div>
-                                    <div className={`relative glass-card rounded-2xl overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-[0_0_40px_rgba(34,211,238,0.8),0_0_80px_rgba(255,255,255,0.5)] border ${darkMode ? 'border-white/10 bg-[#0a0a10]' : 'border-blue-100 bg-white'} group-hover:border-cyan-400 group-hover:-translate-y-2`}>
+                                    <div className={`relative z-10 glass-card rounded-2xl overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-[0_0_40px_rgba(34,211,238,0.8),0_0_80px_rgba(255,255,255,0.5)] border ${darkMode ? 'border-white/10 bg-[#0a0a10]' : 'border-blue-100 bg-white'} group-hover:border-cyan-400 group-hover:-translate-y-2`}>
 
                                         {/* Project Image */}
                                         <div className="relative h-48 w-full overflow-hidden">
@@ -90,10 +90,10 @@ export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick,
                                             {/* Heart Button Top Right */}
                                             <button
                                                 onClick={(e) => { e.stopPropagation(); handleHeartClick(project.id); }}
-                                                className={`absolute top-3 right-3 z-20 w-8 h-8 rounded-full border ${isHearted(project.id) ? 'border-pink-300/70 text-pink-200 bg-pink-400/15' : 'border-white/25 text-white/90 bg-black/30 backdrop-blur-md'} flex items-center justify-center transition-all duration-200 hover:scale-110 ${heartAnimating[project.id] ? 'animate-heartbeat' : ''}`}
+                                                className={`absolute top-3 right-3 z-30 w-9 h-9 rounded-full border ${isHearted(project.id) ? 'border-pink-300/70 text-pink-200 bg-pink-400/15' : 'border-white/25 text-white/90 bg-black/30 backdrop-blur-md'} flex items-center justify-center transition-all duration-200 hover:scale-110 ${heartAnimating[project.id] ? 'animate-heartbeat' : ''}`}
                                                 aria-label="heart-project"
                                             >
-                                                <Heart size={14} className={isHearted(project.id) ? 'fill-current' : ''} />
+                                                <Heart size={18} className={isHearted(project.id) ? 'fill-current' : ''} />
                                             </button>
 
                                             {/* Link Button positioned at intersection of image and content */}
@@ -101,7 +101,7 @@ export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick,
                                                 href={project.link}
                                                 target="_blank"
                                                 rel="noreferrer"
-                                                className={`absolute bottom-3 right-3 z-20 w-10 h-10 rounded-full flex items-center justify-center bg-white text-black transition-transform duration-300 hover:scale-110 hover:rotate-45 shadow-lg`}
+                                                className={`absolute bottom-3 right-3 z-30 w-10 h-10 rounded-full flex items-center justify-center bg-white text-black transition-transform duration-300 hover:scale-110 hover:rotate-45 shadow-lg`}
                                                 aria-label="view project"
                                             >
                                                 <ExternalLink size={20} strokeWidth={2.5} />
@@ -130,13 +130,13 @@ export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick,
                                                     {project.techStack.slice(0, 3).map((tech, techIndex) => (
                                                         <div
                                                             key={techIndex}
-                                                            className={`flex items-center gap-1 text-[10px] font-medium px-2 py-1 rounded-full ${darkMode ? 'bg-white/5 text-slate-300 border border-white/5' : 'bg-slate-100 text-slate-600 border border-slate-200'}`}
+                                                            className={`flex items-center gap-1.5 text-xs font-medium px-2.5 py-1.5 rounded-full ${darkMode ? 'bg-white/5 text-slate-300 border border-white/5' : 'bg-slate-100 text-slate-600 border border-slate-200'}`}
                                                         >
                                                             {techIcons[tech] && (
                                                                 <img
                                                                     src={techIcons[tech]}
                                                                     alt={tech}
-                                                                    className="w-3 h-3 object-contain"
+                                                                    className="w-5 h-5 object-contain"
                                                                     loading="lazy"
                                                                 />
                                                             )}
