@@ -1,61 +1,137 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, lazy, Suspense, useCallback, memo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ArrowUp } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Projects } from './components/Projects';
-import { Certificates } from './components/Certificates';
-import { Experience } from './components/Experience';
-import { Contact } from './components/Contact';
-import { Skills } from './components/Skills.jsx';
-import { Footer } from './components/Footer.jsx';
-import { Hero } from './components/Hero.jsx';
-import { About } from './components/About.jsx';
+
+// Error Boundary
+import ErrorBoundary, { SectionErrorBoundary } from './components/ErrorBoundary';
+
+// Utilities
+import { initCodeProtection } from './utils/codeProtection';
+import { storage, copyToClipboard, shareContent, downloadFile } from './utils/helpers';
+import { STORAGE_KEYS, TIMING, NAV_SECTIONS, API_ENDPOINTS } from './constants';
+
+// Critical components loaded immediately
+import LoadingScreen from './components/LoadingScreen.jsx';
 import { Toolbar } from './components/Toolbar.jsx';
 import { QrModal } from './components/QrModal.jsx';
-import { HeartedProjectsPage } from './components/HeartedProjectsPage.jsx';
-import ParticleBackground from './components/ParticleBackground';
-import CustomCursor from './components/CustomCursor.jsx';
-import StatusBadge from './components/StatusBadge.jsx';
 import ScrollProgress from './components/ScrollProgress.jsx';
-import LoadingScreen from './components/LoadingScreen.jsx';
+import CustomCursor from './components/CustomCursor.jsx';
+
+// Data
 import { getPortfolioData, texts, popupMessages } from './data/portfolioData';
+
+// Styles
 import './App.css';
 import './glass.css';
 import './i18n';
 
+// Lazy loaded components for performance
+const Hero = lazy(() => import('./components/Hero.jsx').then(m => ({ default: m.Hero })));
+const About = lazy(() => import('./components/About.jsx').then(m => ({ default: m.About })));
+const Skills = lazy(() => import('./components/Skills.jsx').then(m => ({ default: m.Skills })));
+const Certificates = lazy(() => import('./components/Certificates').then(m => ({ default: m.Certificates })));
+const Projects = lazy(() => import('./components/Projects').then(m => ({ default: m.Projects })));
+const Experience = lazy(() => import('./components/Experience').then(m => ({ default: m.Experience })));
+const Contact = lazy(() => import('./components/Contact').then(m => ({ default: m.Contact })));
+const Footer = lazy(() => import('./components/Footer.jsx').then(m => ({ default: m.Footer })));
+const HeartedProjectsPage = lazy(() => import('./components/HeartedProjectsPage.jsx').then(m => ({ default: m.HeartedProjectsPage })));
+const ParticleBackground = lazy(() => import('./components/ParticleBackground'));
+const StatusBadge = lazy(() => import('./components/StatusBadge.jsx'));
+
+// Loading fallback component
+const SectionLoader = memo(({ height = '200px' }) => (
+  <div
+    className="flex items-center justify-center"
+    style={{ minHeight: height }}
+  >
+    <div className="w-8 h-8 border-2 border-cyan-500/30 border-t-cyan-500 rounded-full animate-spin" />
+  </div>
+));
+SectionLoader.displayName = 'SectionLoader';
+
+// Memoized scroll to top button
+const ScrollToTopButton = memo(({ show, onClick, darkMode }) => {
+  if (!show) return null;
+
+  return (
+    <button
+      onClick={onClick}
+      className={`fixed bottom-16 sm:bottom-8 right-4 sm:right-8 left-auto p-2 sm:p-3 rounded-full transition-all duration-300 transform hover:scale-110 z-[60] animate-bounce ${darkMode
+        ? 'bg-gradient-to-r from-blue-600 to-cyan-600 shadow-lg shadow-blue-500/50'
+        : 'bg-gradient-to-r from-blue-600 to-blue-700 shadow-lg shadow-blue-500/60 ring-2 ring-blue-200/80'
+        } text-white`}
+      aria-label="Scroll to top"
+    >
+      <ArrowUp size={24} />
+    </button>
+  );
+});
+ScrollToTopButton.displayName = 'ScrollToTopButton';
+
 export default function Portfolio() {
   const { t } = useTranslation();
-  const [displayedText, setDisplayedText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [textIndex, setTextIndex] = useState(0);
-  const [activeSection, setActiveSection] = useState('about');
-
-
-  const [darkMode, setDarkMode] = useState(true);
-  const [chatOpen, setChatOpen] = useState(false);
-  const [showScrollTop, setShowScrollTop] = useState(false);
-  const [aboutWordsVisible, setAboutWordsVisible] = useState({});
-  const [aboutHeadingVisible, setAboutHeadingVisible] = useState(false);
-  const [qrOpen, setQrOpen] = useState(false);
-  const [copySuccess, setCopySuccess] = useState(false);
-  const [shareSuccess, setShareSuccess] = useState(false);
-  const [heartedProjects, setHeartedProjects] = useState([]);
-  const [heartAnimating, setHeartAnimating] = useState({});
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Core state
+  const [darkMode, setDarkMode] = useState(true);
+  const [activeSection, setActiveSection] = useState('about');
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // Typing animation state
+  const [displayedText, setDisplayedText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [textIndex, setTextIndex] = useState(0);
+
+  // UI state
+  const [chatOpen, setChatOpen] = useState(false);
+  const [qrOpen, setQrOpen] = useState(false);
+  const [toolbarVisible, setToolbarVisible] = useState(true);
+  const [isReading, setIsReading] = useState(false);
+
+  // About section animation state
+  const [aboutWordsVisible, setAboutWordsVisible] = useState({});
+  const [aboutHeadingVisible, setAboutHeadingVisible] = useState(false);
+
+  // Popup state
+  const [popupMessageIndex, setPopupMessageIndex] = useState(0);
+  const [popupVisible, setPopupVisible] = useState(true);
+
+  // Feedback state
+  const [copySuccess, setCopySuccess] = useState(false);
+  const [shareSuccess, setShareSuccess] = useState(false);
+
+  // Hearted projects state
+  const [heartedProjects, setHeartedProjects] = useState([]);
+  const [heartAnimating, setHeartAnimating] = useState({});
+
+  // Refs
+  const lastScrollY = React.useRef(0);
+  const aboutTimeoutsRef = React.useRef([]);
+
+  // Computed values
   const isHeartedPage = location.pathname === '/hearted';
+  const bioText = t('hero.description');
+  const portfolioData = useMemo(() => getPortfolioData(bioText), [bioText]);
 
   const portfolioUrl = useMemo(
     () => (typeof window !== 'undefined' ? window.location.origin : 'https://example.com'),
     []
   );
+
   const qrCodeUrl = useMemo(
-    () => `https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=${encodeURIComponent(portfolioUrl)}`,
+    () => `${API_ENDPOINTS.qrCode}?size=280x280&data=${encodeURIComponent(portfolioUrl)}`,
     [portfolioUrl]
   );
 
+  // Initialize code protection on mount
+  useEffect(() => {
+    initCodeProtection();
+  }, []);
+
+  // Section observer for active section tracking
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -68,8 +144,7 @@ export default function Portfolio() {
       { threshold: 0.5 }
     );
 
-    const sections = ['about', 'skills', 'certificates', 'projects', 'experience', 'contact'];
-    sections.forEach((id) => {
+    NAV_SECTIONS.forEach(({ id }) => {
       const element = document.getElementById(id);
       if (element) observer.observe(element);
     });
@@ -77,59 +152,39 @@ export default function Portfolio() {
     return () => observer.disconnect();
   }, []);
 
+  // Load hearted projects from storage
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem('heartedProjects');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        setHeartedProjects(Array.isArray(parsed) ? parsed : []);
-      }
-    } catch (error) {
-      console.error('Failed to load hearted projects:', error);
+    const saved = storage.get(STORAGE_KEYS.heartedProjects, []);
+    if (Array.isArray(saved)) {
+      setHeartedProjects(saved);
     }
   }, []);
 
+  // Save hearted projects to storage
   useEffect(() => {
-    try {
-      localStorage.setItem('heartedProjects', JSON.stringify(heartedProjects));
-    } catch (error) {
-      console.error('Failed to save hearted projects:', error);
-    }
+    storage.set(STORAGE_KEYS.heartedProjects, heartedProjects);
   }, [heartedProjects]);
 
-  const isHearted = (id) => heartedProjects.includes(id);
-
-  const toggleHeart = (id) => {
-    setHeartedProjects((prev) => (prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]));
-  };
-  const [toolbarVisible, setToolbarVisible] = useState(true);
-  const lastScrollY = React.useRef(0);
-  const [popupMessageIndex, setPopupMessageIndex] = useState(0);
-  const [popupVisible, setPopupVisible] = useState(true);
-  const [isReading, setIsReading] = useState(false);
-
-  const bioText = t('hero.description');
-
-  const portfolioData = getPortfolioData(bioText);
-
-  React.useEffect(() => {
+  // Popup message rotation
+  useEffect(() => {
     const interval = setInterval(() => {
       setPopupVisible(false);
       setTimeout(() => {
         setPopupMessageIndex((prev) => (prev + 1) % popupMessages.length);
         setPopupVisible(true);
-      }, 400);
-    }, 3000);
+      }, TIMING.popupTransition);
+    }, TIMING.popupInterval);
 
     return () => clearInterval(interval);
-  }, []); // popupMessages is a constant import, dependency not needed or can include if constant
+  }, []);
 
-  React.useEffect(() => {
+  // Typing animation
+  useEffect(() => {
     const currentText = texts[textIndex];
     let timer;
 
     if (!isDeleting && displayedText === currentText) {
-      timer = setTimeout(() => setIsDeleting(true), 2000);
+      timer = setTimeout(() => setIsDeleting(true), TIMING.pauseDuration);
     } else if (isDeleting && displayedText === '') {
       setIsDeleting(false);
       setTextIndex((prev) => (prev + 1) % texts.length);
@@ -137,22 +192,22 @@ export default function Portfolio() {
       timer = setTimeout(() => {
         const nextLength = displayedText.length + (isDeleting ? -1 : 1);
         setDisplayedText(currentText.substring(0, Math.max(nextLength, 0)));
-      }, isDeleting ? 5 : 10);
+      }, isDeleting ? TIMING.deletingSpeed : TIMING.typingSpeed);
     }
 
     return () => clearTimeout(timer);
-  }, [displayedText, isDeleting, textIndex]); // Removed 'texts' as it's an imported constant
+  }, [displayedText, isDeleting, textIndex]);
 
-  React.useEffect(() => {
+  // Toolbar visibility on scroll
+  useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Ignore minimal scroll changes (prevent "jitter" hiding during horizontal swipes)
-      if (Math.abs(currentScrollY - lastScrollY.current) < 10) {
+      if (Math.abs(currentScrollY - lastScrollY.current) < TIMING.scrollJitterThreshold) {
         return;
       }
 
-      if (currentScrollY < 80) {
+      if (currentScrollY < TIMING.toolbarHideThreshold) {
         setToolbarVisible(true);
       } else if (currentScrollY > lastScrollY.current) {
         setToolbarVisible(false);
@@ -166,92 +221,29 @@ export default function Portfolio() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Code protection: Disable Right-Click, F12, Ctrl+Shift+I, Ctrl+U
+  // Scroll to top button visibility
   useEffect(() => {
-    const handleContextMenu = (e) => {
-      e.preventDefault();
-      return false;
-    };
-
-    const handleKeyDown = (e) => {
-      // Prevent F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
-      if (
-        e.key === 'F12' ||
-        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) ||
-        (e.ctrlKey && e.key === 'u')
-      ) {
-        e.preventDefault();
-        return false;
-      }
-    };
-
-    document.addEventListener('contextmenu', handleContextMenu);
-    document.addEventListener('keydown', handleKeyDown);
-
-    // Also inject styles to disable selection
-    const style = document.createElement('style');
-    style.innerHTML = `
-      * {
-        -webkit-user-select: none; /* Safari */
-        -ms-user-select: none; /* IE 10 and IE 11 */
-        user-select: none; /* Standard syntax */
-      }
-      /* Allow selection on input elements */
-      input, textarea {
-        -webkit-user-select: auto;
-        -ms-user-select: auto;
-        user-select: auto;
-      }
-    `;
-    document.head.appendChild(style);
-
-    return () => {
-      document.removeEventListener('contextmenu', handleContextMenu);
-      document.removeEventListener('keydown', handleKeyDown);
-      document.head.removeChild(style);
-    };
-  }, []);
-
-  // Scroll to top listener
-  React.useEffect(() => {
     const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 300);
+      setShowScrollTop(window.scrollY > TIMING.scrollThreshold);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-
-
-
-
-
-
-  // About section word animation effect
-  const aboutTimeoutsRef = React.useRef([]);
-
-  React.useEffect(() => {
-    if (isHeartedPage) {
-      return;
-    }
+  // About section word animation
+  useEffect(() => {
+    if (isHeartedPage) return;
 
     const aboutSection = document.getElementById('about');
     const aboutObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Clear any existing timeouts
             aboutTimeoutsRef.current.forEach(t => clearTimeout(t));
             aboutTimeoutsRef.current = [];
 
-            // Animate heading first
             setAboutHeadingVisible(true);
-            // Animate words one by one with staggered delay
             const wordCount = bioText?.split(' ').length || 50;
             for (let idx = 0; idx < wordCount; idx++) {
               const timeout = setTimeout(() => {
@@ -260,7 +252,6 @@ export default function Portfolio() {
               aboutTimeoutsRef.current.push(timeout);
             }
           } else {
-            // Clear timeouts and reset when scrolling away
             aboutTimeoutsRef.current.forEach(t => clearTimeout(t));
             aboutTimeoutsRef.current = [];
             setAboutHeadingVisible(false);
@@ -277,13 +268,16 @@ export default function Portfolio() {
 
     return () => {
       aboutObserver.disconnect();
-      if (aboutSection) {
-        aboutObserver.unobserve(aboutSection);
-      }
+      aboutTimeoutsRef.current.forEach(t => clearTimeout(t));
     };
   }, [bioText, isHeartedPage]);
 
-  const scrollToSection = (id) => {
+  // Callbacks
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  const scrollToSection = useCallback((id) => {
     if (isHeartedPage) {
       navigate('/');
       setTimeout(() => {
@@ -294,67 +288,39 @@ export default function Portfolio() {
     }
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: 'smooth' });
-  };
+  }, [isHeartedPage, navigate]);
 
-  const handleCopyLink = async () => {
+  const handleCopyLink = useCallback(async () => {
     const url = window.location.href;
-    try {
-      if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(url);
-      } else {
-        const tempInput = document.createElement('textarea');
-        tempInput.value = url;
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        document.execCommand('copy');
-        document.body.removeChild(tempInput);
-      }
+    const success = await copyToClipboard(url);
+    if (success) {
       setCopySuccess(true);
-      setTimeout(() => {
-        setCopySuccess(false);
-      }, 3000);
-    } catch (error) {
-      console.error('Copy failed:', error);
+      setTimeout(() => setCopySuccess(false), 3000);
     }
-  };
+  }, []);
 
-  const handleShareLink = async () => {
+  const handleShareLink = useCallback(async () => {
     const url = window.location.href;
-    try {
-      if (navigator.share) {
-        await navigator.share({ title: document.title, url });
+    const result = await shareContent({ title: document.title, url });
+
+    if (result.success) {
+      if (result.method === 'share') {
         setShareSuccess(true);
       } else {
-        await handleCopyLink();
         setCopySuccess(true);
       }
       setTimeout(() => {
         setCopySuccess(false);
         setShareSuccess(false);
       }, 3000);
-    } catch (error) {
-      console.error('Share failed:', error);
     }
-  };
+  }, []);
 
-  const handleDownloadQr = async () => {
-    try {
-      const response = await fetch(qrCodeUrl);
-      const blob = await response.blob();
-      const objectUrl = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = objectUrl;
-      link.download = 'portfolio-qr.png';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(objectUrl);
-    } catch (error) {
-      console.error('QR download failed:', error);
-    }
-  };
+  const handleDownloadQr = useCallback(async () => {
+    await downloadFile(qrCodeUrl, 'portfolio-qr.png');
+  }, [qrCodeUrl]);
 
-  const toggleReadAloud = () => {
+  const toggleReadAloud = useCallback(() => {
     if (!window.speechSynthesis) return;
 
     if (isReading) {
@@ -376,31 +342,43 @@ export default function Portfolio() {
     window.speechSynthesis.cancel();
     setIsReading(true);
     window.speechSynthesis.speak(utterance);
-  };
+  }, [isReading]);
 
-  const handleHeartClick = (id) => {
+  const isHearted = useCallback((id) => heartedProjects.includes(id), [heartedProjects]);
+
+  const toggleHeart = useCallback((id) => {
+    setHeartedProjects((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  }, []);
+
+  const handleHeartClick = useCallback((id) => {
     setHeartAnimating((prev) => ({ ...prev, [id]: true }));
     toggleHeart(id);
     setTimeout(() => {
       setHeartAnimating((prev) => ({ ...prev, [id]: false }));
-    }, 600); // Animation duration
-  };
+    }, 600);
+  }, [toggleHeart]);
 
   return (
-    <>
+    <ErrorBoundary>
       {/* Loading Screen */}
       <LoadingScreen />
 
       <div className={`min-h-screen ${darkMode ? 'bg-gradient-to-br from-[#050508] via-[#0a0a10] to-[#070709]' : 'bg-gradient-to-br from-blue-50 via-cyan-50 to-white'}`}>
         <ScrollProgress darkMode={darkMode} />
         <CustomCursor darkMode={darkMode} />
+
         {/* Status Badge - Only show on main page */}
-        {!isHeartedPage && <StatusBadge darkMode={darkMode} />}
-        <ParticleBackground darkMode={darkMode} />
+        {!isHeartedPage && (
+          <Suspense fallback={null}>
+            <StatusBadge darkMode={darkMode} />
+          </Suspense>
+        )}
 
-
-
-
+        <Suspense fallback={null}>
+          <ParticleBackground darkMode={darkMode} />
+        </Suspense>
 
         {/* Floating Toolbar */}
         <Toolbar
@@ -435,14 +413,18 @@ export default function Portfolio() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
             >
-              <HeartedProjectsPage
-                darkMode={darkMode}
-                navigate={navigate}
-                portfolioData={portfolioData}
-                isHearted={isHearted}
-                handleHeartClick={handleHeartClick}
-                heartAnimating={heartAnimating}
-              />
+              <Suspense fallback={<SectionLoader height="100vh" />}>
+                <SectionErrorBoundary sectionName="Hearted Projects">
+                  <HeartedProjectsPage
+                    darkMode={darkMode}
+                    navigate={navigate}
+                    portfolioData={portfolioData}
+                    isHearted={isHearted}
+                    handleHeartClick={handleHeartClick}
+                    heartAnimating={heartAnimating}
+                  />
+                </SectionErrorBoundary>
+              </Suspense>
             </motion.div>
           )}
 
@@ -455,67 +437,92 @@ export default function Portfolio() {
               transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
             >
               {/* Hero Section */}
-              <Hero
-                portfolioData={portfolioData}
-                darkMode={darkMode}
-                displayedText={displayedText}
-                popupVisible={popupVisible}
-                popupMessages={popupMessages}
-                popupMessageIndex={popupMessageIndex}
-                chatOpen={chatOpen}
-                setChatOpen={setChatOpen}
-                scrollToSection={scrollToSection}
-              />
+              <Suspense fallback={<SectionLoader height="100vh" />}>
+                <SectionErrorBoundary sectionName="Hero">
+                  <Hero
+                    portfolioData={portfolioData}
+                    darkMode={darkMode}
+                    displayedText={displayedText}
+                    popupVisible={popupVisible}
+                    popupMessages={popupMessages}
+                    popupMessageIndex={popupMessageIndex}
+                    chatOpen={chatOpen}
+                    setChatOpen={setChatOpen}
+                    scrollToSection={scrollToSection}
+                  />
+                </SectionErrorBoundary>
+              </Suspense>
 
               {/* Scroll to Top Button */}
-              {showScrollTop && (
-                <button
-                  onClick={scrollToTop}
-                  className={`fixed bottom-16 sm:bottom-8 right-4 sm:right-8 left-auto p-2 sm:p-3 rounded-full transition-all duration-300 transform hover:scale-110 z-[60] animate-bounce ${darkMode
-                    ? 'bg-gradient-to-r from-blue-600 to-cyan-600 shadow-lg shadow-blue-500/50'
-                    : 'bg-gradient-to-r from-blue-600 to-blue-700 shadow-lg shadow-blue-500/60 ring-2 ring-blue-200/80'
-                    } text-white`}
-                  aria-label="Scroll to top"
-                >
-                  <ArrowUp size={24} />
-                </button>
-              )}
+              <ScrollToTopButton
+                show={showScrollTop}
+                onClick={scrollToTop}
+                darkMode={darkMode}
+              />
 
               {/* About Section */}
-              <About
-                portfolioData={portfolioData}
-                darkMode={darkMode}
-                aboutHeadingVisible={aboutHeadingVisible}
-                aboutWordsVisible={aboutWordsVisible}
-              />
+              <Suspense fallback={<SectionLoader />}>
+                <SectionErrorBoundary sectionName="About">
+                  <About
+                    portfolioData={portfolioData}
+                    darkMode={darkMode}
+                    aboutHeadingVisible={aboutHeadingVisible}
+                    aboutWordsVisible={aboutWordsVisible}
+                  />
+                </SectionErrorBoundary>
+              </Suspense>
 
               {/* Skills Section */}
-              <Skills portfolioData={portfolioData} darkMode={darkMode} />
+              <Suspense fallback={<SectionLoader />}>
+                <SectionErrorBoundary sectionName="Skills">
+                  <Skills portfolioData={portfolioData} darkMode={darkMode} />
+                </SectionErrorBoundary>
+              </Suspense>
 
               {/* Certificates Section */}
-              <Certificates portfolioData={portfolioData} darkMode={darkMode} />
+              <Suspense fallback={<SectionLoader />}>
+                <SectionErrorBoundary sectionName="Certificates">
+                  <Certificates portfolioData={portfolioData} darkMode={darkMode} />
+                </SectionErrorBoundary>
+              </Suspense>
 
               {/* Projects Section */}
-              <Projects
-                portfolioData={portfolioData}
-                darkMode={darkMode}
-                isHearted={isHearted}
-                handleHeartClick={handleHeartClick}
-                heartAnimating={heartAnimating}
-              />
+              <Suspense fallback={<SectionLoader />}>
+                <SectionErrorBoundary sectionName="Projects">
+                  <Projects
+                    portfolioData={portfolioData}
+                    darkMode={darkMode}
+                    isHearted={isHearted}
+                    handleHeartClick={handleHeartClick}
+                    heartAnimating={heartAnimating}
+                  />
+                </SectionErrorBoundary>
+              </Suspense>
 
               {/* Experience Section */}
-              <Experience portfolioData={portfolioData} darkMode={darkMode} />
+              <Suspense fallback={<SectionLoader />}>
+                <SectionErrorBoundary sectionName="Experience">
+                  <Experience portfolioData={portfolioData} darkMode={darkMode} />
+                </SectionErrorBoundary>
+              </Suspense>
 
               {/* Contact Section */}
-              <Contact portfolioData={portfolioData} darkMode={darkMode} />
+              <Suspense fallback={<SectionLoader />}>
+                <SectionErrorBoundary sectionName="Contact">
+                  <Contact portfolioData={portfolioData} darkMode={darkMode} />
+                </SectionErrorBoundary>
+              </Suspense>
 
               {/* Footer */}
-              <Footer portfolioData={portfolioData} darkMode={darkMode} />
+              <Suspense fallback={<SectionLoader height="100px" />}>
+                <SectionErrorBoundary sectionName="Footer">
+                  <Footer portfolioData={portfolioData} darkMode={darkMode} />
+                </SectionErrorBoundary>
+              </Suspense>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
-    </>
+    </ErrorBoundary>
   );
 }
