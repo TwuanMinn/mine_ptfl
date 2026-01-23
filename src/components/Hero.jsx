@@ -67,7 +67,7 @@ export const Hero = ({
                 </h1>
                 <p
                     className={`text-xl sm:text-2xl md:text-3xl ${darkMode ? 'text-blue-300' : 'text-blue-600'} mb-8`}
-                    style={{ fontFamily: "'Google Sans Code', 'Fira Code', monospace", fontWeight: 200 }}
+                    style={{ fontFamily: "'Google Sans Code', 'Fira Code', monospace", fontWeight: 500 }}
                 >
                     {t('hero.title')}
                 </p>
