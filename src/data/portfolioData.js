@@ -62,7 +62,7 @@ export const getPortfolioData = (bioText) => ({
             image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1470&auto=format&fit=crop",
             description: "Responsive portfolio built with React and Tailwind CSS. Features AI-powered chatbot for visitor engagement, smooth animations, dark/light mode, and backend API integration.",
             link: "#",
-            techStack: ["React", "Tailwind CSS", "Node.js", "Vercel"]
+            techStack: ["React", "Next.js", "JavaScript", "Tailwind CSS", "Node.js", "Vercel"]
         },
         {
             id: 'proj-ecommerce',
