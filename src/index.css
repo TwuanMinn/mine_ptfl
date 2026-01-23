@@ -719,3 +719,287 @@ code {
   background: rgba(34, 211, 238, 0.3);
   color: inherit;
 }
+
+/* ========================================
+   8. ENHANCED VISUAL HIERARCHY
+   ======================================== */
+
+/* Animated Underline for Section Headers */
+.section-header {
+  position: relative;
+  display: inline-block;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.section-header::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #22d3ee, #3b82f6, #8b5cf6);
+  border-radius: 2px;
+  transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.section-header.visible::after,
+.section-header:hover::after {
+  width: 100%;
+}
+
+/* Gradient Glow Underline Animation */
+@keyframes underlineGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(34, 211, 238, 0.5), 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.8), 0 0 40px rgba(59, 130, 246, 0.5);
+  }
+}
+
+.section-header.visible::after {
+  animation: underlineGlow 2s ease-in-out infinite;
+}
+
+/* Enhanced Section Divider with Wave Pattern */
+.section-divider-wave {
+  position: relative;
+  height: 60px;
+  margin: 3rem 0;
+  overflow: hidden;
+}
+
+.section-divider-wave svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.section-divider-wave path {
+  fill: none;
+  stroke: url(#dividerGradient);
+  stroke-width: 2;
+  opacity: 0.4;
+}
+
+/* Gradient Line Divider */
+.section-divider-gradient {
+  width: 100%;
+  height: 1px;
+  margin: 4rem auto;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(34, 211, 238, 0.1) 15%,
+      rgba(59, 130, 246, 0.4) 30%,
+      rgba(139, 92, 246, 0.6) 50%,
+      rgba(59, 130, 246, 0.4) 70%,
+      rgba(34, 211, 238, 0.1) 85%,
+      transparent 100%);
+  position: relative;
+}
+
+.section-divider-gradient::before {
+  content: '✦';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+  color: #22d3ee;
+  text-shadow: 0 0 15px rgba(34, 211, 238, 0.8);
+  animation: pulse-custom 2s ease-in-out infinite;
+}
+
+/* More Whitespace Between Sections */
+section {
+  padding-top: 5rem !important;
+  padding-bottom: 5rem !important;
+}
+
+@media (min-width: 768px) {
+  section {
+    padding-top: 6rem !important;
+    padding-bottom: 6rem !important;
+  }
+}
+
+/* ========================================
+   9. PAGE TRANSITION ANIMATIONS
+   ======================================== */
+
+/* Page Fade/Slide Transitions */
+@keyframes pageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pageSlideOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.page-transition-enter {
+  animation: pageSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.page-transition-exit {
+  animation: pageSlideOut 0.3s ease-out forwards;
+}
+
+/* Content Stagger Animation */
+@keyframes staggerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.stagger-item {
+  opacity: 0;
+  animation: staggerFadeIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.stagger-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.stagger-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.stagger-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.stagger-item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.stagger-item:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.stagger-item:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+/* ========================================
+   10. IMPROVED MOBILE EXPERIENCE
+   ======================================== */
+
+/* Minimum Touch Target Size (44px) */
+@media (max-width: 768px) {
+
+  button,
+  a,
+  [role="button"],
+  input[type="submit"],
+  input[type="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Increase spacing between interactive elements */
+  .toolbar-btn {
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+
+  /* Better touch feedback */
+  button:active,
+  a:active,
+  [role="button"]:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* Haptic Feedback Support (via CSS) */
+@supports (-webkit-touch-callout: none) {
+
+  button:active,
+  a:active {
+    -webkit-tap-highlight-color: rgba(34, 211, 238, 0.3);
+  }
+}
+
+/* Better Focus States for Touch */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid rgba(34, 211, 238, 0.8);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Smooth momentum scrolling on iOS */
+.scroll-container {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Prevent accidental text selection on touch */
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Mobile-optimized animations (reduced motion) */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Touch-friendly card interactions */
+@media (hover: none) and (pointer: coarse) {
+  .hover\:scale-105:active {
+    transform: scale(1.02);
+  }
+
+  .hover\:scale-110:active {
+    transform: scale(1.05);
+  }
+}

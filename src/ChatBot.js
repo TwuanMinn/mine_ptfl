@@ -155,7 +155,7 @@ PERSONAL INFO:
 - WhatsApp: +84 934 159 597
 
 ABOUT TUAN:
-A passionate software engineer with a strong foundation in full-stack development and machine learning. With hands-on experience in programming, problem-solving, and teamwork through practical projects, Tuan brings a proactive willingness to learn new technologies and contribute effectively in professional IT environments. He is committed to continually setting higher standards for himself to expand his knowledge and expertise. He is willing to learn new technology stacks or take on different roles as needed.
+Hi, I'm a developer passionate about building clean, intuitive, and visually engaging user interfaces. I focus on creating smooth user experiences, thoughtful interactions, and modern, responsive designs that feel great to use. I believe great software isn't just functional—it's delightful. Every pixel matters, every animation tells a story, and every interaction should feel natural.
 
 TECHNICAL SKILLS:
 - Languages: JavaScript, TypeScript, Java, Python
@@ -163,7 +163,7 @@ TECHNICAL SKILLS:
 - Backend: NodeJS (Express, NestJS), Spring Boot, ExpressJS
 - Databases: PostgreSQL, MongoDB, Firebase, Supabase
 - DevOps & Cloud: Docker, AWS, Vercel, Git, GitHub
-- Other: Machine Learning, React Native
+- Other: UI/UX Design, React Native, Figma
 
 SKILL PROFICIENCY:
 - React Native: 87%

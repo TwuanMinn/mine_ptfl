@@ -1,71 +1,228 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Defined tokens for exact syntax highlighting and typing control
+const codeTokens = [
+    [ // Line 1
+        { text: "import ", className: "text-purple-400" },
+        { text: "{ ", className: "text-white" },
+        { text: "Bio", className: "text-yellow-300" },
+        { text: ", ", className: "text-white" },
+        { text: "Skill", className: "text-yellow-300" },
+        { text: " } ", className: "text-white" },
+        { text: "from ", className: "text-purple-400" },
+        { text: '"life"', className: "text-green-400" },
+        { text: ";", className: "text-white" }
+    ],
+    [ // Line 2 (Empty)
+        { text: "", className: "" }
+    ],
+    [ // Line 3
+        { text: "const ", className: "text-purple-400" },
+        { text: "developer ", className: "text-cyan-300" },
+        { text: "= ", className: "text-white" },
+        { text: "{", className: "text-white" }
+    ],
+    [ // Line 4
+        { text: "  name", className: "text-blue-300" },
+        { text: ": ", className: "text-white" },
+        { text: '"Minh Tuấn"', className: "text-green-400" },
+        { text: ",", className: "text-white" }
+    ],
+    [ // Line 5
+        { text: "  age", className: "text-blue-300" },
+        { text: ": ", className: "text-white" },
+        { text: "23", className: "text-orange-400" },
+        { text: ",", className: "text-white" }
+    ],
+    [ // Line 6
+        { text: "  role", className: "text-blue-300" },
+        { text: ": ", className: "text-white" },
+        { text: '"Software Engineer"', className: "text-green-400" },
+        { text: ",", className: "text-white" }
+    ],
+    [ // Line 7
+        { text: "  email", className: "text-blue-300" },
+        { text: ": ", className: "text-white" },
+        { text: '"tuandev@gmail.com"', className: "text-green-400" },
+        { text: ",", className: "text-white" }
+    ],
+    [ // Line 8
+        { text: "  location", className: "text-blue-300" },
+        { text: ": ", className: "text-white" },
+        { text: '"Vietnam"', className: "text-green-400" },
+        { text: ",", className: "text-white" }
+    ],
+    [ // Line 9
+        { text: "  skills", className: "text-blue-300" },
+        { text: ": [", className: "text-white" },
+        { text: '"React"', className: "text-green-400" },
+        { text: ", ", className: "text-white" },
+        { text: '"Node"', className: "text-green-400" },
+        { text: ", ", className: "text-white" },
+        { text: '"Design"', className: "text-green-400" },
+        { text: "],", className: "text-white" }
+    ],
+    [ // Line 10
+        { text: "  hardWorker", className: "text-blue-300" },
+        { text: ": ", className: "text-white" },
+        { text: "true", className: "text-orange-400" },
+        { text: ",", className: "text-white" }
+    ],
+    [ // Line 11
+        { text: "  quickLearner", className: "text-blue-300" },
+        { text: ": ", className: "text-white" },
+        { text: "true", className: "text-orange-400" },
+        { text: ",", className: "text-white" }
+    ],
+    [ // Line 12
+        { text: "  problemSolver", className: "text-blue-300" },
+        { text: ": ", className: "text-white" },
+        { text: "true", className: "text-orange-400" },
+        { text: ",", className: "text-white" }
+    ],
+    [ // Line 13
+        { text: "  coffee", className: "text-blue-300" },
+        { text: ": ", className: "text-white" },
+        { text: "true", className: "text-orange-400" },
+        { text: ",", className: "text-white" }
+    ],
+    [ // Line 14
+        { text: "  sleep", className: "text-blue-300" },
+        { text: ": ", className: "text-white" },
+        { text: "false", className: "text-orange-400" },
+        { text: ",", className: "text-white" }
+    ],
+    [ // Line 15
+        { text: "  passion", className: "text-blue-300" },
+        { text: ": ", className: "text-white" },
+        { text: '"Crafting intuitive and"', className: "text-green-400" },
+        { text: ",", className: "text-white" }
+    ],
+    [ // Line 16
+        { text: "           ", className: "text-white" },
+        { text: '"visually appealing UI/UX"', className: "text-green-400" },
+        { text: ",", className: "text-white" }
+    ],
+    [ // Line 17
+        { text: "  hobbies", className: "text-blue-300" },
+        { text: ": [", className: "text-white" },
+        { text: '"Coding"', className: "text-green-400" },
+        { text: ", ", className: "text-white" },
+        { text: '"Writing"', className: "text-green-400" },
+        { text: "],", className: "text-white" }
+    ],
+    [ // Line 18
+        { text: "  hireable", className: "text-blue-300" },
+        { text: ": ", className: "text-white" },
+        { text: "function", className: "text-purple-400" },
+        { text: "() {", className: "text-white" }
+    ],
+    [ // Line 19
+        { text: "    return this", className: "text-purple-400" },
+        { text: ".hardWorker;", className: "text-white" }
+    ],
+    [ // Line 20
+        { text: "  },", className: "text-white" }
+    ],
+    [ // Line 21
+        { text: "  start", className: "text-blue-300" },
+        { text: ": ", className: "text-white" },
+        { text: "() ", className: "text-purple-400" },
+        { text: "=> ", className: "text-purple-400" },
+        { text: "{", className: "text-white" }
+    ],
+    [ // Line 22
+        { text: "    console.", className: "text-white" },
+        { text: "log", className: "text-yellow-300" },
+        { text: "(", className: "text-white" },
+        { text: '"Ready!"', className: "text-green-400" },
+        { text: ");", className: "text-white" }
+    ],
+    [ // Line 23
+        { text: "  }", className: "text-white" }
+    ],
+    [ // Line 24
+        { text: "};", className: "text-white" }
+    ],
+    [ // Line 25
+        { text: "developer.", className: "text-cyan-300" },
+        { text: "init", className: "text-yellow-300" },
+        { text: "();", className: "text-white" }
+    ]
+];
 
 const LoadingScreen = ({ onLoadingComplete }) => {
     const [isLoading, setIsLoading] = useState(true);
-    const [currentLine, setCurrentLine] = useState(0);
+    const [lineIndex, setLineIndex] = useState(0);
+    const [charIndex, setCharIndex] = useState(0);
+    const [showCursor, setShowCursor] = useState(true);
 
+    // Blinking cursor independent of typing
     useEffect(() => {
-        // Animate 25 code lines appearing - fast typing over 3 seconds
-        const lineTimers = [];
-        // Calculate delays for 25 lines (approx 120ms per line)
-        const delays = Array.from({ length: 26 }, (_, i) => i * 120);
+        const cursorInterval = setInterval(() => {
+            setShowCursor(prev => !prev);
+        }, 500);
+        return () => clearInterval(cursorInterval);
+    }, []);
 
-        delays.forEach((delay, index) => {
-            const timer = setTimeout(() => {
-                setCurrentLine(index + 1);
-            }, delay);
-            lineTimers.push(timer);
-        });
+    // Typing Logic
+    useEffect(() => {
+        if (!isLoading) return;
 
-        // Complete loading after 8 seconds (3s typing + 5s pause)
-        const completeTimer = setTimeout(() => {
-            setIsLoading(false);
-        }, 8000);
+        // If all lines typed
+        if (lineIndex >= codeTokens.length) {
+            const completeTimer = setTimeout(() => {
+                setIsLoading(false);
+            }, 800); // Pause before fading out
 
-        // Call onLoadingComplete after exit animation
-        const callbackTimer = setTimeout(() => {
-            if (onLoadingComplete) {
-                onLoadingComplete();
+            const callbackTimer = setTimeout(() => {
+                if (onLoadingComplete) onLoadingComplete();
+            }, 1300); // Wait for exit animation
+
+            return () => {
+                clearTimeout(completeTimer);
+                clearTimeout(callbackTimer);
+            };
+        }
+
+        const currentLineTokens = codeTokens[lineIndex];
+        const currentLineText = currentLineTokens.map(t => t.text).join('');
+
+        // Typing speed
+        const typingSpeed = 15; // ms per char (adjust for speed)
+
+        const timeout = setTimeout(() => {
+            if (charIndex < currentLineText.length) {
+                setCharIndex(prev => prev + 1);
+            } else {
+                // Line complete, move to next
+                setLineIndex(prev => prev + 1);
+                setCharIndex(0);
             }
-        }, 8500);
+        }, typingSpeed);
 
-        return () => {
-            lineTimers.forEach(t => clearTimeout(t));
-            clearTimeout(completeTimer);
-            clearTimeout(callbackTimer);
-        };
-    }, [onLoadingComplete]);
+        return () => clearTimeout(timeout);
+    }, [lineIndex, charIndex, isLoading, onLoadingComplete]);
 
-    // 25 lines of code
-    const codeLines = [
-        { text: 'import { Bio, Skill } from "life";' },
-        { text: '' },
-        { text: 'const developer = {' },
-        { text: '  name: "Minh Tuấn",' },
-        { text: '  age: 23,' },
-        { text: '  role: "Software Engineer",' },
-        { text: '  email: "tuandev@gmail.com",' },
-        { text: '  location: "Vietnam",' },
-        { text: '  skills: ["React", "Node", "Design"],' },
-        { text: '  hardWorker: true,' },
-        { text: '  quickLearner: true,' },
-        { text: '  problemSolver: true,' },
-        { text: '  coffee: true,' },
-        { text: '  sleep: false,' },
-        { text: '  passion: "Crafting intuitive and",' },
-        { text: '           "visually appealing UI/UX",' },
-        { text: '  hobbies: ["Coding", "Writing"],' },
-        { text: '  hireable: function() {' },
-        { text: '    return this.hardWorker;' },
-        { text: '  },' },
-        { text: '  start: () => {' },
-        { text: '    console.log("Ready!");' },
-        { text: '  }' },
-        { text: '};' },
-        { text: 'developer.init();' },
-    ];
+
+    // Helper to render partial tokens based on char limit
+    const renderLine = (tokens, limit) => {
+        let currentCount = 0;
+        return tokens.map((token, idx) => {
+            if (currentCount >= limit) return null; // Fully hidden token
+
+            const remaining = limit - currentCount;
+            const textToShow = token.text.slice(0, remaining);
+            currentCount += token.text.length;
+
+            return (
+                <span key={idx} className={token.className}>
+                    {textToShow}
+                </span>
+            );
+        });
+    };
 
     return (
         <AnimatePresence>
@@ -128,175 +285,28 @@ const LoadingScreen = ({ onLoadingComplete }) => {
                             </div>
 
                             {/* Code content */}
-                            <div className="bg-[#0d1117] p-6 font-mono text-xs sm:text-sm min-h-[320px] overflow-hidden">
-                                {codeLines.map((line, index) => (
-                                    <motion.div
-                                        key={index}
-                                        className="flex"
-                                        initial={{ opacity: 0, x: -10 }}
-                                        animate={{
-                                            opacity: index < currentLine ? 1 : 0,
-                                            x: index < currentLine ? 0 : -10
-                                        }}
-                                        transition={{ duration: 0.15 }}
-                                    >
-                                        <span className="text-slate-600 w-6 text-right mr-4 select-none flex-shrink-0">
-                                            {index + 1}
-                                        </span>
-                                        <span className="flex-1 whitespace-pre">
-                                            {line.text.includes('import') && (
-                                                <>
-                                                    <span className="text-purple-400">import </span>
-                                                    <span className="text-white">{'{ '}</span>
-                                                    <span className="text-yellow-300">Bio</span>
-                                                    <span className="text-white">, </span>
-                                                    <span className="text-yellow-300">Skill</span>
-                                                    <span className="text-white">{' }'}</span>
-                                                    <span className="text-purple-400"> from </span>
-                                                    <span className="text-green-400">"life"</span>
-                                                    <span className="text-white">;</span>
-                                                </>
-                                            )}
-                                            {line.text.includes('const') && (
-                                                <>
-                                                    <span className="text-purple-400">const</span>
-                                                    <span className="text-cyan-300"> developer</span>
-                                                    <span className="text-white"> = {'{'}</span>
-                                                </>
-                                            )}
-                                            {line.text.includes('name:') && (
-                                                <>
-                                                    <span className="text-blue-300">  name</span>
-                                                    <span className="text-white">: </span>
-                                                    <span className="text-green-400">"Minh Tuấn"</span>
-                                                    <span className="text-white">,</span>
-                                                </>
-                                            )}
-                                            {line.text.includes('role:') && (
-                                                <>
-                                                    <span className="text-blue-300">  role</span>
-                                                    <span className="text-white">: </span>
-                                                    <span className="text-green-400">"Software Engineer"</span>
-                                                    <span className="text-white">,</span>
-                                                </>
-                                            )}
-                                            {line.text.includes('skills:') && (
-                                                <>
-                                                    <span className="text-blue-300">  skills</span>
-                                                    <span className="text-white">: [</span>
-                                                    <span className="text-green-400">"React"</span>
-                                                    <span className="text-white">, </span>
-                                                    <span className="text-green-400">"Node"</span>
-                                                    <span className="text-white">, </span>
-                                                    <span className="text-green-400">"Design"</span>
-                                                    <span className="text-white">],</span>
-                                                </>
-                                            )}
-                                            {/* Generic Key-Value Handling */}
-                                            {(line.text.includes('email:') || line.text.includes('location:')) && (
-                                                <>
-                                                    <span className="text-blue-300">  {line.text.split(':')[0].trim()}</span>
-                                                    <span className="text-white">: </span>
-                                                    <span className="text-green-400">{line.text.split(':')[1].trim().replace(',', '')}</span>
-                                                    <span className="text-white">,</span>
-                                                </>
-                                            )}
-                                            {(line.text.includes('passion:') && !line.text.includes('visually')) && (
-                                                <>
-                                                    <span className="text-blue-300">  passion</span>
-                                                    <span className="text-white">: </span>
-                                                    <span className="text-green-400">"Crafting intuitive and"</span>
-                                                    <span className="text-white">,</span>
-                                                </>
-                                            )}
-                                            {line.text.includes('visually appealing') && (
-                                                <>
-                                                    <span className="text-green-400">           "visually appealing UI/UX"</span>
-                                                    <span className="text-white">,</span>
-                                                </>
-                                            )}
-                                            {(line.text.includes('hardWorker:') || line.text.includes('quickLearner:') || line.text.includes('problemSolver:') || line.text.includes('coffee:') || line.text.includes('sleep:') || line.text.includes('age:')) && (
-                                                <>
-                                                    <span className="text-blue-300">  {line.text.split(':')[0].trim()}</span>
-                                                    <span className="text-white">: </span>
-                                                    <span className="text-orange-400">{line.text.includes('true') || line.text.includes('false') ? (line.text.includes('true') ? 'true' : 'false') : line.text.match(/\d+/)[0]}</span>
-                                                    <span className="text-white">,</span>
-                                                </>
-                                            )}
-                                            {line.text.includes('hobbies:') && (
-                                                <>
-                                                    <span className="text-blue-300">  hobbies</span>
-                                                    <span className="text-white">: [</span>
-                                                    <span className="text-green-400">"Coding"</span>
-                                                    <span className="text-white">, </span>
-                                                    <span className="text-green-400">"Writing"</span>
-                                                    <span className="text-white">],</span>
-                                                </>
-                                            )}
-                                            {line.text.includes('hireable:') && (
-                                                <>
-                                                    <span className="text-blue-300">  hireable</span>
-                                                    <span className="text-white">: </span>
-                                                    <span className="text-purple-400">function</span>
-                                                    <span className="text-white">() {'{'}</span>
-                                                </>
-                                            )}
-                                            {line.text.includes('start:') && (
-                                                <>
-                                                    <span className="text-blue-300">  start</span>
-                                                    <span className="text-white">: </span>
-                                                    <span className="text-purple-400">()</span>
-                                                    <span className="text-purple-400"> {'=>'} </span>
-                                                    <span className="text-white">{'{'}</span>
-                                                </>
-                                            )}
-                                            {line.text.includes('console.log') && (
-                                                <>
-                                                    <span className="text-white">    console.</span>
-                                                    <span className="text-yellow-300">log</span>
-                                                    <span className="text-white">(</span>
-                                                    <span className="text-green-400">"Ready!"</span>
-                                                    <span className="text-white">);</span>
-                                                </>
-                                            )}
-                                            {line.text.includes('return') && (
-                                                <>
-                                                    <span className="text-purple-400">    return this</span>
-                                                    <span className="text-white">.hardWorker;</span>
-                                                </>
-                                            )}
-                                            {line.text.trim() === '},' && (
-                                                <span className="text-white">  {'},'}</span>
-                                            )}
-                                            {line.text.trim() === '}' && (
-                                                <span className="text-white">  {'}'}</span>
-                                            )}
-                                            {line.text === '};' && (
-                                                <span className="text-white">{'};'}</span>
-                                            )}
-                                            {line.text.includes('.init()') && (
-                                                <>
-                                                    <span className="text-cyan-300">developer</span>
-                                                    <span className="text-white">.</span>
-                                                    <span className="text-yellow-300">init</span>
-                                                    <span className="text-white">();</span>
-                                                </>
-                                            )}
-                                        </span>
-                                    </motion.div>
-                                ))}
+                            <div className="bg-[#0d1117] p-6 font-mono text-xs sm:text-sm min-h-[320px] overflow-hidden whitespace-pre">
+                                {codeTokens.map((tokens, idx) => {
+                                    // Only render lines up to current index
+                                    if (idx > lineIndex) return null;
 
-                                {/* Blinking cursor */}
-                                <motion.div
-                                    className="flex mt-1"
-                                    animate={{ opacity: [1, 0] }}
-                                    transition={{ duration: 0.8, repeat: Infinity }}
-                                >
-                                    <span className="text-slate-600 w-6 text-right mr-4 select-none">
-                                        {codeLines.length + 1}
-                                    </span>
-                                    <span className="w-2 h-5 bg-cyan-400" />
-                                </motion.div>
+                                    const isCurrentLine = idx === lineIndex;
+                                    const limit = isCurrentLine ? charIndex : 9999;
+
+                                    return (
+                                        <div key={idx} className="flex min-h-[1.5em]">
+                                            <span className="text-slate-600 w-6 text-right mr-4 select-none flex-shrink-0">
+                                                {idx + 1}
+                                            </span>
+                                            <div>
+                                                {renderLine(tokens, limit)}
+                                                {isCurrentLine && showCursor && (
+                                                    <span className="inline-block w-2 h-4 bg-cyan-400 align-middle ml-1" />
+                                                )}
+                                            </div>
+                                        </div>
+                                    );
+                                })}
                             </div>
 
                             {/* Loading bar at bottom */}

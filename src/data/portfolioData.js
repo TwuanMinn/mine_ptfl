@@ -22,7 +22,7 @@ export const getPortfolioData = (bioText) => ({
     skillsProgress: [
         { name: "React Native", level: 87 },
         { name: "GitHub", level: 88 },
-        { name: "Firebase", level: 92 },
+        { name: "Firebase", level: 76 },
         { name: "Tailwind CSS", level: 93 },
         { name: "Supabase", level: 78 }
     ],
@@ -98,7 +98,7 @@ export const getPortfolioData = (bioText) => ({
 
     experience: [
         {
-            role: "UI/UX Designer",
+            role: "Freelance UI/UX Designer",
             period: "May 2024 - Present",
             description: "Crafting intuitive digital experiences with a focus on user-centric design. Specializing in high-fidelity prototyping, design systems, and bridging the gap between aesthetics and functionality using Figma and modern design principles."
         },
@@ -116,8 +116,8 @@ export const getPortfolioData = (bioText) => ({
 });
 
 export const texts = [
-    "A passionate software engineer with a strong foundation in full-stack development and machine learning. With hands-on experience in programming, problem-solving, and teamwork through practical projects, I bring a proactive willingness to learn new technologies and contribute effectively in professional IT environments.",
-    "I am committed to continually setting higher standards for myself to expand my knowledge and expertise in this domain. I am willing to learn new technology stacks or take on different roles as needed. I look forward to the opportunity to join your team and contribute with full dedication."
+    "Hi, I'm a developer passionate about building clean, intuitive, and visually engaging user interfaces. I focus on creating smooth user experiences, thoughtful interactions, and modern, responsive designs that feel great to use. I am committed to continually setting higher standards for myself to expand my knowledge and expertise.",
+    "I believe great software isn't just functional—it's delightful. Every pixel matters, every animation tells a story, and every interaction should feel natural. Let's build something beautiful together."
 ];
 
 export const popupMessages = [
