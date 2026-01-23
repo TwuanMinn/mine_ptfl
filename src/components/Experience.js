@@ -143,7 +143,7 @@ export const Experience = ({ portfolioData, darkMode }) => {
 
                                                 <p
                                                     className={`${darkMode ? 'text-slate-300/90' : 'text-slate-600'} leading-relaxed text-sm sm:text-base`}
-                                                    style={{ fontFamily: "'Google Sans Code', 'Fira Code', monospace", fontWeight: 200 }}
+                                                    style={{ fontFamily: "'Google Sans Code', 'Fira Code', monospace", fontWeight: 400 }}
                                                 >
                                                     {job.description}
                                                 </p>
