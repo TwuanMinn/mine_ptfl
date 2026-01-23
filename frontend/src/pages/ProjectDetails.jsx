@@ -89,6 +89,91 @@ export default function ProjectDetails({ portfolioData, darkMode }) {
     // Use fullDescription if available, otherwise fall back to description
     const longDescription = project.fullDescription || project.description;
 
+    const renderProjectContent = () => {
+        const paragraphs = longDescription.split('\n\n');
+        const gallery = project.gallery || [];
+        const introSize = 2; // First 2 paragraphs as intro
+        const perImage = 3; // 3 paragraphs per image section
+        const sections = [];
+
+        // Intro section
+        sections.push({
+            type: 'intro',
+            paragraphs: paragraphs.slice(0, introSize)
+        });
+
+        // Image sections
+        let currentPara = introSize;
+        for (let i = 0; i < gallery.length && currentPara < paragraphs.length; i++) {
+            sections.push({
+                type: 'image-text',
+                image: gallery[i],
+                imageOnRight: i % 2 === 0,
+                paragraphs: paragraphs.slice(currentPara, currentPara + perImage)
+            });
+            currentPara += perImage;
+        }
+
+        // Remaining paragraphs
+        if (currentPara < paragraphs.length) {
+            sections.push({
+                type: 'outro',
+                paragraphs: paragraphs.slice(currentPara)
+            });
+        }
+
+        return sections.map((section, idx) => {
+            // Intro/Outro sections (text only)
+            if (section.type === 'intro' || section.type === 'outro') {
+                return (
+                    <div key={idx} className="space-y-4">
+                        {section.paragraphs.map((para, pIdx) => (
+                            <p key={pIdx} className="text-base sm:text-lg leading-relaxed text-slate-300 font-light">
+                                {para}
+                            </p>
+                        ))}
+                    </div>
+                );
+            }
+
+            // Image-text section (side by side)
+            return (
+                <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 + idx * 0.1 }}
+                    className={`flex flex-col md:flex-row gap-6 md:gap-8 items-center ${section.imageOnRight ? '' : 'md:flex-row-reverse'}`}
+                >
+                    {/* Text side - 50% */}
+                    <div className="w-full md:w-1/2 space-y-4">
+                        {section.paragraphs.map((para, pIdx) => (
+                            <p key={pIdx} className="text-base sm:text-lg leading-relaxed text-slate-300 font-light">
+                                {para}
+                            </p>
+                        ))}
+                    </div>
+
+                    {/* Image side - 50% */}
+                    <div className="w-full md:w-1/2 relative group/img">
+                        {/* Glow effect */}
+                        <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500/30 via-blue-500/30 to-purple-500/30 rounded-2xl blur-xl opacity-0 group-hover/img:opacity-100 transition-opacity duration-500" />
+
+                        <div className="relative overflow-hidden rounded-2xl border border-white/20 shadow-2xl shadow-cyan-500/10">
+                            <img
+                                src={section.image}
+                                alt={`${project.title} - Feature`}
+                                className="w-full h-64 sm:h-72 md:h-80 object-cover transition-transform duration-700 group-hover/img:scale-105"
+                            />
+                            {/* Gradient overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent" />
+                        </div>
+                    </div>
+                </motion.div>
+            );
+        });
+    };
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -248,92 +333,9 @@ export default function ProjectDetails({ portfolioData, darkMode }) {
                         </div>
 
                         {/* Long description with images side-by-side */}
+                        {/* Long description with images side-by-side */}
                         <div className="space-y-8">
-                            {(() => {
-                                const paragraphs = longDescription.split('\n\n');
-                                const gallery = project.gallery || [];
-                                const introSize = 2; // First 2 paragraphs as intro
-                                const perImage = 3; // 3 paragraphs per image section
-                                const sections = [];
-
-                                // Intro section
-                                sections.push({
-                                    type: 'intro',
-                                    paragraphs: paragraphs.slice(0, introSize)
-                                });
-
-                                // Image sections - ensure all 3 images show
-                                let currentPara = introSize;
-                                for (let i = 0; i < gallery.length && currentPara < paragraphs.length; i++) {
-                                    sections.push({
-                                        type: 'image-text',
-                                        image: gallery[i],
-                                        imageOnRight: i % 2 === 0,
-                                        paragraphs: paragraphs.slice(currentPara, currentPara + perImage)
-                                    });
-                                    currentPara += perImage;
-                                }
-
-                                // Remaining paragraphs
-                                if (currentPara < paragraphs.length) {
-                                    sections.push({
-                                        type: 'outro',
-                                        paragraphs: paragraphs.slice(currentPara)
-                                    });
-                                }
-
-                                return sections.map((section, idx) => {
-                                    // Intro/Outro sections (text only)
-                                    if (section.type === 'intro' || section.type === 'outro') {
-                                        return (
-                                            <div key={idx} className="space-y-4">
-                                                {section.paragraphs.map((para, pIdx) => (
-                                                    <p key={pIdx} className="text-base sm:text-lg leading-relaxed text-slate-300 font-light">
-                                                        {para}
-                                                    </p>
-                                                ))}
-                                            </div>
-                                        );
-                                    }
-
-                                    // Image-text section (side by side)
-                                    return (
-                                        <motion.div
-                                            key={idx}
-                                            initial={{ opacity: 0, y: 30 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            transition={{ delay: 0.4 + idx * 0.1 }}
-                                            className={`flex flex-col md:flex-row gap-6 md:gap-8 items-center ${section.imageOnRight ? '' : 'md:flex-row-reverse'
-                                                }`}
-                                        >
-                                            {/* Text side - 50% */}
-                                            <div className="w-full md:w-1/2 space-y-4">
-                                                {section.paragraphs.map((para, pIdx) => (
-                                                    <p key={pIdx} className="text-base sm:text-lg leading-relaxed text-slate-300 font-light">
-                                                        {para}
-                                                    </p>
-                                                ))}
-                                            </div>
-
-                                            {/* Image side - 50% */}
-                                            <div className="w-full md:w-1/2 relative group/img">
-                                                {/* Glow effect */}
-                                                <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500/30 via-blue-500/30 to-purple-500/30 rounded-2xl blur-xl opacity-0 group-hover/img:opacity-100 transition-opacity duration-500" />
-
-                                                <div className="relative overflow-hidden rounded-2xl border border-white/20 shadow-2xl shadow-cyan-500/10">
-                                                    <img
-                                                        src={section.image}
-                                                        alt={`${project.title} - Feature`}
-                                                        className="w-full h-64 sm:h-72 md:h-80 object-cover transition-transform duration-700 group-hover/img:scale-105"
-                                                    />
-                                                    {/* Gradient overlay */}
-                                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent" />
-                                                </div>
-                                            </div>
-                                        </motion.div>
-                                    );
-                                });
-                            })()}
+                            {renderProjectContent()}
                         </div>
                     </div>
                 </motion.div>
@@ -388,7 +390,7 @@ export default function ProjectDetails({ portfolioData, darkMode }) {
                         </div>
                     </div>
                 </motion.div>
-            </div >
+            </div>
 
             {/* CSS Animations */}
             <style>{`
