@@ -45,7 +45,7 @@ const StatusBadge = ({ darkMode }) => {
 
     return (
         <div
-            className={`fixed top-20 sm:top-24 left-4 sm:left-8 z-[9990] flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full backdrop-blur-xl border transition-all duration-500 ${darkMode
+            className={`fixed top-16 sm:top-20 left-4 sm:left-8 z-[9990] flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full backdrop-blur-xl border transition-all duration-500 ${darkMode
                 ? 'bg-slate-900/60 border-cyan-500/30 hover:bg-slate-800/70 hover:border-cyan-400/50'
                 : 'bg-white/70 border-blue-300/60 hover:bg-white/90'
                 } shadow-lg hover:shadow-cyan-500/20 hover:scale-105 group cursor-default select-none ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
