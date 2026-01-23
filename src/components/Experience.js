@@ -70,12 +70,36 @@ export const Experience = ({ portfolioData, darkMode }) => {
                                     </div>
 
                                     <div className="flex-1">
-                                        <div className={`relative glass-card rounded-2xl p-6 transition-all duration-500 group-hover:-translate-y-1 animate-card-wave ${darkMode
-                                            ? 'border-white/20 white-glow hover:border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.05)]'
-                                            : 'hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)]'}`} style={{ animationDelay: `${index * 0.4}s` }}>
-                                            <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-blue-800'} mb-1 transition-colors duration-300`}>{job.role}</h3>
-                                            <p className={`${darkMode ? 'text-cyan-300' : 'text-blue-600'} text-sm mb-4 transition-colors duration-300 font-semibold`}>{job.period}</p>
-                                            <p className={`${darkMode ? 'text-gray-200' : 'text-blue-700'} leading-relaxed transition-colors duration-300`}>{job.description}</p>
+                                        <div
+                                            className={`relative glass-card rounded-2xl p-8 transition-all duration-500 group-hover:-translate-y-2 animate-card-wave overflow-hidden min-h-[220px] flex flex-col justify-center ${darkMode
+                                                ? 'border border-white/10 hover:border-cyan-400/50 hover:shadow-[0_0_40px_rgba(34,211,238,0.2)] bg-[#0f111a]/80'
+                                                : 'hover:shadow-xl border-blue-100 hover:border-blue-300'}`}
+                                            style={{ animationDelay: `${index * 0.4}s` }}
+                                        >
+                                            {/* Decorative Background Blob */}
+                                            <div className={`absolute -top-10 -right-10 w-40 h-40 rounded-full blur-3xl transition-opacity duration-500 group-hover:opacity-70 ${darkMode ? 'bg-cyan-500/10 opacity-0' : 'bg-blue-200/40 opacity-0'}`} />
+
+                                            {/* Content */}
+                                            <div className="relative z-10">
+                                                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
+                                                    <div className="w-fit">
+                                                        <h3 className={`text-2xl font-bold ${darkMode ? 'text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-200 group-hover:from-cyan-300 group-hover:to-blue-300' : 'text-blue-900'} transition-all duration-300`}>
+                                                            {job.role}
+                                                        </h3>
+                                                        <div className={`h-1 rounded-full mt-2 transition-all duration-300 w-12 group-hover:w-full ${darkMode ? 'bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600' : 'bg-blue-400'}`} />
+                                                    </div>
+
+                                                    <span className={`px-4 py-1.5 rounded-full text-xs font-mono font-semibold tracking-wide border transition-all duration-300 ${darkMode
+                                                        ? 'bg-slate-800/80 border-white/10 text-cyan-300 group-hover:border-cyan-500/50 group-hover:bg-cyan-950/30'
+                                                        : 'bg-blue-50 border-blue-200 text-blue-700'}`}>
+                                                        {job.period}
+                                                    </span>
+                                                </div>
+
+                                                <p className={`${darkMode ? 'text-slate-300/90' : 'text-slate-600'} leading-relaxed text-sm sm:text-base`}>
+                                                    {job.description}
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

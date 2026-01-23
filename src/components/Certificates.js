@@ -12,7 +12,7 @@ export const Certificates = ({ portfolioData, darkMode }) => {
     };
 
     return (
-        <section id="certificates" className={`py-20 px-4 relative overflow-hidden ${darkMode ? 'bg-[#08080b]/40' : 'bg-blue-50/60'}`}>
+        <section id="certificates" className={`py-20 px-4 relative overflow-hidden ${darkMode ? 'bg-[#030303]' : 'bg-blue-50/60'}`}>
             <Reveal width="100%">
                 <div className="max-w-6xl mx-auto relative z-10">
                     {/* SVG Gradient Definition */}
@@ -37,7 +37,7 @@ export const Certificates = ({ portfolioData, darkMode }) => {
                                 <div
                                     key={index}
                                     // RESTORED: The glass-card, card-wave animation, and neon hover shadows
-                                    className={`relative glass-card overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(34,211,238,0.6),0_0_80px_rgba(255,255,255,0.2)] border border-transparent hover:border-cyan-400 hover:bg-cyan-900/30 h-full flex flex-col animate-card-wave`}
+                                    className={`relative glass-card overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(34,211,238,0.6),0_0_80px_rgba(255,255,255,0.2)] border border-transparent hover:border-cyan-400 hover:bg-cyan-900/30 h-full flex flex-col animate-card-wave ${darkMode ? 'bg-[#0a0a0f]/80' : ''}`}
                                     style={{ animationDelay: `${index * 0.4}s` }}
                                 >
                                     {/* RESTORED: The blurred glow blob */}
