@@ -63,7 +63,7 @@ export default function Home({
     handleHeartClick,
     heartAnimating
 }) {
-    const { t: _t } = useTranslation();
+    useTranslation();
     const location = useLocation();
 
     // Typing animation state
