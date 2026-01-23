@@ -29,6 +29,15 @@ export const getPortfolioData = (bioText) => ({
 
     projects: [
         {
+            id: 'proj-shoestore',
+            title: "Premium Shoe Store",
+            category: "E-Commerce Development",
+            image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1470&auto=format&fit=crop",
+            description: "A high-performance e-commerce storefront for premium footwear. Features a sleek, responsive design, product filtering, and a seamless shopping experience.",
+            link: "https://shoestore-tau.vercel.app/",
+            techStack: ["React", "Next.js", "Tailwind CSS", "Framer Motion"]
+        },
+        {
             id: 'proj-habit',
             title: "Habit Tracking Mobile Application",
             category: "Mobile Development",
@@ -125,6 +134,11 @@ export const getPortfolioData = (bioText) => ({
             role: "English IELTS Teacher",
             period: "March 2023 - March 2024",
             description: "Delivered IELTS preparation lessons across all four skills. Developed exam-focused materials and provided personalized instruction to help students achieve higher band scores."
+        },
+        {
+            role: "Website Developer",
+            period: "July 2022 - March 2023",
+            description: "Designed and developed responsive web applications focusing on performance and user engagement. Implemented modern frontend architectures and ensured cross-browser compatibility."
         },
         {
             role: "IT Support Volunteer",
