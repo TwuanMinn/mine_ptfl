@@ -89,7 +89,7 @@ export const Hero = ({
                     >
                         <span className="ripple-wave-1 absolute inset-0 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(34, 211, 238, 0.7) 0%, transparent 70%)' }}></span>
                         <span className="ripple-wave-2 absolute inset-0 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(37, 99, 235, 0.5) 0%, transparent 70%)' }}></span>
-                        <span className="relative z-10">{t('hero.getInTouch')}</span>
+                        <span className="relative z-10" style={{ fontFamily: "'Google Sans Code', 'Fira Code', monospace", fontWeight: 200 }}>{t('hero.getInTouch')}</span>
                     </button>
                     <a
                         href="/dev.cv.pdf"
@@ -107,7 +107,7 @@ export const Hero = ({
                     >
                         <span className="ripple-wave-1 absolute inset-0 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(59, 130, 246, 0.6) 0%, transparent 70%)' }}></span>
                         <span className="ripple-wave-2 absolute inset-0 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(37, 99, 235, 0.45) 0%, transparent 70%)' }}></span>
-                        <span className={`relative z-10 flex items-center gap-2 ${darkMode ? 'text-white' : 'text-blue-900'}`}>
+                        <span className={`relative z-10 flex items-center gap-2 ${darkMode ? 'text-white' : 'text-blue-900'}`} style={{ fontFamily: "'Google Sans Code', 'Fira Code', monospace", fontWeight: 200 }}>
                             {i18n.t('hero.downloadCV')}
                             <svg className="w-5 h-5 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
@@ -137,7 +137,7 @@ export const Hero = ({
                                 if (icon) icon.style.transform = 'scale(1) rotate(0deg)';
                             }}
                         >
-                            <span className="relative z-10 flex items-center gap-2">
+                            <span className="relative z-10 flex items-center gap-2" style={{ fontFamily: "'Google Sans Code', 'Fira Code', monospace", fontWeight: 200 }}>
                                 <BotMessageSquare className="chat-robot-icon w-6 h-6 transition-transform" />
                                 Chat with My AI Agent
                             </span>
