@@ -147,8 +147,18 @@ export const getPortfolioData = (bioText) => ({
 
     experience: [
         {
+            role: "Full-Stack Developer",
+            period: "November 2025 - Present",
+            description: "Architecting and building scalable full-stack applications using the MERN stack and Next.js. overseeing end-to-end development from database design to frontend implementation and cloud deployment."
+        },
+        {
+            role: "Frontend Developer",
+            period: "February 2025 - October 2025",
+            description: "Specialized in building responsive, high-performance user interfaces with React and Tailwind CSS. focused on state management, component reusability, and integrating RESTful APIs for seamless user experiences."
+        },
+        {
             role: "Freelance UI/UX Designer",
-            period: "May 2024 - Present",
+            period: "May 2024 - February 2025",
             description: "Crafting intuitive digital experiences with a focus on user-centric design. Specializing in high-fidelity prototyping, design systems, and bridging the gap between aesthetics and functionality using Figma and modern design principles."
         },
         {
