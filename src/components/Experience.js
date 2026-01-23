@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, useScroll, useSpring, useMotionValue, useTransform } from 'framer-motion';
-import { Briefcase } from 'lucide-react';
+
 import { Reveal } from './Reveal';
 
 
@@ -109,7 +109,7 @@ export const Experience = ({ portfolioData, darkMode }) => {
                                     {/* Timeline Node/Connector */}
                                     <div className="absolute left-[28px] top-8 z-20 flex items-center justify-center">
                                         <div className={`w-6 h-6 rounded-full flex items-center justify-center ${darkMode ? 'bg-[#0a0a0f] border border-cyan-400' : 'bg-white border border-blue-500'} shadow-[0_0_15px_rgba(34,211,238,0.5)] z-10 group-hover/item:scale-125 transition-transform duration-500`}>
-                                            <Briefcase size={12} className={darkMode ? 'text-cyan-400' : 'text-blue-600'} />
+                                            <div className={`w-2 h-2 rounded-full ${darkMode ? 'bg-cyan-400' : 'bg-blue-600'}`} />
                                         </div>
                                         <div className={`absolute w-10 h-10 rounded-full border ${darkMode ? 'border-cyan-500/50' : 'border-blue-400/50'} opacity-0 group-hover/item:opacity-100 animate-ping`} />
                                         <div className={`absolute w-14 h-14 rounded-full border ${darkMode ? 'border-cyan-500/20' : 'border-blue-400/20'} opacity-0 group-hover/item:opacity-100 transition-all duration-500 scale-0 group-hover/item:scale-100`} />
