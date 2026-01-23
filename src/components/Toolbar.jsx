@@ -46,8 +46,8 @@ export const Toolbar = ({
                     {[
                         { id: 'about', icon: User, label: t('navigation.about') },
                         { id: 'skills', icon: Code2, label: t('navigation.skills') },
-                        { id: 'projects', icon: Layers, label: t('navigation.projects') },
                         { id: 'certificates', icon: Award, label: t('navigation.certificates') },
+                        { id: 'projects', icon: Layers, label: t('navigation.projects') },
                         { id: 'experience', icon: BriefcaseBusiness, label: t('navigation.experience') },
                         { id: 'contact', icon: Mail, label: t('navigation.contact') }
                     ].map(({ id, icon: Icon, label }) => (

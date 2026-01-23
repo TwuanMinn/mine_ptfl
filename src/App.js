@@ -68,7 +68,7 @@ export default function Portfolio() {
       { threshold: 0.5 }
     );
 
-    const sections = ['about', 'skills', 'projects', 'certificates', 'experience', 'contact'];
+    const sections = ['about', 'skills', 'certificates', 'projects', 'experience', 'contact'];
     sections.forEach((id) => {
       const element = document.getElementById(id);
       if (element) observer.observe(element);
@@ -446,6 +446,9 @@ export default function Portfolio() {
               {/* Skills Section */}
               <Skills portfolioData={portfolioData} darkMode={darkMode} />
 
+              {/* Certificates Section */}
+              <Certificates portfolioData={portfolioData} darkMode={darkMode} />
+
               {/* Projects Section */}
               <Projects
                 portfolioData={portfolioData}
@@ -454,9 +457,6 @@ export default function Portfolio() {
                 handleHeartClick={handleHeartClick}
                 heartAnimating={heartAnimating}
               />
-
-              {/* Certificates Section */}
-              <Certificates portfolioData={portfolioData} darkMode={darkMode} />
 
               {/* Experience Section */}
               <Experience portfolioData={portfolioData} darkMode={darkMode} />

@@ -190,7 +190,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
         const currentLineText = currentLineTokens.map(t => t.text).join('');
 
         // Typing speed
-        const typingSpeed = 15; // ms per char (adjust for speed)
+        const typingSpeed = 2; // ms per char (adjust for speed)
 
         const timeout = setTimeout(() => {
             if (charIndex < currentLineText.length) {
@@ -232,9 +232,10 @@ const LoadingScreen = ({ onLoadingComplete }) => {
                     initial={{ opacity: 1 }}
                     exit={{
                         opacity: 0,
-                        y: -50,
+                        scale: 1.2,
+                        filter: "blur(10px)"
                     }}
-                    transition={{ duration: 0.5, ease: 'easeInOut' }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
                 >
                     {/* Animated gradient background */}
                     <div className="absolute inset-0 overflow-hidden">
@@ -322,7 +323,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
                                             }}
                                             initial={{ width: '0%' }}
                                             animate={{ width: '100%' }}
-                                            transition={{ duration: 12.0, ease: 'easeInOut' }}
+                                            transition={{ duration: 8.5, ease: 'easeInOut' }}
                                         />
                                     </motion.div>
                                     <div className="flex items-center gap-2">
@@ -345,7 +346,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
                                                             className="absolute inset-0 rounded-full border-[1.5px] border-cyan-400/60"
                                                             animate={{ rotate: 360 }}
                                                             transition={{
-                                                                duration: 3,
+                                                                duration: 2,
                                                                 repeat: Infinity,
                                                                 ease: "linear",
                                                                 delay: i * -1 // Desynchronize electrons

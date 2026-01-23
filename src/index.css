@@ -456,7 +456,7 @@ code {
 .border-trace::after {
   content: '';
   position: absolute;
-  inset: 4px;
+  inset: 2px;
   background: inherit;
   border-radius: inherit;
   z-index: 1;

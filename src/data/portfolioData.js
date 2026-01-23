@@ -74,6 +74,13 @@ export const getPortfolioData = (bioText) => ({
 
     certificates: [
         {
+            title: "IELTS Certificate",
+            issuer: "British Council / IDP",
+            date: "2024",
+            description: "Achieved an Overall Band Score of 7.5, demonstrating proficiency in English communication.",
+            link: "#"
+        },
+        {
             title: "Full-Stack Web Development",
             issuer: "Coursera",
             date: "2024",

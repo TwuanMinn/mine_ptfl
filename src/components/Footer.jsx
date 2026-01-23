@@ -52,8 +52,8 @@ export const Footer = ({ portfolioData, darkMode }) => {
                                     <button
                                         onClick={() => scrollToSection(link.href)}
                                         className={`text-sm flex items-center gap-1 transition-all duration-200 hover:translate-x-1 ${darkMode
-                                                ? 'text-slate-400 hover:text-cyan-400'
-                                                : 'text-slate-600 hover:text-blue-600'
+                                            ? 'text-slate-400 hover:text-cyan-400'
+                                            : 'text-slate-600 hover:text-blue-600'
                                             }`}
                                     >
                                         {link.label}
@@ -82,8 +82,8 @@ export const Footer = ({ portfolioData, darkMode }) => {
                                     rel="noopener noreferrer"
                                     aria-label={social.label}
                                     className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:-translate-y-1 ${darkMode
-                                            ? 'bg-slate-800/60 border border-slate-700/50 hover:border-cyan-500/50 hover:bg-slate-700/60 text-slate-300 hover:text-cyan-400'
-                                            : 'bg-blue-100/60 border border-blue-200/50 hover:border-blue-400/50 hover:bg-blue-200/60 text-blue-600 hover:text-blue-700'
+                                        ? 'bg-slate-800/60 border border-slate-700/50 hover:border-cyan-500/50 hover:bg-slate-700/60 text-slate-300 hover:text-cyan-400'
+                                        : 'bg-blue-100/60 border border-blue-200/50 hover:border-blue-400/50 hover:bg-blue-200/60 text-blue-600 hover:text-blue-700'
                                         }`}
                                 >
                                     <social.icon className="w-4 h-4" />
