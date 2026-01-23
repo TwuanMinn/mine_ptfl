@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ExternalLink, Award, BadgeCheck } from 'lucide-react';
 import { Reveal } from './Reveal';
 
 export const Certificates = ({ portfolioData, darkMode }) => {
+    const [showAll, setShowAll] = useState(false);
+    const visibleCertificates = showAll ? portfolioData.certificates : portfolioData.certificates.slice(0, 4);
+
     const getIssuerStyle = (issuer) => {
         const i = issuer.toLowerCase();
         if (i.includes('google')) return 'text-blue-400 bg-blue-500/10 border-blue-500/30';
@@ -29,8 +32,13 @@ export const Certificates = ({ portfolioData, darkMode }) => {
                         <h2 className={`text-4xl font-bold ${darkMode ? 'text-blue-100' : 'text-blue-800'}`}>Certifications</h2>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {portfolioData.certificates.map((cert, index) => {
+                    <div
+                        className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+                        style={{
+                            transition: 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
+                        }}
+                    >
+                        {visibleCertificates.map((cert, index) => {
                             const issuerStyle = getIssuerStyle(cert.issuer);
 
                             return (
@@ -90,8 +98,53 @@ export const Certificates = ({ portfolioData, darkMode }) => {
                             );
                         })}
                     </div>
+
+                    {portfolioData.certificates.length > 4 && (
+                        <div className="mt-12 flex justify-center">
+                            <button
+                                onClick={() => setShowAll(!showAll)}
+                                className="group relative px-10 py-4 rounded-full font-bold text-white transition-all duration-500 transform hover:scale-105 active:scale-95 flex items-center gap-3 overflow-hidden shadow-lg hover:shadow-2xl"
+                                style={{
+                                    background: 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #8b5cf6 100%)',
+                                    backgroundSize: '200% 200%',
+                                    animation: 'gradientShift 3s ease infinite'
+                                }}
+                            >
+                                {/* Shimmer overlay */}
+                                <div
+                                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+                                    style={{
+                                        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
+                                        transform: 'skewX(-20deg)',
+                                        animation: 'shimmer 2s infinite'
+                                    }}
+                                />
+
+                                <span className="relative z-10 text-base tracking-wide">
+                                    {showAll ? 'Show Less' : 'Show More Certificates'}
+                                </span>
+                                <svg
+                                    className={`w-5 h-5 relative z-10 transition-transform duration-500 ${showAll ? 'rotate-180' : ''} group-hover:translate-y-1`}
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                                </svg>
+
+                                {/* Glow effect */}
+                                <div
+                                    className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-50 transition-opacity duration-500 blur-xl -z-10"
+                                    style={{
+                                        background: 'linear-gradient(135deg, #3b82f6, #06b6d4, #8b5cf6)'
+                                    }}
+                                />
+                            </button>
+                        </div>
+                    )}
                 </div>
             </Reveal>
         </section>
     );
 };
+
