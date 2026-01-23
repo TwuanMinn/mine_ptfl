@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { Reveal } from './Reveal';
+import { Reveal } from '../common/Reveal';
 
 const skillsLogos = [
     { name: 'JavaScript', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
@@ -100,7 +100,7 @@ export const Skills = ({ portfolioData, darkMode }) => {
                                     }}
                                 >
                                     <div className="flex justify-between items-center mb-2">
-                                        <p className={`font-semibold ${darkMode ? 'text-blue-100' : 'text-blue-800'}`}>{skill.name}</p>
+                                        <p className={`font-extralight ${darkMode ? 'text-blue-100' : 'text-blue-800'}`}>{skill.name}</p>
                                         <span className={`text-sm ${darkMode ? 'text-blue-300' : 'text-blue-600'}`}>{skill.level}%</span>
                                     </div>
                                     <div className={`w-full h-3 rounded-full ${darkMode ? 'bg-slate-800' : 'bg-blue-200'} overflow-hidden border ${darkMode ? 'border-blue-700/50' : 'border-blue-300/50'}`}>

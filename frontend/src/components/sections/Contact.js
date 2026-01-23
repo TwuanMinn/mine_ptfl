@@ -1,6 +1,6 @@
 import React from 'react';
 import { Mail, Github, Linkedin, Figma, MapPin } from 'lucide-react';
-import { Reveal } from './Reveal';
+import { Reveal } from '../common/Reveal';
 
 const contactBadgeStyle = (isDark) => ({
     background: isDark

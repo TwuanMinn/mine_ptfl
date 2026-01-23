@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Reveal } from './Reveal';
+import { Reveal } from '../common/Reveal';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { GraduationCap, Code2, MapPin, Languages, Sparkles, Play, Terminal } from 'lucide-react';
 
@@ -363,7 +363,7 @@ export const About = ({ portfolioData, darkMode, aboutHeadingVisible, aboutWords
                                             <p className={`text-sm font-medium ${darkMode ? 'text-blue-300' : 'text-blue-600'}`}>
                                                 {item.label}
                                             </p>
-                                            <p className={`text-base font-semibold ${darkMode ? 'text-blue-100' : 'text-blue-900'} truncate`}>
+                                            <p className={`text-base font-extralight ${darkMode ? 'text-blue-100' : 'text-blue-900'} truncate`}>
                                                 {item.value}
                                             </p>
                                         </div>

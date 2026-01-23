@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ExternalLink, Award, BadgeCheck } from 'lucide-react';
-import { Reveal } from './Reveal';
+import { Reveal } from '../common/Reveal';
 
 export const Certificates = ({ portfolioData, darkMode }) => {
     const [showAll, setShowAll] = useState(false);

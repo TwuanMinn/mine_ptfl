@@ -138,3 +138,135 @@
     transform: translateX(200%) skewX(-20deg);
   }
 }
+
+/* Instagram-like heart pop animation */
+@keyframes heart-pop {
+  0% {
+    transform: scale(1);
+  }
+
+  15% {
+    transform: scale(1.4);
+  }
+
+  30% {
+    transform: scale(0.9);
+  }
+
+  45% {
+    transform: scale(1.2);
+  }
+
+  60% {
+    transform: scale(0.95);
+  }
+
+  75% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-heart-pop {
+  animation: heart-pop 0.6s ease-out;
+}
+
+/* Heart burst particles */
+@keyframes heart-burst-1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-20px, -25px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes heart-burst-2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(20px, -20px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes heart-burst-3 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-15px, 20px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes heart-burst-4 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(18px, 18px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes heart-burst-5 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-25px, 5px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes heart-burst-6 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(25px, -5px) scale(0);
+    opacity: 0;
+  }
+}
+
+.animate-heart-burst-1 {
+  animation: heart-burst-1 0.5s ease-out forwards;
+}
+
+.animate-heart-burst-2 {
+  animation: heart-burst-2 0.5s ease-out forwards;
+}
+
+.animate-heart-burst-3 {
+  animation: heart-burst-3 0.5s ease-out forwards;
+}
+
+.animate-heart-burst-4 {
+  animation: heart-burst-4 0.5s ease-out forwards;
+}
+
+.animate-heart-burst-5 {
+  animation: heart-burst-5 0.5s ease-out forwards;
+}
+
+.animate-heart-burst-6 {
+  animation: heart-burst-6 0.5s ease-out forwards;
+}

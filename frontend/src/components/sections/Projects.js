@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ExternalLink, Heart } from 'lucide-react';
-import { Reveal } from './Reveal';
-import { GithubActivity } from './GithubActivity.jsx';
-import { TypingSpeed } from './TypingSpeed.jsx';
+import { Reveal } from '../common/Reveal';
+import { GithubActivity } from '../common/GithubActivity.jsx';
+import { TypingSpeed } from '../common/TypingSpeed.jsx';
 
 // Tech stack icon URLs mapping
 const techIcons = {
@@ -34,8 +35,13 @@ const techIcons = {
 
 
 export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick, heartAnimating }) => {
+    const navigate = useNavigate();
     const [showAll, setShowAll] = useState(false);
     const visibleProjects = showAll ? portfolioData.projects : portfolioData.projects.slice(0, 4);
+
+    const handleCardClick = (projectId) => {
+        navigate(`/project/${projectId}`);
+    };
 
     return (
         <section id="projects" className="py-16 px-2">
@@ -74,22 +80,34 @@ export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick,
                                             {/* Heart Button Top Right */}
                                             <button
                                                 onClick={(e) => { e.stopPropagation(); handleHeartClick(project.id); }}
-                                                className={`absolute top-3 right-3 z-30 w-9 h-9 rounded-full border ${isHearted(project.id) ? 'border-pink-300/70 text-pink-200 bg-pink-400/15' : 'border-white/25 text-white/90 bg-black/30 backdrop-blur-md'} flex items-center justify-center transition-all duration-200 hover:scale-110 ${heartAnimating[project.id] ? 'animate-heartbeat' : ''}`}
+                                                className={`absolute top-3 right-3 z-30 w-11 h-11 rounded-full border ${isHearted(project.id) ? 'border-pink-400/80 text-pink-500 bg-pink-500/20' : 'border-white/25 text-white/90 bg-black/30 backdrop-blur-md'} flex items-center justify-center transition-all duration-200 hover:scale-110 cursor-pointer group/heart`}
                                                 aria-label="heart-project"
                                             >
-                                                <Heart size={18} className={isHearted(project.id) ? 'fill-current' : ''} />
+                                                {/* Heart burst particles when hearted */}
+                                                {isHearted(project.id) && heartAnimating[project.id] && (
+                                                    <>
+                                                        <span className="absolute w-2 h-2 bg-pink-400 rounded-full animate-heart-burst-1" />
+                                                        <span className="absolute w-1.5 h-1.5 bg-red-400 rounded-full animate-heart-burst-2" />
+                                                        <span className="absolute w-2 h-2 bg-pink-300 rounded-full animate-heart-burst-3" />
+                                                        <span className="absolute w-1.5 h-1.5 bg-red-500 rounded-full animate-heart-burst-4" />
+                                                        <span className="absolute w-1 h-1 bg-pink-500 rounded-full animate-heart-burst-5" />
+                                                        <span className="absolute w-1.5 h-1.5 bg-red-300 rounded-full animate-heart-burst-6" />
+                                                    </>
+                                                )}
+                                                <Heart
+                                                    size={22}
+                                                    className={`${isHearted(project.id) ? 'fill-pink-500 text-pink-500' : ''} ${heartAnimating[project.id] ? 'animate-heart-pop' : ''} transition-transform group-hover/heart:scale-110`}
+                                                />
                                             </button>
 
                                             {/* Link Button positioned at intersection of image and content */}
-                                            <a
-                                                href={project.link}
-                                                target="_blank"
-                                                rel="noreferrer"
+                                            <button
+                                                onClick={(e) => { e.stopPropagation(); handleCardClick(project.id); }}
                                                 className={`absolute bottom-3 right-3 z-30 w-10 h-10 rounded-full flex items-center justify-center bg-white text-black transition-transform duration-300 hover:scale-110 hover:rotate-45 shadow-lg`}
-                                                aria-label="view project"
+                                                aria-label="view project details"
                                             >
                                                 <ExternalLink size={20} strokeWidth={2.5} />
-                                            </a>
+                                            </button>
                                         </div>
 
                                         {/* Content */}

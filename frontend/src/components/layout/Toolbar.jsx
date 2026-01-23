@@ -5,7 +5,7 @@ import {
     User, Code2, Layers, Award, BriefcaseBusiness, Mail,
     Sun, Moon, Volume2, Copy, Check, Share2, Languages, QrCode, Heart
 } from 'lucide-react';
-import Magnetic from './Magnetic';
+import Magnetic from '../common/Magnetic';
 
 export const Toolbar = ({
     toolbarVisible,

@@ -2,7 +2,7 @@ import React from 'react';
 import { motion, useScroll, useSpring, useMotionValue, useTransform } from 'framer-motion';
 import { Briefcase, Flag } from 'lucide-react';
 
-import { Reveal } from './Reveal';
+import { Reveal } from '../common/Reveal';
 
 
 const TiltCard = ({ children, className }) => {
