@@ -127,7 +127,7 @@ export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick,
                                             {/* Tech Stack Badges */}
                                             {project.techStack && (
                                                 <div className="flex flex-wrap gap-2 mt-auto pt-2 border-t border-white/5">
-                                                    {project.techStack.slice(0, 3).map((tech, techIndex) => (
+                                                    {project.techStack.map((tech, techIndex) => (
                                                         <div
                                                             key={techIndex}
                                                             className={`flex items-center gap-1.5 text-xs font-medium px-2.5 py-1.5 rounded-full ${darkMode ? 'bg-white/5 text-slate-300 border border-white/5' : 'bg-slate-100 text-slate-600 border border-slate-200'}`}
@@ -143,11 +143,7 @@ export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick,
                                                             <span>{tech}</span>
                                                         </div>
                                                     ))}
-                                                    {project.techStack.length > 3 && (
-                                                        <span className={`text-[10px] font-medium px-2 py-1 rounded-full ${darkMode ? 'bg-white/5 text-slate-300 border border-white/5' : 'bg-slate-100 text-slate-600 border border-slate-200'}`}>
-                                                            +{project.techStack.length - 3}
-                                                        </span>
-                                                    )}
+
                                                 </div>
                                             )}
                                         </div>
