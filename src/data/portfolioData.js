@@ -121,6 +121,27 @@ export const getPortfolioData = (bioText) => ({
             date: "2023",
             description: "Core cloud concepts, services, and security principles.",
             link: "#"
+        },
+        {
+            title: "AWS Cloud Practitioner",
+            issuer: "Amazon Web Services",
+            date: "2023",
+            description: "Foundational understanding of AWS Cloud concepts, services, and terminology.",
+            link: "#"
+        },
+        {
+            title: "Python for Data Science",
+            issuer: "IBM",
+            date: "2023",
+            description: "Python programming, data analysis with Pandas, and data visualization techniques.",
+            link: "#"
+        },
+        {
+            title: "JavaScript Algorithms",
+            issuer: "freeCodeCamp",
+            date: "2022",
+            description: "Advanced JavaScript concepts, algorithms, and data structures certification.",
+            link: "#"
         }
     ],
 
