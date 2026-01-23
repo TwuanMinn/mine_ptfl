@@ -128,12 +128,20 @@ export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick,
                                             {project.techStack && (
                                                 <div className="flex flex-wrap gap-2 mt-auto pt-2 border-t border-white/5">
                                                     {project.techStack.slice(0, 3).map((tech, techIndex) => (
-                                                        <span
+                                                        <div
                                                             key={techIndex}
-                                                            className={`text-[10px] font-medium px-2 py-1 rounded-full ${darkMode ? 'bg-white/5 text-slate-300 border border-white/5' : 'bg-slate-100 text-slate-600 border border-slate-200'}`}
+                                                            className={`flex items-center gap-1 text-[10px] font-medium px-2 py-1 rounded-full ${darkMode ? 'bg-white/5 text-slate-300 border border-white/5' : 'bg-slate-100 text-slate-600 border border-slate-200'}`}
                                                         >
-                                                            {tech}
-                                                        </span>
+                                                            {techIcons[tech] && (
+                                                                <img
+                                                                    src={techIcons[tech]}
+                                                                    alt={tech}
+                                                                    className="w-3 h-3 object-contain"
+                                                                    loading="lazy"
+                                                                />
+                                                            )}
+                                                            <span>{tech}</span>
+                                                        </div>
                                                     ))}
                                                     {project.techStack.length > 3 && (
                                                         <span className={`text-[10px] font-medium px-2 py-1 rounded-full ${darkMode ? 'bg-white/5 text-slate-300 border border-white/5' : 'bg-slate-100 text-slate-600 border border-slate-200'}`}>
