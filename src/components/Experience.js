@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, useScroll, useSpring, useMotionValue, useTransform } from 'framer-motion';
+import { Briefcase, Flag } from 'lucide-react';
 
 import { Reveal } from './Reveal';
 
@@ -79,24 +80,39 @@ export const Experience = ({ portfolioData, darkMode }) => {
     });
 
     return (
-        <section id="experience" className={`py-16 px-2 ${darkMode ? 'bg-gradient-to-b from-[#020203] via-[#08080b] to-[#020203]' : 'bg-blue-50/50'}`} style={{ maxWidth: '100vw' }}>
+        <section id="experience" className={`py-16 pb-32 px-2 ${darkMode ? 'bg-gradient-to-b from-[#020203] via-[#08080b] to-[#020203]' : 'bg-blue-50/50'}`} style={{ maxWidth: '100vw' }}>
             <Reveal width="100%">
                 <div className="max-w-4xl mx-auto w-full" style={{ padding: '0 0.5rem' }}>
                     <h2 className={`text-3xl font-bold mb-8 ${darkMode ? 'text-blue-100' : 'text-blue-800'}`} style={{ fontSize: '2rem' }}>Work Experience</h2>
+
+                    {/* SVG Gradient Definition for Icons */}
+                    <svg width="0" height="0" style={{ position: 'absolute' }}>
+                        <defs>
+                            <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="#22d3ee" />
+                                <stop offset="50%" stopColor="#3b82f6" />
+                                <stop offset="100%" stopColor="#a855f7" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+
                     <div className="relative" ref={timelineRef}>
                         {/* Base dimmed line */}
-                        <div className={`absolute left-[39px] top-2 bottom-0 w-[2px] ${darkMode ? 'bg-slate-800/40' : 'bg-blue-200/40'} rounded-full`}></div>
+                        <div className={`absolute left-[36px] top-2 w-[8px] ${darkMode ? 'bg-slate-800/40' : 'bg-blue-200/40'} rounded-full`} style={{ height: 'calc(100% - 60px)' }}></div>
 
                         {/* Illuminated scrolling line - Smoothed with Framer Motion */}
                         <motion.div
-                            className={`absolute left-[39px] top-2 w-[2px] rounded-full ${darkMode
-                                ? 'bg-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.6),0_0_40px_rgba(34,211,238,0.3)]'
-                                : 'bg-blue-500 shadow-[0_0_25px_rgba(59,130,246,0.7)]'
-                                }`}
+                            className="absolute left-[36px] top-2 w-[8px] rounded-full"
                             style={{
-                                height: 'calc(100% - 20px)',
+                                height: 'calc(100% - 60px)',
                                 scaleY,
-                                transformOrigin: 'top'
+                                transformOrigin: 'top',
+                                background: darkMode
+                                    ? 'linear-gradient(180deg, #22d3ee 0%, #3b82f6 50%, #a855f7 100%)'
+                                    : 'linear-gradient(180deg, #06b6d4 0%, #2563eb 50%, #7c3aed 100%)',
+                                boxShadow: darkMode
+                                    ? '0 0 25px rgba(34,211,238,0.7), 0 0 50px rgba(59,130,246,0.4), 0 0 75px rgba(168,85,247,0.3)'
+                                    : '0 0 30px rgba(6,182,212,0.6), 0 0 50px rgba(37,99,235,0.4)'
                             }}
                         />
 
@@ -104,31 +120,28 @@ export const Experience = ({ portfolioData, darkMode }) => {
                             {portfolioData.experience.map((job, index) => (
                                 <div
                                     key={index}
-                                    className="relative flex gap-8 pb-16 group/item"
+                                    className="relative flex gap-4 pb-16 group/item pl-32"
                                 >
                                     {/* Timeline Node/Connector */}
-                                    <div className="absolute left-[28px] top-8 z-20 flex items-center justify-center">
-                                        <div className={`w-6 h-6 rounded-full flex items-center justify-center ${darkMode ? 'bg-[#0a0a0f] border border-cyan-400' : 'bg-white border border-blue-500'} shadow-[0_0_15px_rgba(34,211,238,0.5)] z-10 group-hover/item:scale-125 transition-transform duration-500`}>
-                                            <div className={`w-2 h-2 rounded-full ${darkMode ? 'bg-cyan-400' : 'bg-blue-600'}`} />
+                                    <div className="absolute left-0 top-2 z-20 flex items-center justify-center">
+                                        {/* 3D Icon with Gradient Border */}
+                                        <div className="relative w-20 h-20 group-hover/item:scale-110 transition-transform duration-500">
+                                            {/* Gradient Border Ring */}
+                                            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-500 p-[3px]">
+                                                <div className={`w-full h-full rounded-full flex items-center justify-center ${darkMode ? 'bg-[#0a0a0f]' : 'bg-white'}`}>
+                                                    <Briefcase
+                                                        className="w-10 h-10"
+                                                        style={{
+                                                            stroke: 'url(#iconGradient)',
+                                                            fill: 'none'
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
+                                            {/* Outer Glow */}
+                                            <div className="absolute inset-0 rounded-full shadow-[0_0_25px_rgba(34,211,238,0.5),0_0_50px_rgba(59,130,246,0.3)]" />
                                         </div>
-                                        <div className={`absolute w-10 h-10 rounded-full border ${darkMode ? 'border-cyan-500/50' : 'border-blue-400/50'} opacity-0 group-hover/item:opacity-100 animate-ping`} />
-                                        <div className={`absolute w-14 h-14 rounded-full border ${darkMode ? 'border-cyan-500/20' : 'border-blue-400/20'} opacity-0 group-hover/item:opacity-100 transition-all duration-500 scale-0 group-hover/item:scale-100`} />
-                                    </div>
 
-                                    <div className="relative z-10 flex-shrink-0 perspective-1000 pl-4">
-                                        <div className={`group relative w-20 h-20 rounded-full flex items-center justify-center transition-all duration-700 transform-style-3d hover:rotate-y-20 hover:rotate-x-20`}>
-                                            {/* Spherical Base */}
-                                            <div className={`absolute inset-0 rounded-full transition-all duration-700 animate-icon-flash ${darkMode
-                                                ? 'bg-[radial-gradient(circle_at_30%_30%,#3b82f6_0%,#1e3a8a_40%,#000000_100%)] shadow-[inset_-5px_-5px_15px_rgba(0,0,0,0.8),inset_5px_5px_15px_rgba(255,255,255,0.1)]'
-                                                : 'bg-[radial-gradient(circle_at_30%_30%,#60a5fa_0%,#2563eb_50%,#1e3a8a_100%)] shadow-[inset_-3px_-3px_10px_rgba(0,0,0,0.4),inset_3px_3px_10px_rgba(255,255,255,0.2)]'}`}
-                                            />
-
-                                            {/* Gloss Reflection Layer */}
-                                            <div className="absolute inset-2 rounded-full bg-gradient-to-b from-white/20 to-transparent h-1/2 w-4/5 left-1/2 -translate-x-1/2 opacity-60 pointer-events-none" />
-
-                                            {/* Outer Glass Ring */}
-                                            <div className={`absolute inset-0 rounded-full border-2 ${darkMode ? 'border-white/10' : 'border-black/5'} transition-transform duration-700 group-hover:scale-110`} />
-                                        </div>
                                     </div>
 
                                     <div className="flex-1 perspective-1000">
@@ -169,11 +182,34 @@ export const Experience = ({ portfolioData, darkMode }) => {
                                 </div>
                             ))}
 
-                            <div className="relative flex gap-6">
-                                <div className="relative z-10 flex-shrink-0">
-                                    <div className={`w-20 h-20 rounded-full border-4 ${darkMode ? 'border-blue-900/30 bg-neutral-900 hover:border-blue-500/30' : 'border-blue-400/30 bg-white hover:border-blue-400/50'} transition-all duration-300`}></div>
+                            {/* Destination Marker */}
+                            <div className="relative flex justify-start pt-4 mb-8" style={{ minHeight: '120px' }}>
+                                <div className="relative flex items-center justify-center" style={{ width: '80px', height: '80px' }}>
+                                    {/* Floating Animation Container */}
+                                    <motion.div
+                                        className="relative w-20 h-20 hover:scale-110 transition-transform duration-500"
+                                        animate={{ y: [0, -8, 0] }}
+                                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                                    >
+                                        {/* Gradient Border Ring */}
+                                        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-500 p-[3px]">
+                                            <div className={`w-full h-full rounded-full flex items-center justify-center ${darkMode ? 'bg-[#0a0a0f]' : 'bg-white'}`}>
+                                                <Flag
+                                                    className="w-10 h-10"
+                                                    style={{
+                                                        stroke: 'url(#iconGradient)',
+                                                        fill: 'none'
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
+                                        {/* Outer Glow */}
+                                        <div className="absolute inset-0 rounded-full shadow-[0_0_25px_rgba(34,211,238,0.5),0_0_50px_rgba(59,130,246,0.3)]" />
+                                    </motion.div>
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
