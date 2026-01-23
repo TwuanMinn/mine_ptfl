@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ExternalLink, Heart } from 'lucide-react';
 import { Reveal } from './Reveal';
 import { GithubActivity } from './GithubActivity.jsx';
@@ -34,13 +34,16 @@ const techIcons = {
 
 
 export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick, heartAnimating }) => {
+    const [showAll, setShowAll] = useState(false);
+    const visibleProjects = showAll ? portfolioData.projects : portfolioData.projects.slice(0, 6);
+
     return (
         <section id="projects" className="py-16 px-2">
             <Reveal width="100%">
                 <div className="max-w-6xl mx-auto w-full" style={{ padding: '0 0.5rem' }}>
                     <h2 className={`text-3xl font-bold mb-6 ${darkMode ? 'text-blue-100' : 'text-blue-800'}`} style={{ fontSize: '2rem' }}>Projects</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {portfolioData.projects.map((project, index) => (
+                        {visibleProjects.map((project, index) => (
                             <div
                                 key={project.id}
                                 className="relative group perspective-1000 h-full"
@@ -128,6 +131,29 @@ export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick,
                             </div>
                         ))}
                     </div>
+
+                    {portfolioData.projects.length > 6 && (
+                        <div className="mt-12 flex justify-center">
+                            <button
+                                onClick={() => setShowAll(!showAll)}
+                                className={`group px-8 py-3 rounded-full font-bold transition-all duration-500 transform hover:scale-105 active:scale-95 flex items-center gap-3 relative overflow-hidden ${darkMode
+                                    ? 'bg-slate-900 text-blue-400 border border-blue-500/30'
+                                    : 'bg-white text-blue-600 border border-blue-200'
+                                    }`}
+                            >
+                                <span className="relative z-10">{showAll ? 'Show Less' : 'Show More Projects'}</span>
+                                <svg
+                                    className={`w-5 h-5 relative z-10 transition-transform duration-500 ${showAll ? 'rotate-180' : ''} group-hover:translate-y-1`}
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
+                                <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 ${darkMode ? 'bg-cyan-400' : 'bg-blue-600'}`} />
+                            </button>
+                        </div>
+                    )}
 
                     <div className="mt-16 space-y-12">
                         <GithubActivity darkMode={darkMode} />
