@@ -76,48 +76,73 @@ export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick,
                                         animation: 'borderFlow 3s linear infinite',
                                         animationDelay: `${index * 0.3}s`
                                     }}></div>
-                                    <div className={`relative glass-card rounded-lg p-4 h-full flex flex-col transition-all duration-300 hover:shadow-[0_0_40px_rgba(34,211,238,0.8),0_0_80px_rgba(255,255,255,0.5)] border ${darkMode ? 'border-white/10 bg-white/[0.02]' : 'border-blue-100 bg-white/80'} hover:border-cyan-400 hover:bg-cyan-900/30 animate-card-wave`} style={{ animationDelay: `${index * 0.4}s` }}>
-                                        <button
-                                            onClick={(e) => { e.stopPropagation(); handleHeartClick(project.id); }}
-                                            className={`absolute top-4 right-4 z-20 w-9 h-9 rounded-full border ${isHearted(project.id) ? 'border-pink-300/70 text-pink-200 bg-pink-400/15' : 'border-white/25 text-white/90 bg-white/10'} flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-[0_8px_20px_rgba(236,72,153,0.35)] ${heartAnimating[project.id] ? 'animate-heartbeat' : ''}`}
-                                            aria-label="heart-project"
-                                        >
-                                            <Heart size={16} className={isHearted(project.id) ? 'fill-current' : ''} />
-                                        </button>
-                                        <h3 className={`text-lg font-bold ${darkMode ? 'text-blue-100' : 'text-blue-800'} mb-2 pr-12`} style={{ fontSize: '1.1rem' }}>{project.title}</h3>
-                                        <p className={`${darkMode ? 'text-blue-300' : 'text-blue-700'} mb-4 flex-grow`} style={{ fontSize: '0.95rem' }}>{project.description}</p>
+                                    <div className={`relative glass-card rounded-2xl overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-[0_0_40px_rgba(34,211,238,0.8),0_0_80px_rgba(255,255,255,0.5)] border ${darkMode ? 'border-white/10 bg-[#0a0a10]' : 'border-blue-100 bg-white'} group-hover:border-cyan-400 group-hover:-translate-y-2`}>
 
-                                        {/* Tech Stack Badges */}
-                                        {project.techStack && (
-                                            <div className="flex flex-wrap gap-2 mb-4">
-                                                {project.techStack.map((tech, techIndex) => (
-                                                    <div
-                                                        key={techIndex}
-                                                        className={`group/tech flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-gradient-to-r ${getTechColor(tech, darkMode)} border backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:-translate-y-0.5`}
-                                                        title={tech}
-                                                    >
-                                                        {techIcons[tech] && (
-                                                            <img
-                                                                src={techIcons[tech]}
-                                                                alt={tech}
-                                                                className="w-4 h-4 object-contain"
-                                                                loading="lazy"
-                                                            />
-                                                        )}
-                                                        <span className={`text-xs font-medium ${darkMode ? 'text-white/80' : 'text-slate-700'}`}>
+                                        {/* Project Image */}
+                                        <div className="relative h-48 w-full overflow-hidden">
+                                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent z-10" />
+                                            <img
+                                                src={project.image}
+                                                alt={project.title}
+                                                className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
+                                            />
+
+                                            {/* Heart Button Top Right */}
+                                            <button
+                                                onClick={(e) => { e.stopPropagation(); handleHeartClick(project.id); }}
+                                                className={`absolute top-3 right-3 z-20 w-8 h-8 rounded-full border ${isHearted(project.id) ? 'border-pink-300/70 text-pink-200 bg-pink-400/15' : 'border-white/25 text-white/90 bg-black/30 backdrop-blur-md'} flex items-center justify-center transition-all duration-200 hover:scale-110 ${heartAnimating[project.id] ? 'animate-heartbeat' : ''}`}
+                                                aria-label="heart-project"
+                                            >
+                                                <Heart size={14} className={isHearted(project.id) ? 'fill-current' : ''} />
+                                            </button>
+
+                                            {/* Link Button positioned at intersection of image and content */}
+                                            <a
+                                                href={project.link}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className={`absolute bottom-3 right-3 z-20 w-10 h-10 rounded-full flex items-center justify-center bg-white text-black transition-transform duration-300 hover:scale-110 hover:rotate-45 shadow-lg`}
+                                                aria-label="view project"
+                                            >
+                                                <ExternalLink size={20} strokeWidth={2.5} />
+                                            </a>
+                                        </div>
+
+                                        {/* Content */}
+                                        <div className="p-5 flex flex-col flex-grow">
+
+                                            {/* Category */}
+                                            <div className="mb-2">
+                                                <span className={`text-[10px] font-bold tracking-wider uppercase ${darkMode ? 'text-blue-400' : 'text-blue-600'}`}>
+                                                    {project.category || "Development"}
+                                                </span>
+                                            </div>
+
+                                            <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-slate-900'} mb-2 leading-tight`}>{project.title}</h3>
+
+                                            <p className={`${darkMode ? 'text-slate-400' : 'text-slate-600'} text-sm mb-4 flex-grow line-clamp-3 leading-relaxed`}>
+                                                {project.description}
+                                            </p>
+
+                                            {/* Tech Stack Badges */}
+                                            {project.techStack && (
+                                                <div className="flex flex-wrap gap-2 mt-auto pt-2 border-t border-white/5">
+                                                    {project.techStack.slice(0, 3).map((tech, techIndex) => (
+                                                        <span
+                                                            key={techIndex}
+                                                            className={`text-[10px] font-medium px-2 py-1 rounded-full ${darkMode ? 'bg-white/5 text-slate-300 border border-white/5' : 'bg-slate-100 text-slate-600 border border-slate-200'}`}
+                                                        >
                                                             {tech}
                                                         </span>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        )}
-
-                                        <a
-                                            href={project.link}
-                                            className={`inline-flex items-center ${darkMode ? 'text-cyan-400 hover:text-cyan-300' : 'text-blue-600 hover:text-blue-700'} mt-auto transition-colors`}
-                                        >
-                                            View Project <ExternalLink size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                                        </a>
+                                                    ))}
+                                                    {project.techStack.length > 3 && (
+                                                        <span className={`text-[10px] font-medium px-2 py-1 rounded-full ${darkMode ? 'bg-white/5 text-slate-300 border border-white/5' : 'bg-slate-100 text-slate-600 border border-slate-200'}`}>
+                                                            +{project.techStack.length - 3}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

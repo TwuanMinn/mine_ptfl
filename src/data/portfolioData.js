@@ -31,6 +31,8 @@ export const getPortfolioData = (bioText) => ({
         {
             id: 'proj-habit',
             title: "Habit Tracking Mobile Application",
+            category: "Mobile Development",
+            image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1470&auto=format&fit=crop",
             description: "Native Android app with Firebase backend. Features habit creation, monitoring, reminders, and progress visualization with intuitive UI design and real-time data sync.",
             link: "#",
             techStack: ["React Native", "Firebase", "JavaScript", "Tailwind CSS"]
@@ -38,6 +40,8 @@ export const getPortfolioData = (bioText) => ({
         {
             id: 'proj-lstm',
             title: "LSTM Machine Translation (EN → FR)",
+            category: "AI / Machine Learning",
+            image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1530&auto=format&fit=crop",
             description: "LSTM Encoder-Decoder with Attention mechanism for English-French translation using PyTorch. Handled ML workflow including preprocessing, model training, and performance evaluation.",
             link: "#",
             techStack: ["Python", "PyTorch", "Machine Learning", "NumPy"]
@@ -45,6 +49,8 @@ export const getPortfolioData = (bioText) => ({
         {
             id: 'proj-portfolio',
             title: "Resume Portfolio Website",
+            category: "Web Development",
+            image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1470&auto=format&fit=crop",
             description: "Responsive portfolio built with React and Tailwind CSS. Features AI-powered chatbot for visitor engagement, smooth animations, dark/light mode, and backend API integration.",
             link: "#",
             techStack: ["React", "Tailwind CSS", "Node.js", "Vercel"]
@@ -52,6 +58,8 @@ export const getPortfolioData = (bioText) => ({
         {
             id: 'proj-ecommerce',
             title: "E-Commerce Platform",
+            category: "Full Stack Development",
+            image: "https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=1632&auto=format&fit=crop",
             description: "Full-stack e-commerce solution with product management, shopping cart, secure checkout, and admin dashboard. Integrated payment processing and real-time inventory tracking.",
             link: "#",
             techStack: ["Next.js", "TypeScript", "PostgreSQL", "Stripe"]
@@ -59,6 +67,8 @@ export const getPortfolioData = (bioText) => ({
         {
             id: 'proj-taskmanager',
             title: "Collaborative Task Manager",
+            category: "Productivity Tools",
+            image: "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?q=80&w=1476&auto=format&fit=crop",
             description: "Real-time task management app with team collaboration features, drag-and-drop boards, deadline notifications, and performance analytics dashboard.",
             link: "#",
             techStack: ["React", "Node.js", "MongoDB", "Socket.io"]
@@ -66,6 +76,8 @@ export const getPortfolioData = (bioText) => ({
         {
             id: 'proj-weatherapp',
             title: "Weather Forecast Dashboard",
+            category: "Data Visualization",
+            image: "https://images.unsplash.com/photo-1592210454359-9043f067919b?q=80&w=1470&auto=format&fit=crop",
             description: "Beautiful weather application with location-based forecasts, interactive maps, hourly/weekly predictions, and severe weather alerts using multiple weather APIs.",
             link: "#",
             techStack: ["Vue.js", "TypeScript", "REST API", "Chart.js"]
