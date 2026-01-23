@@ -111,25 +111,37 @@ const TiltCard = ({ children, className, style }) => {
     const x = useMotionValue(0);
     const y = useMotionValue(0);
 
-    const mouseX = useSpring(x, { stiffness: 150, damping: 10 });
-    const mouseY = useSpring(y, { stiffness: 150, damping: 10 });
+    const mouseX = useSpring(x, { stiffness: 150, damping: 15 });
+    const mouseY = useSpring(y, { stiffness: 150, damping: 15 });
 
-    const rotateX = useTransform(mouseY, [-0.5, 0.5], [15, -15]);
-    const rotateY = useTransform(mouseX, [-0.5, 0.5], [-15, 15]);
+    const rotateX = useTransform(mouseY, [-0.5, 0.5], [8, -8]);
+    const rotateY = useTransform(mouseX, [-0.5, 0.5], [-8, 8]);
 
-    const handleMouseMove = (e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
+    const handleInteraction = (clientX, clientY, rect) => {
         const width = rect.width;
         const height = rect.height;
-        const mouseXVal = e.clientX - rect.left;
-        const mouseYVal = e.clientY - rect.top;
-        const xPct = mouseXVal / width - 0.5;
-        const yPct = mouseYVal / height - 0.5;
+        const xVal = clientX - rect.left;
+        const yVal = clientY - rect.top;
+        const xPct = xVal / width - 0.5;
+        const yPct = yVal / height - 0.5;
         x.set(xPct);
         y.set(yPct);
     };
 
-    const handleMouseLeave = () => {
+    const handleMouseMove = (e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        handleInteraction(e.clientX, e.clientY, rect);
+    };
+
+    const handleTouchMove = (e) => {
+        if (e.touches.length > 0) {
+            const touch = e.touches[0];
+            const rect = e.currentTarget.getBoundingClientRect();
+            handleInteraction(touch.clientX, touch.clientY, rect);
+        }
+    };
+
+    const handleLeave = () => {
         x.set(0);
         y.set(0);
     };
@@ -138,7 +150,9 @@ const TiltCard = ({ children, className, style }) => {
         <motion.div
             className={className}
             onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
+            onMouseLeave={handleLeave}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleLeave}
             style={{
                 ...style,
                 rotateX,
@@ -249,7 +263,7 @@ export const About = ({ portfolioData, darkMode, aboutHeadingVisible, aboutWords
                             {/* Bio text */}
                             <p
                                 className={`${darkMode ? 'text-blue-100' : 'text-blue-900'} leading-relaxed text-lg sm:text-xl mb-8`}
-                                style={{ fontFamily: "'Google Sans Code', 'Fira Code', monospace", fontWeight: 400 }}
+                                style={{ fontFamily: "'Google Sans Code', 'Fira Code', monospace", fontWeight: 200 }}
                             >
                                 {portfolioData.bio.split(' ').map((word, idx) => (
                                     <span key={idx} className="inline-block mr-1.5" style={{
