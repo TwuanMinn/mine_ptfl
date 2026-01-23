@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, useScroll, useSpring, useMotionValue, useTransform } from 'framer-motion';
+import { Briefcase } from 'lucide-react';
 import { Reveal } from './Reveal';
 
 
@@ -84,16 +85,16 @@ export const Experience = ({ portfolioData, darkMode }) => {
                     <h2 className={`text-3xl font-bold mb-8 ${darkMode ? 'text-blue-100' : 'text-blue-800'}`} style={{ fontSize: '2rem' }}>Work Experience</h2>
                     <div className="relative" ref={timelineRef}>
                         {/* Base dimmed line */}
-                        <div className={`absolute left-10 top-0 bottom-20 w-2 ${darkMode ? 'bg-slate-800/20' : 'bg-blue-200/20'}`}></div>
+                        <div className={`absolute left-[39px] top-2 bottom-0 w-[2px] ${darkMode ? 'bg-slate-800/40' : 'bg-blue-200/40'} rounded-full`}></div>
 
                         {/* Illuminated scrolling line - Smoothed with Framer Motion */}
                         <motion.div
-                            className={`absolute left-[38px] top-0 w-2 ${darkMode
-                                ? 'bg-gradient-to-b from-blue-400 via-cyan-300 to-blue-500 shadow-[0_0_40px_rgba(34,211,238,0.9),0_0_20px_rgba(255,255,255,0.4)]'
+                            className={`absolute left-[39px] top-2 w-[2px] rounded-full ${darkMode
+                                ? 'bg-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.6),0_0_40px_rgba(34,211,238,0.3)]'
                                 : 'bg-blue-500 shadow-[0_0_25px_rgba(59,130,246,0.7)]'
                                 }`}
                             style={{
-                                height: 'calc(100% - 80px)',
+                                height: 'calc(100% - 20px)',
                                 scaleY,
                                 transformOrigin: 'top'
                             }}
@@ -103,46 +104,39 @@ export const Experience = ({ portfolioData, darkMode }) => {
                             {portfolioData.experience.map((job, index) => (
                                 <div
                                     key={index}
-                                    className="relative flex gap-6 pb-12"
+                                    className="relative flex gap-8 pb-16 group/item"
                                 >
-                                    <div className="relative z-10 flex-shrink-0 perspective-1000">
-                                        <div className={`group relative w-16 h-16 rounded-full flex items-center justify-center transition-all duration-700 transform-style-3d hover:rotate-y-12 hover:rotate-x-12`}>
+                                    {/* Timeline Node/Connector */}
+                                    <div className="absolute left-[28px] top-8 z-20 flex items-center justify-center">
+                                        <div className={`w-6 h-6 rounded-full flex items-center justify-center ${darkMode ? 'bg-[#0a0a0f] border border-cyan-400' : 'bg-white border border-blue-500'} shadow-[0_0_15px_rgba(34,211,238,0.5)] z-10 group-hover/item:scale-125 transition-transform duration-500`}>
+                                            <Briefcase size={12} className={darkMode ? 'text-cyan-400' : 'text-blue-600'} />
+                                        </div>
+                                        <div className={`absolute w-10 h-10 rounded-full border ${darkMode ? 'border-cyan-500/50' : 'border-blue-400/50'} opacity-0 group-hover/item:opacity-100 animate-ping`} />
+                                        <div className={`absolute w-14 h-14 rounded-full border ${darkMode ? 'border-cyan-500/20' : 'border-blue-400/20'} opacity-0 group-hover/item:opacity-100 transition-all duration-500 scale-0 group-hover/item:scale-100`} />
+                                    </div>
 
-                                            {/* Neon Glow Container */}
-                                            <div className="absolute inset-0 rounded-full blur-md opacity-50 group-hover:opacity-100 transition-opacity duration-500"
-                                                style={{
-                                                    background: darkMode
-                                                        ? 'radial-gradient(circle, rgba(34,211,238,0.8) 0%, rgba(59,130,246,0.4) 100%)'
-                                                        : 'radial-gradient(circle, rgba(59,130,246,0.8) 0%, rgba(37,99,235,0.4) 100%)',
-                                                    animation: 'pulse-custom 2s infinite'
-                                                }}
+                                    <div className="relative z-10 flex-shrink-0 perspective-1000 pl-4">
+                                        <div className={`group relative w-20 h-20 rounded-full flex items-center justify-center transition-all duration-700 transform-style-3d hover:rotate-y-20 hover:rotate-x-20`}>
+                                            {/* Spherical Base */}
+                                            <div className={`absolute inset-0 rounded-full transition-all duration-700 animate-icon-flash ${darkMode
+                                                ? 'bg-[radial-gradient(circle_at_30%_30%,#3b82f6_0%,#1e3a8a_40%,#000000_100%)] shadow-[inset_-5px_-5px_15px_rgba(0,0,0,0.8),inset_5px_5px_15px_rgba(255,255,255,0.1)]'
+                                                : 'bg-[radial-gradient(circle_at_30%_30%,#60a5fa_0%,#2563eb_50%,#1e3a8a_100%)] shadow-[inset_-3px_-3px_10px_rgba(0,0,0,0.4),inset_3px_3px_10px_rgba(255,255,255,0.2)]'}`}
                                             />
 
-                                            {/* Core Orb */}
-                                            <div className={`absolute inset-1 rounded-full z-10 transition-all duration-500 border-2 ${darkMode ? 'border-cyan-400 bg-slate-900' : 'border-blue-500 bg-white'}`}
-                                                style={{
-                                                    boxShadow: darkMode
-                                                        ? 'inset 0 0 15px rgba(34,211,238,0.3)'
-                                                        : 'inset 0 0 15px rgba(59,130,246,0.2)'
-                                                }}
+                                            {/* Gloss Reflection Layer */}
+                                            <div className="absolute inset-2 rounded-full bg-gradient-to-b from-white/20 to-transparent h-1/2 w-4/5 left-1/2 -translate-x-1/2 opacity-60 pointer-events-none" />
+
+                                            {/* Outer Glass Ring */}
+                                            <div className={`absolute inset-0 rounded-full border-2 ${darkMode ? 'border-white/10' : 'border-black/5'} transition-transform duration-700 group-hover:scale-110`} />
+
+                                            <svg
+                                                className={`w-9 h-9 relative z-20 transition-all duration-700 transform group-hover:translate-z-12 text-white drop-shadow-[0_5px_10px_rgba(0,0,0,0.5)]`}
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24"
                                             >
-                                                {/* Central Dot */}
-                                                <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full ${darkMode ? 'bg-cyan-400' : 'bg-blue-500'}`}
-                                                    style={{
-                                                        boxShadow: darkMode
-                                                            ? '0 0 10px #22d3ee, 0 0 20px #22d3ee'
-                                                            : '0 0 10px #3b82f6, 0 0 20px #3b82f6'
-                                                    }}
-                                                />
-                                            </div>
-
-                                            {/* Rotating Rings */}
-                                            <div className={`absolute -inset-2 rounded-full border border-dashed ${darkMode ? 'border-cyan-500/30' : 'border-blue-400/30'} animate-spin-slow`}
-                                                style={{ animationDuration: '10s' }}
-                                            />
-                                            <div className={`absolute -inset-2 rounded-full border border-dashed ${darkMode ? 'border-purple-500/30' : 'border-indigo-400/30'} animate-spin-reverse-slow`}
-                                                style={{ animationDuration: '15s' }}
-                                            />
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                            </svg>
                                         </div>
                                     </div>
 
