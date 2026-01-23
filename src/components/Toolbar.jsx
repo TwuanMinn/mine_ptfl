@@ -30,13 +30,12 @@ export const Toolbar = ({
             className={`fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ${toolbarVisible ? 'opacity-100 translate-y-0' : 'opacity-0 pointer-events-none'
                 }`}
         >
-            <div className={`relative flex items-center ${toolbarExpanded ? 'gap-1.5 sm:gap-3' : ''} px-2.5 sm:px-4 py-2 rounded-full bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.35)] max-w-[94vw] overflow-x-auto no-scrollbar transition-all duration-500`}>
+            <div className={`relative flex items-center ${toolbarExpanded ? 'gap-1.5 sm:gap-3' : ''} px-2.5 sm:px-4 py-2 rounded-full bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.35)] max-w-[94vw] overflow-x-auto overflow-y-hidden no-scrollbar touch-pan-x transition-all duration-500`}>
                 {/* Profile Button with Effects */}
                 <div className="profile-btn-wrapper flex-shrink-0" onClick={() => setToolbarExpanded(!toolbarExpanded)}>
                     <div className="profile-rotating-ring"></div>
                     <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden cursor-pointer profile-btn-glow relative z-10 flex items-center justify-center bg-slate-800">
-                        <User size={20} className="text-white" />
-                        {/* <img src="/jonasptfl.jpg" alt="Profile" className="w-full h-full object-cover" /> */}
+                        <img src="/jonasptfl.jpg" alt="Profile" className="w-full h-full object-cover" />
                     </div>
                 </div>
 
