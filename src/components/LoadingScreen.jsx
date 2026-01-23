@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Atom } from 'lucide-react';
+
 
 const LoadingScreen = ({ onLoadingComplete }) => {
     const [isLoading, setIsLoading] = useState(true);
@@ -36,7 +36,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
             clearTimeout(completeTimer);
             clearTimeout(callbackTimer);
         };
-    }, []); // Empty dependency array - run once on mount
+    }, [onLoadingComplete]);
 
     // 25 lines of code
     const codeLines = [

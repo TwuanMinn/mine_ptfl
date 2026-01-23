@@ -1,4 +1,4 @@
-﻿import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ArrowUp } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -29,7 +29,7 @@ export default function Portfolio() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [textIndex, setTextIndex] = useState(0);
   const [activeSection, setActiveSection] = useState('about');
-  const [isAppLoading, setIsAppLoading] = useState(true);
+
 
   const [darkMode, setDarkMode] = useState(true);
   const [chatOpen, setChatOpen] = useState(false);
@@ -342,7 +342,7 @@ export default function Portfolio() {
   return (
     <>
       {/* Loading Screen */}
-      <LoadingScreen onLoadingComplete={() => setIsAppLoading(false)} />
+      <LoadingScreen />
 
       <div className={`min-h-screen ${darkMode ? 'bg-gradient-to-br from-[#050508] via-[#0a0a10] to-[#070709]' : 'bg-gradient-to-br from-blue-50 via-cyan-50 to-white'}`}>
         <ScrollProgress darkMode={darkMode} />
