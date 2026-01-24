@@ -33,8 +33,8 @@ export const API_ENDPOINTS = {
 export const TIMING = {
     debounce: 150,
     throttle: 100,
-    typingSpeed: 10,
-    deletingSpeed: 5,
+    typingSpeed: 50,
+    deletingSpeed: 25,
     pauseDuration: 2000,
     popupInterval: 3000,
     popupTransition: 400,

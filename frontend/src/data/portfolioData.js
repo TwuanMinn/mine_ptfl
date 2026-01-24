@@ -303,55 +303,114 @@ Performance optimization ensures smooth interactions. Virtual scrolling handles 
 
     certificates: [
         {
+            id: 'cert-ielts',
             title: "IELTS Certificate",
             issuer: "British Council / IDP",
             date: "2024",
+            image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1373&auto=format&fit=crop",
+            gallery: [
+                "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1470&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1513258496099-48168024adb0?q=80&w=1470&auto=format&fit=crop"
+            ],
             description: "Achieved an Overall Band Score of 7.5, demonstrating proficiency in English communication.",
-            link: "#"
+            fullDescription: "The International English Language Testing System (IELTS) is the world's most popular English language proficiency test for higher education and global migration. Achieving a band score of 7.5 indicates a 'Very Good User' level, showing a high level of accuracy and appropriateness in a wide range of situations, with only occasional inaccuracies and misunderstandings.\n\nThis certification covers all four language skills: Listening, Reading, Writing, and Speaking. The preparation required extensive practice in academic writing, skimming and scanning techniques for reading, and developing fluency and coherence in spoken English.\n\nDemonstrating high-level English proficiency is essential for success in international environments. This score reflects strong analytical reading skills, the ability to follow complex verbal discussions, and clear, structured writing techniques used in academic and professional settings.",
+            skills: ["English Proficiency", "Academic Writing", "Communication", "Public Speaking"],
+            link: "https://www.ielts.org/"
         },
         {
+            id: 'cert-fullstack',
             title: "Full-Stack Web Development",
             issuer: "Coursera",
             date: "2024",
+            image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1472&auto=format&fit=crop",
+            gallery: [
+                "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1469&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1470&auto=format&fit=crop"
+            ],
             description: "Completed a full-stack program covering React, Node.js, and REST APIs.",
-            link: "#"
+            fullDescription: "This comprehensive specialization covers modern full-stack development from frontend to backend. It involved building dynamic web applications using the MERN stack (MongoDB, Express, React, and Node.js).\n\nKey areas of focus included responsive web design, state management with React hooks and context API, building RESTful APIs, database design and optimization, and deploying applications to cloud platforms. The program concluded with a capstone project that integrated all these technologies into a production-ready application.\n\nThroughout the course, I developed a deeper understanding of how to architect scalable applications. From designing efficient database schemas to implementing secure authentication flows and creating highly performant user interfaces, this certification validated my ability to handle end-to-end development cycles.",
+            skills: ["React", "Node.js", "Express", "MongoDB", "REST APIs", "Deployment"],
+            link: "https://www.coursera.org/"
         },
         {
+            id: 'cert-uiux',
             title: "UI/UX Design Essentials",
             issuer: "Google",
             date: "2023",
+            image: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=1470&auto=format&fit=crop",
+            gallery: [
+                "https://images.unsplash.com/photo-1561070791-230f18ef99f7?q=80&w=1470&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=1470&auto=format&fit=crop"
+            ],
             description: "Design fundamentals, user research, and wireframing best practices.",
-            link: "#"
+            fullDescription: "Through this certification, I mastered the end-to-end design process, from initial user research to creating high-fidelity prototypes. The course emphasized user-centered design principles and the importance of solving real user problems.\n\nI learned to conduct user interviews, create personas, map user journeys, and perform usability testing. On the visual side, I focused on layout, typography, color theory, and creating consistent design systems using Figma. This foundation ensures that the software I build isn't just functional, but also intuitive and accessible.\n\nThe process of iterative design and feedback was central to this program. I developed skills in translating complex user needs into simple, elegant visual solutions, while always maintaining a strong focus on accessibility standards and modern UI trends.",
+            skills: ["User Research", "Wireframing", "Prototyping", "Figma", "Design Systems", "Usability Testing"],
+            link: "https://grow.google/certificates/ui-ux-design/"
         },
         {
+            id: 'cert-cloud',
             title: "Cloud Fundamentals",
             issuer: "Microsoft",
             date: "2023",
+            image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1472&auto=format&fit=crop",
+            gallery: [
+                "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=1470&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1334&auto=format&fit=crop"
+            ],
             description: "Core cloud concepts, services, and security principles.",
-            link: "#"
+            fullDescription: "This certification provides a solid foundation in cloud computing concepts and Microsoft Azure services. It covers the benefits of cloud computing, different cloud service models (IaaS, PaaS, SaaS), and cloud deployment models.\n\nI explored core Azure services including compute, networking, storage, and databases, as well as essential security, privacy, compliance, and trust features. This knowledge allows me to architect applications that leverage the scalability and reliability of modern cloud infrastructure.\n\nTransitioning from traditional on-premise infrastructure to cloud-native solutions is a key focus here. I learned how to optimize costs while increasing availability through load balancing, auto-scaling, and geographically distributed deployments.",
+            skills: ["Azure", "Cloud Computing", "Virtualization", "Cloud Security", "Infrastructure as Code"],
+            link: "https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/"
         },
         {
+            id: 'cert-aws',
             title: "AWS Cloud Practitioner",
             issuer: "Amazon Web Services",
             date: "2023",
+            image: "https://images.unsplash.com/photo-1484417894907-623942c8ee29?q=80&w=1632&auto=format&fit=crop",
+            gallery: [
+                "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1472&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=1470&auto=format&fit=crop"
+            ],
             description: "Foundational understanding of AWS Cloud concepts, services, and terminology.",
-            link: "#"
+            fullDescription: "The AWS Certified Cloud Practitioner validation provides a high-level overview of the AWS Cloud platform. It covers basic global infrastructure, architectural principles, value proposition, and key services.\n\nI gained insights into AWS billing and pricing models, security and compliance protocols, and the shared responsibility model. This certification enables me to effectively communicate with stakeholders and technical teams about AWS Cloud solutions and their business impact.\n\nUnderstanding the AWS Well-Architected Framework has been a major takeaway. This knowledge allows me to build systems that are secure, high-performing, resilient, and efficient, ensuring that cloud resources are utilized effectively to meet business goals.",
+            skills: ["AWS", "Cloud Economics", "IAM", "VPC", "S3", "EC2"],
+            link: "https://aws.amazon.com/certification/certified-cloud-practitioner/"
         },
         {
+            id: 'cert-python',
             title: "Python for Data Science",
             issuer: "IBM",
             date: "2023",
+            image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1470&auto=format&fit=crop",
+            gallery: [
+                "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1470&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1426&auto=format&fit=crop"
+            ],
             description: "Python programming, data analysis with Pandas, and data visualization techniques.",
-            link: "#"
+            fullDescription: "This IBM certification focuses on using Python for data analysis and visualization. It starts with Python fundamentals including data structures, loops, and functions, then dives deep into data-centric libraries.\n\nI learned to use NumPy for numerical operations, Pandas for data manipulation and cleaning, and Matplotlib and Seaborn for creating insightful visualizations. The course also introduced basic machine learning concepts and how to apply them to real-world datasets for predictive modeling.\n\nWorking with real-world datasets enabled me to practice complex data cleaning tasks and statistical analysis. I developed the ability to present findings through compelling visualizations, transforming raw data into actionable business insights.",
+            skills: ["Python", "Pandas", "NumPy", "Data Visualization", "Data Analysis", "Jupyter Notebooks"],
+            link: "https://www.ibm.com/training/certification/"
         },
         {
+            id: 'cert-js',
             title: "JavaScript Algorithms",
             issuer: "freeCodeCamp",
             date: "2022",
+            image: "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?q=80&w=1470&auto=format&fit=crop",
+            gallery: [
+                "https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=1528&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?q=80&w=1470&auto=format&fit=crop"
+            ],
             description: "Advanced JavaScript concepts, algorithms, and data structures certification.",
-            link: "#"
+            fullDescription: "This rigorous certification involves completing hundreds of coding challenges focused on JavaScript fundamentals, algorithms, and data structures. It covers ES6+, Regular Expressions, Debugging, Basic and Intermediate Algorithm Scripting, and Object-Oriented Programming.\n\nI gained deep expertise in functional programming, recursive algorithms, and managing complex data structures. The final projects required building complex applications like a Roman Numeral Converter, Caesar's Cipher, and a Cash Register system, all passing extensive test suites.\n\nThis certification significantly strengthened my problem-solving abilities. Mastering algorithms and data structures is fundamental to writing efficient, maintainable code, and this program provided the perfect platform to sharpen those skills in an intensive, project-oriented environment.",
+            skills: ["JavaScript ES6+", "Algorithms", "Data Structures", "Functional Programming", "RegEx"],
+            link: "https://www.freecodecamp.org/certification/fcc123/javascript-algorithms-and-data-structures"
         }
     ],
+
+
+
 
     experience: [
         {

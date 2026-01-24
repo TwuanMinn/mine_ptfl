@@ -7,6 +7,8 @@ import { SectionErrorBoundary } from '../components/common/ErrorBoundary';
 import Home from '../pages/Home';
 import { HeartedProjectsPage } from '../pages/HeartedProjects';
 import ProjectDetails from '../pages/ProjectDetails';
+import CertificateDetails from '../pages/CertificateDetails';
+
 
 // Loading fallback component
 const SectionLoader = memo(({ height = '200px' }) => (
@@ -63,7 +65,17 @@ export const AppRoutes = ({
                     }
                 />
                 <Route
+                    path="/certificate/:certId"
+                    element={
+                        <CertificateDetails
+                            portfolioData={portfolioData}
+                            darkMode={darkMode}
+                        />
+                    }
+                />
+                <Route
                     path="/hearted"
+
                     element={
                         <motion.div
                             key="hearted-page"

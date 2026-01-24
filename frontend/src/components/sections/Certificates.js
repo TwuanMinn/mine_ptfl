@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ExternalLink, Award, BadgeCheck } from 'lucide-react';
 import { Reveal } from '../common/Reveal';
 
 export const Certificates = ({ portfolioData, darkMode }) => {
+    const navigate = useNavigate();
     const [showAll, setShowAll] = useState(false);
+
     const visibleCertificates = showAll ? portfolioData.certificates : portfolioData.certificates.slice(0, 4);
 
     const getIssuerStyle = (issuer) => {
@@ -43,9 +46,9 @@ export const Certificates = ({ portfolioData, darkMode }) => {
 
                             return (
                                 <div
-                                    key={index}
-                                    // RESTORED: The glass-card, card-wave animation, and neon hover shadows
-                                    className={`relative glass-card overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(34,211,238,0.6),0_0_80px_rgba(255,255,255,0.2)] border border-transparent hover:border-cyan-400 hover:bg-cyan-900/30 h-full flex flex-col animate-card-wave ${darkMode ? 'bg-[#0a0a0f]/80' : ''}`}
+                                    key={cert.id}
+                                    onClick={() => navigate(`/certificate/${cert.id}`)}
+                                    className={`relative glass-card overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(34,211,238,0.6),0_0_80px_rgba(255,255,255,0.2)] border border-transparent hover:border-cyan-400 hover:bg-cyan-900/30 h-full flex flex-col animate-card-wave cursor-pointer ${darkMode ? 'bg-[#0a0a0f]/80' : ''}`}
                                     style={{ animationDelay: `${index * 0.4}s` }}
                                 >
                                     {/* RESTORED: The blurred glow blob */}
@@ -82,19 +85,21 @@ export const Certificates = ({ portfolioData, darkMode }) => {
                                         <span className={`text-xs ${darkMode ? 'text-cyan-400' : 'text-blue-600'}`}>
                                             Verified Credential
                                         </span>
-                                        <a
-                                            href={cert.link}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className={`flex items-center gap-2 text-sm font-semibold transition-colors ${darkMode
+                                        <button
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                navigate(`/certificate/${cert.id}`);
+                                            }}
+                                            className={`flex items-center gap-2 text-sm font-semibold transition-colors cursor-pointer ${darkMode
                                                 ? 'text-cyan-400 hover:text-white'
                                                 : 'text-blue-600 hover:text-blue-800'
                                                 }`}
                                         >
                                             View <ExternalLink size={16} />
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
+
                             );
                         })}
                     </div>
