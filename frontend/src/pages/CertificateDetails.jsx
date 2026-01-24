@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowUp, ExternalLink, Award, BadgeCheck, Shield, Calendar, Globe, BookOpen, Users, Mic, PenTool } from 'lucide-react';
+import { ArrowLeft, ArrowUp, ExternalLink, Award, Shield, Calendar, Globe, BookOpen, Users, Mic, PenTool } from 'lucide-react';
 
 // Tech stack icon URLs mapping
 const techIcons = {
@@ -79,15 +79,7 @@ export default function CertificateDetails({ portfolioData, darkMode }) {
         );
     }
 
-    const getIssuerStyle = (issuer) => {
-        const i = issuer.toLowerCase();
-        if (i.includes('google')) return 'text-blue-400 bg-blue-500/10 border-blue-500/30';
-        if (i.includes('microsoft')) return 'text-cyan-400 bg-cyan-500/10 border-cyan-500/30';
-        if (i.includes('coursera')) return 'text-indigo-400 bg-indigo-500/10 border-indigo-500/30';
-        if (i.includes('amazon') || i.includes('aws')) return 'text-orange-400 bg-orange-500/10 border-orange-500/30';
-        if (i.includes('ibm')) return 'text-blue-500 bg-blue-600/10 border-blue-600/30';
-        return 'text-purple-400 bg-purple-500/10 border-purple-500/30';
-    };
+
 
     // Helper to get diverse icons for skills
     const getSkillIcon = (skillName) => {
@@ -108,7 +100,7 @@ export default function CertificateDetails({ portfolioData, darkMode }) {
         return <Shield size={16} className="text-cyan-500/50 group-hover/skill:text-cyan-400 transition-colors" />;
     };
 
-    const issuerStyle = getIssuerStyle(certificate.issuer);
+
     const longDescription = certificate.fullDescription || certificate.description;
 
     return (
@@ -250,11 +242,6 @@ export default function CertificateDetails({ portfolioData, darkMode }) {
                                         const mainImage = gallery[0] || certificate.image; // Use gallery image 1, else fall back to main image
 
                                         if (mainImage) {
-                                            // formatting text to ~150 words
-                                            const allText = paragraphs.join(' ');
-                                            const words = allText.split(/\s+/);
-                                            const displayText = words.slice(0, 150).join(' ') + (words.length > 150 ? '...' : '');
-
                                             return (
                                                 <motion.div
                                                     initial={{ opacity: 0, y: 30 }}
