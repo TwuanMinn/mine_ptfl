@@ -57,15 +57,16 @@ export const Hero = ({
                         <div className={`absolute -inset-1 bg-gradient-to-r ${darkMode ? 'from-blue-400 via-cyan-300 to-white' : 'from-blue-500 via-blue-400 to-blue-500'} rounded-full blur-xl ${darkMode ? 'opacity-80' : 'opacity-60'}`} style={{ animation: `pulse-custom 2s cubic-bezier(0.4, 0, 0.6, 1) infinite` }}></div>
                         <div className={`absolute -inset-2 bg-gradient-to-r ${darkMode ? 'from-blue-600 via-cyan-500 to-blue-600' : 'from-blue-600 via-blue-500 to-blue-600'} rounded-full blur-2xl ${darkMode ? 'opacity-60' : 'opacity-40'}`} style={{ animation: `pulse-custom 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite` }}></div>
                         <div className={`relative w-36 h-36 sm:w-48 sm:h-48 rounded-full ${darkMode ? 'bg-gradient-to-br from-[#0c0c0e] via-[#08080b] to-[#010101] border-4 border-[#0a0a0c] white-glow' : 'bg-gradient-to-br from-white via-blue-50 to-blue-100 border-4 border-blue-200'} flex items-center justify-center shadow-2xl overflow-hidden group`}>
-                            {/* TV Signal Interference Layers - Focused on Digital Jitter & Chromatic Split */}
-                            <div className="absolute inset-0 z-10 pointer-events-none transition-opacity duration-300">
-                                {/* Analog layers removed per user request */}
+                            {/* TV Signal Running Through - Infinite Scanning Glitch Line */}
+                            <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden rounded-full">
+                                <div className="absolute top-0 left-0 w-full h-[3px] bg-cyan-400/80 shadow-[0_0_15px_rgba(34,211,238,0.8)] animate-signal-run" />
+                                <div className="absolute top-0 left-0 w-full h-[5px] bg-blue-500/40 shadow-[0_0_10px_rgba(59,130,246,0.6)] animate-signal-run-slow" />
                             </div>
 
                             <img
                                 src="/jonasptfl.jpg"
                                 alt="Profile"
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 animate-jitter chromatic-aberration"
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 chromatic-aberration"
                                 style={{
                                     maxWidth: '100%',
                                     height: 'auto',
@@ -75,14 +76,14 @@ export const Hero = ({
                             />
 
                             <style>{`
-                            @keyframes jitter {
-                                0% { transform: translate(0,0); }
-                                5% { transform: translate(-2px, 1px); }
-                                10% { transform: translate(2px, -1px); }
-                                15% { transform: translate(-1px, -2px); }
-                                20% { transform: translate(1px, 2px); }
-                                25% { transform: translate(0,0); }
-                                100% { transform: translate(0,0); }
+                            @keyframes signal-run {
+                                0% { transform: translateY(-100%); opacity: 0.8; }
+                                50% { opacity: 1; }
+                                100% { transform: translateY(1000%); opacity: 0.8; }
+                            }
+                            @keyframes signal-run-slow {
+                                0% { transform: translateY(-100%); opacity: 0.4; }
+                                100% { transform: translateY(1500%); opacity: 0.4; }
                             }
                             @keyframes chromatic-split {
                                 0% { text-shadow: 2px 0 0 rgba(255,0,0,0.5), -2px 0 0 rgba(0,255,255,0.5); filter: hue-rotate(0deg); }
@@ -90,7 +91,8 @@ export const Hero = ({
                                 10% { filter: hue-rotate(0deg) contrast(1); }
                                 100% { text-shadow: 1px 0 0 rgba(255,0,0,0.3), -1px 0 0 rgba(0,255,255,0.3); }
                             }
-                            .animate-jitter { animation: jitter 0.2s infinite; }
+                            .animate-signal-run { animation: signal-run 3s linear infinite; }
+                            .animate-signal-run-slow { animation: signal-run-slow 5s linear infinite; }
                             .chromatic-aberration {
                                 filter: drop-shadow(2px 0 0 rgba(255,0,0,0.4)) drop-shadow(-2px 0 0 rgba(0,255,255,0.4));
                             }
