@@ -78,15 +78,15 @@ CERTIFICATIONS:
    - Core cloud concepts, services, security principles
 
 WORK EXPERIENCE:
-1. Full-Stack Developer at Tech Solution Co. (Nov 2025 - Present)
+1. Full-Stack Developer (Freelance) (Nov 2025 - Present)
    - Architecting scalable full-stack applications with MERN and Next.js
-2. Frontend Developer at Digital Innovations (Feb 2025 - Oct 2025)
+2. Frontend Developer (Freelance) (Feb 2025 - Oct 2025)
    - Building responsive UIs with React and Tailwind CSS
-3. Freelance UI/UX Designer (May 2024 - Feb 2025)
+3. UI/UX Designer (Freelance) (May 2024 - Feb 2025)
    - User-centric design and high-fidelity prototyping
-4. English IELTS Teacher at IELTS Certification Center (Mar 2023 - Mar 2024)
+4. English IELTS Teacher at IELTS English Center (Mar 2023 - Mar 2024)
    - Delivered IELTS prep across all four skills
-5. Website Developer (Freelance) (Jul 2022 - Mar 2023)
+5. Website Developer at Covisoft (Jul 2022 - Mar 2023)
    - Responsive web development and performance optimization
 6. IT Support Volunteer at Ton Duc Thang University (Feb 2022 - May 2022)
    - Technical support and network configurations
