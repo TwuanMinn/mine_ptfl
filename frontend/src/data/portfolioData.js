@@ -29,6 +29,29 @@ export const getPortfolioData = (bioText) => ({
 
     projects: [
         {
+            id: 'proj-furniture',
+            title: "Furniture Haven",
+            category: "E-Commerce Development",
+            image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1470&auto=format&fit=crop",
+            gallery: [
+                "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1470&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1583847268964-b28dc2f51ac9?q=80&w=1374&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1503602642458-2321159af561?q=80&w=1374&auto=format&fit=crop"
+            ],
+            description: "A comprehensive furniture e-commerce platform featuring a modern catalog, interactive product views, and a secure checkout process. Built with Next.js and Supabase.",
+            fullDescription: `Furniture Haven is a high-end e-commerce platform designed to redefine the online furniture shopping experience. This project showcases the power of modern web technologies by combining a stunning, interactive frontend with a robust, scalable backend to handle everything from product discovery to secure transactions.
+
+The user interface was built using Next.js and React with TypeScript, ensuring a highly performant and type-safe application. Tailwind CSS was utilized to create a sophisticated, responsive design that emphasizes visual hierarchy and high-quality imagery, making every piece of furniture look as premium as it feels. Framer Motion animations provide smooth transitions between products and categories, creating a seamless and engaging browsing experience.
+
+On the backend, Supabase serves as the primary data and authentication layer. Leveraging PostgreSQL with RLS (Row Level Security), the application ensures that user data and order history are securely managed. The real-time capabilities of Supabase are used to sync inventory levels across the platform, preventing overselling and providing customers with accurate stock information.
+
+Key features include an advanced search and filtering system, allowing users to find pieces by material, style, color, and price. A persistent shopping cart handles guest and registered users alike, while the checkout flow is optimized for speed and security. The integration of Vercel for deployment guarantees lightning-fast load times and global availability through their edge network.
+
+This project represents a deep dive into building functional, beautiful commerce applications that meet modern standards for performance, security, and aesthetics.`,
+            link: "https://furniture-haven.vercel.app/",
+            techStack: ["Next.js", "React", "TypeScript", "Supabase", "Tailwind CSS", "Vercel", "JavaScript"]
+        },
+        {
             id: 'proj-shoestore',
             title: "Premium Shoe Store",
             category: "E-Commerce Development",
