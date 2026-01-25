@@ -57,13 +57,9 @@ export const Hero = ({
                         <div className={`absolute -inset-1 bg-gradient-to-r ${darkMode ? 'from-blue-400 via-cyan-300 to-white' : 'from-blue-500 via-blue-400 to-blue-500'} rounded-full blur-xl ${darkMode ? 'opacity-80' : 'opacity-60'}`} style={{ animation: `pulse-custom 2s cubic-bezier(0.4, 0, 0.6, 1) infinite` }}></div>
                         <div className={`absolute -inset-2 bg-gradient-to-r ${darkMode ? 'from-blue-600 via-cyan-500 to-blue-600' : 'from-blue-600 via-blue-500 to-blue-600'} rounded-full blur-2xl ${darkMode ? 'opacity-60' : 'opacity-40'}`} style={{ animation: `pulse-custom 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite` }}></div>
                         <div className={`relative w-36 h-36 sm:w-48 sm:h-48 rounded-full ${darkMode ? 'bg-gradient-to-br from-[#0c0c0e] via-[#08080b] to-[#010101] border-4 border-[#0a0a0c] white-glow' : 'bg-gradient-to-br from-white via-blue-50 to-blue-100 border-4 border-blue-200'} flex items-center justify-center shadow-2xl overflow-hidden group`}>
-                            {/* TV Signal Interference Layers - DIRECT EFFECT */}
+                            {/* TV Signal Interference Layers - Focused on Digital Jitter & Chromatic Split */}
                             <div className="absolute inset-0 z-10 pointer-events-none transition-opacity duration-300">
-                                <div className="absolute inset-0 bg-noise animate-noise opacity-30" />
-                                <div className="absolute inset-0 bg-scanlines opacity-40" />
-                                <div className="absolute inset-0 bg-glitch-1 animate-glitch-1 mix-blend-screen opacity-20 sm:opacity-30" />
-                                <div className="absolute inset-0 bg-glitch-2 animate-glitch-2 mix-blend-multiply opacity-20 sm:opacity-30" />
-                                <div className="bg-vhs-tracking" />
+                                {/* Analog layers removed per user request */}
                             </div>
 
                             <img
@@ -78,83 +74,7 @@ export const Hero = ({
                                 }}
                             />
 
-                            {/* Static Interference Overlay (Subtle but constant) */}
-                            <div className="absolute inset-0 z-20 pointer-events-none opacity-20 sm:opacity-30">
-                                <div className="absolute top-0 left-0 w-full h-[2px] bg-white/60 animate-scanline" />
-                            </div>
-                        </div>
-
-                        <style>{`
-                            @keyframes noise {
-                                0%, 100% { transform: translate(0,0) }
-                                10% { transform: translate(-5%,-5%) }
-                                20% { transform: translate(-10%,5%) }
-                                30% { transform: translate(5%,-10%) }
-                                40% { transform: translate(-5%,15%) }
-                                50% { transform: translate(-10%,5%) }
-                                60% { transform: translate(15%,0) }
-                                70% { transform: translate(0,10%) }
-                                80% { transform: translate(-15%,0) }
-                                90% { transform: translate(10%,5%) }
-                            }
-                            @keyframes scanline {
-                                0% { transform: translateY(-100%) }
-                                100% { transform: translateY(5000%) }
-                            }
-                            @keyframes glitch-1 {
-                                0% { clip-path: inset(40% 0 61% 0); transform: translate(-10px); }
-                                10% { clip-path: inset(92% 0 1% 0); transform: translate(10px); }
-                                20% { clip-path: inset(25% 0 58% 0); transform: translate(-10px); }
-                                30% { clip-path: inset(75% 0 15% 0); transform: translate(5px); }
-                                40% { clip-path: inset(10% 0 85% 0); transform: translate(-5px); }
-                                50% { clip-path: inset(50% 0 30% 0); transform: translate(10px); }
-                                60% { clip-path: inset(80% 0 5% 0); transform: translate(-10px); }
-                                70% { clip-path: inset(30% 0 60% 0); transform: translate(5px); }
-                                80% { clip-path: inset(15% 0 80% 0); transform: translate(-5px); }
-                                90% { clip-path: inset(60% 0 25% 0); transform: translate(10px); }
-                                100% { clip-path: inset(40% 0 61% 0); transform: translate(-10px); }
-                            }
-                            .bg-noise {
-                                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-                            }
-                            .bg-scanlines {
-                                background: linear-gradient(
-                                    to bottom,
-                                    transparent 50%,
-                                    rgba(0, 0, 0, 0.5) 50%
-                                );
-                                background-size: 100% 4px;
-                            }
-                            .animate-noise { animation: noise 0.2s infinite; }
-                            .animate-scanline { animation: scanline 4s linear infinite; }
-                            .animate-glitch-1 { animation: glitch-1 2s infinite linear alternate-reverse; }
-                            @keyframes glitch-2 {
-                                0% { clip-path: inset(20% 0 10% 0); transform: translate(10px); }
-                                20% { clip-path: inset(50% 0 30% 0); transform: translate(-10px); }
-                                40% { clip-path: inset(10% 0 70% 0); transform: translate(15px); }
-                                60% { clip-path: inset(80% 0 10% 0); transform: translate(-5px); }
-                                80% { clip-path: inset(30% 0 50% 0); transform: translate(10px); }
-                                100% { clip-path: inset(60% 0 20% 0); transform: translate(-15px); }
-                            }
-                            @keyframes vhs-tracking {
-                                0% { transform: translateY(0) scaleY(1); opacity: 0.1; }
-                                2% { transform: translateY(10px) scaleY(1.5); opacity: 0.5; }
-                                4% { transform: translateY(0) scaleY(1); opacity: 0.1; }
-                                90% { transform: translateY(0) scaleY(1); opacity: 0.1; }
-                                92% { transform: translateY(-15px) scaleY(2); opacity: 0.4; }
-                                94% { transform: translateY(0) scaleY(1); opacity: 0.1; }
-                            }
-                            .bg-vhs-tracking {
-                                background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
-                                height: 20px;
-                                width: 100%;
-                                position: absolute;
-                                z-index: 15;
-                                animation: vhs-tracking 5s linear infinite;
-                            }
-                            .bg-glitch-1 { background-color: rgba(255, 0, 0, 0.3); }
-                            .bg-glitch-2 { background-color: rgba(0, 255, 255, 0.3); }
-                            .animate-glitch-2 { animation: glitch-2 3s infinite linear alternate; }
+                            <style>{`
                             @keyframes jitter {
                                 0% { transform: translate(0,0); }
                                 5% { transform: translate(-2px, 1px); }
@@ -175,6 +95,7 @@ export const Hero = ({
                                 filter: drop-shadow(2px 0 0 rgba(255,0,0,0.4)) drop-shadow(-2px 0 0 rgba(0,255,255,0.4));
                             }
                         `}</style>
+                        </div>
                     </div>
                 </div>
 
