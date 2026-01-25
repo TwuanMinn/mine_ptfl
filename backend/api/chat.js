@@ -1,7 +1,7 @@
 // Backend API handler for the chatbot
 // This file should be placed in a backend directory or serverless function
 
-import { PORTFOLIO_INFO } from '../portfolio-info.js';
+import { PORTFOLIO_INFO } from '../../portfolio-info.js';
 
 // Configure your AI API here
 const API_KEY = process.env.REACT_APP_AI_API_KEY || '';

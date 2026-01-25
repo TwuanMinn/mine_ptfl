@@ -1,0 +1,309 @@
+* {
+  scroll-behavior: smooth;
+
+  body {
+    margin: 0;
+    font-family: 'Inter', 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(135deg, #0a0a0a 0%, #0f1419 20%, #1a1f2e 40%, #0d1117 60%, #000000 80%, #050507 100%);
+    color: #ffffff;
+    overflow-y: auto;
+    overflow-x: hidden;
+    touch-action: pan-y;
+  }
+
+}
+
+html {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0f1419 20%, #1a1f2e 40%, #0d1117 60%, #000000 80%, #050507 100%);
+  overflow-y: auto;
+  overflow-x: hidden;
+  touch-action: pan-y;
+}
+/* Mobile responsiveness */
+@media (max-width: 640px) {
+  html, body {
+    font-size: 15px;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+  }
+  .max-w-4xl, .max-w-6xl {
+    max-width: 98vw !important;
+    padding: 0 0.5rem;
+  }
+  section, footer {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+  h2 {
+    font-size: 2rem !important;
+  }
+  h3 {
+    font-size: 1.2rem !important;
+  }
+}
+
+body::-webkit-scrollbar,
+html::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+body,
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+  background: rgba(139, 92, 246, 0.1);
+  color: #c084fc;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Force animation restart on class changes */
+@keyframes pulse-custom {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse-custom 2s cubic-bezier(0.4, 0, 0.6, 1) infinite !important;
+}
+
+/* Galaxy theme accent colors */
+:root {
+  --primary-glow: #a78bfa;
+  --secondary-glow: #ec4899;
+  --accent-blue: #60a5fa;
+  --accent-cyan: #22d3ee;
+  --accent-blue: #60a5fa;
+  --cosmic-dark: #0a0015;
+}
+
+
+/* Profile Button Ripple & Glow Effects */
+@keyframes profile-ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+@keyframes profile-ripple-delayed {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+@keyframes profile-glow-pulse {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 15px rgba(96, 165, 250, 0.5),
+      0 0 30px rgba(96, 165, 250, 0.3),
+      0 0 45px rgba(59, 130, 246, 0.2);
+  }
+
+  50% {
+    box-shadow:
+      0 0 20px rgba(139, 92, 246, 0.6),
+      0 0 40px rgba(139, 92, 246, 0.4),
+      0 0 60px rgba(168, 85, 247, 0.3);
+  }
+}
+
+@keyframes profile-ring-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes profile-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.profile-btn-wrapper {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  .profile-btn-wrapper {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.profile-btn-wrapper::before,
+.profile-btn-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  pointer-events: none;
+  transform-origin: center center;
+}
+
+/* First ripple wave */
+.profile-btn-wrapper::before {
+  border: 2px solid rgba(96, 165, 250, 0.5);
+  animation: profile-ripple 2s ease-out infinite;
+}
+
+/* Second ripple wave (delayed) */
+.profile-btn-wrapper::after {
+  border: 2px solid rgba(139, 92, 246, 0.4);
+  animation: profile-ripple-delayed 2s ease-out infinite 0.6s;
+}
+
+/* The profile image container with glow */
+.profile-btn-glow {
+  animation: profile-glow-pulse 3s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+.profile-btn-glow:hover {
+  transform: scale(1.1);
+  box-shadow:
+    0 0 25px rgba(96, 165, 250, 0.7),
+    0 0 50px rgba(96, 165, 250, 0.5),
+    0 0 75px rgba(59, 130, 246, 0.4) !important;
+}
+
+/* Rotating gradient ring around profile */
+.profile-rotating-ring {
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg,
+      transparent 0deg,
+      rgba(96, 165, 250, 0.8) 60deg,
+      rgba(139, 92, 246, 0.8) 120deg,
+      rgba(236, 72, 153, 0.6) 180deg,
+      rgba(34, 211, 238, 0.8) 240deg,
+      rgba(96, 165, 250, 0.8) 300deg,
+      transparent 360deg);
+  animation: profile-ring-rotate 4s linear infinite;
+  z-index: -1;
+}
+
+/* Inner mask to create ring effect */
+.profile-rotating-ring::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.9);
+}
+
+/* Icon Swap Transition for Copy/Share buttons */
+@keyframes icon-pop-in {
+  0% {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1.2) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes icon-fade-out {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+.icon-transition {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.icon-transition svg {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.icon-swap-enter {
+  animation: icon-pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* 3D Tilt Effect Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.hover\:rotate-x-2:hover {
+  transform: rotateX(2deg);
+}
+
+.hover\:rotate-y-2:hover {
+  transform: rotateY(2deg);
+}

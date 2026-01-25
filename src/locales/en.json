@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "Jonas",
+    "title": "Full-Stack Developer",
+    "description": "A passionate software engineer with a strong foundation in full-stack development and machine learning. With hands-on experience in programming, problem-solving, and teamwork through practical projects, I bring a proactive willingness to learn new technologies and contribute effectively in professional IT environments.",
+    "getInTouch": "Get In Touch",
+    "downloadCV": "Download CV"
+  },
+  "navigation": {
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "certificates": "Certificates",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "toolbar": {
+    "translate": "Translate",
+    "vietnamese": "Tiếng Việt",
+    "english": "English"
+  }
+}

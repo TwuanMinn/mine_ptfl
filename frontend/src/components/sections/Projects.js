@@ -49,7 +49,7 @@ export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick,
                 <div className="max-w-6xl mx-auto w-full" style={{ padding: '0 0.5rem' }}>
                     <h2 className={`text-3xl font-bold mb-6 ${darkMode ? 'text-blue-100' : 'text-blue-800'}`} style={{ fontSize: '2rem' }}>Projects</h2>
                     <div
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+                        className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4"
                         style={{
                             transition: 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
                         }}
@@ -69,7 +69,7 @@ export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick,
                                     <div className={`relative z-10 glass-card rounded-2xl overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-[0_0_40px_rgba(34,211,238,0.8),0_0_80px_rgba(255,255,255,0.5)] border ${darkMode ? 'border-white/10 bg-[#0a0a10]' : 'border-blue-100 bg-white'} group-hover:border-cyan-400 group-hover:-translate-y-2`}>
 
                                         {/* Project Image */}
-                                        <div className="relative h-48 w-full overflow-hidden">
+                                        <div className="relative h-32 sm:h-48 w-full overflow-hidden">
                                             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent z-10" />
                                             <img
                                                 src={project.image}
@@ -80,7 +80,7 @@ export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick,
                                             {/* Heart Button Top Right */}
                                             <button
                                                 onClick={(e) => { e.stopPropagation(); handleHeartClick(project.id); }}
-                                                className={`absolute top-3 right-3 z-30 w-11 h-11 rounded-full border ${isHearted(project.id) ? 'border-pink-400/80 text-pink-500 bg-pink-500/20' : 'border-white/25 text-white/90 bg-black/30 backdrop-blur-md'} flex items-center justify-center transition-all duration-200 hover:scale-110 cursor-pointer group/heart`}
+                                                className={`absolute top-2 right-2 sm:top-3 sm:right-3 z-30 w-8 h-8 sm:w-11 sm:h-11 rounded-full border ${isHearted(project.id) ? 'border-pink-400/80 text-pink-500 bg-pink-500/20' : 'border-white/25 text-white/90 bg-black/30 backdrop-blur-md'} flex items-center justify-center transition-all duration-200 hover:scale-110 cursor-pointer group/heart`}
                                                 aria-label="heart-project"
                                             >
                                                 {/* Heart burst particles when hearted */}
@@ -95,23 +95,27 @@ export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick,
                                                     </>
                                                 )}
                                                 <Heart
-                                                    size={22}
-                                                    className={`${isHearted(project.id) ? 'fill-pink-500 text-pink-500' : ''} ${heartAnimating[project.id] ? 'animate-heart-pop' : ''} transition-transform group-hover/heart:scale-110`}
+                                                    size={18}
+                                                    className={`hidden sm:block ${isHearted(project.id) ? 'fill-pink-500 text-pink-500' : ''} ${heartAnimating[project.id] ? 'animate-heart-pop' : ''} transition-transform group-hover/heart:scale-110 sm:w-5 sm:h-5`}
+                                                />
+                                                <Heart
+                                                    size={14}
+                                                    className={`sm:hidden ${isHearted(project.id) ? 'fill-pink-500 text-pink-500' : ''} ${heartAnimating[project.id] ? 'animate-heart-pop' : ''} transition-transform group-hover/heart:scale-110`}
                                                 />
                                             </button>
 
                                             {/* Link Button positioned at intersection of image and content */}
                                             <button
                                                 onClick={(e) => { e.stopPropagation(); handleCardClick(project.id); }}
-                                                className={`absolute bottom-3 right-3 z-30 w-10 h-10 rounded-full flex items-center justify-center bg-white text-black transition-transform duration-300 hover:scale-110 hover:rotate-45 shadow-lg`}
+                                                className={`absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-30 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center bg-white text-black transition-transform duration-300 hover:scale-110 hover:rotate-45 shadow-lg`}
                                                 aria-label="view project details"
                                             >
-                                                <ExternalLink size={20} strokeWidth={2.5} />
+                                                <ExternalLink size={16} className="sm:w-5 sm:h-5" strokeWidth={2.5} />
                                             </button>
                                         </div>
 
                                         {/* Content */}
-                                        <div className="p-5 flex flex-col flex-grow">
+                                        <div className="p-3 sm:p-5 flex flex-col flex-grow">
 
                                             {/* Category */}
                                             <div className="mb-2">
@@ -120,25 +124,25 @@ export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick,
                                                 </span>
                                             </div>
 
-                                            <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-slate-900'} mb-2 leading-tight`}>{project.title}</h3>
+                                            <h3 className={`text-sm sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-slate-900'} mb-1 sm:mb-2 leading-tight line-clamp-1 sm:line-clamp-none`}>{project.title}</h3>
 
-                                            <p className={`${darkMode ? 'text-slate-400' : 'text-slate-600'} text-sm mb-4 flex-grow line-clamp-3 leading-relaxed`}>
+                                            <p className={`${darkMode ? 'text-slate-400' : 'text-slate-600'} text-[10px] sm:text-sm mb-2 sm:mb-4 flex-grow line-clamp-2 sm:line-clamp-3 leading-relaxed`}>
                                                 {project.description}
                                             </p>
 
                                             {/* Tech Stack Badges */}
                                             {project.techStack && (
-                                                <div className="flex flex-wrap gap-2 mt-auto pt-2 border-t border-white/5">
+                                                <div className="flex flex-wrap gap-1 sm:gap-2 mt-auto pt-2 border-t border-white/5">
                                                     {project.techStack.map((tech, techIndex) => (
                                                         <div
                                                             key={techIndex}
-                                                            className={`flex items-center gap-1.5 text-xs font-medium px-2.5 py-1.5 rounded-full ${darkMode ? 'bg-white/5 text-slate-300 border border-white/5' : 'bg-slate-100 text-slate-600 border border-slate-200'}`}
+                                                            className={`flex items-center gap-1 sm:gap-1.5 text-[8px] sm:text-xs font-medium px-1.5 py-0.5 sm:px-2.5 sm:py-1.5 rounded-full ${darkMode ? 'bg-white/5 text-slate-300 border border-white/5' : 'bg-slate-100 text-slate-600 border border-slate-200'}`}
                                                         >
                                                             {techIcons[tech] && (
                                                                 <img
                                                                     src={techIcons[tech]}
                                                                     alt={tech}
-                                                                    className="w-5 h-5 object-contain"
+                                                                    className="w-3 h-3 sm:w-5 sm:h-5 object-contain"
                                                                     loading="lazy"
                                                                 />
                                                             )}
