@@ -69,12 +69,12 @@ export const Hero = ({
                             <img
                                 src="/jonasptfl.jpg"
                                 alt="Profile"
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 animate-jitter chromatic-aberration"
                                 style={{
                                     maxWidth: '100%',
                                     height: 'auto',
                                     borderRadius: '50%',
-                                    filter: darkMode ? 'contrast(1.1) brightness(1.1)' : 'none'
+                                    filter: darkMode ? 'contrast(1.1) brightness(1.1) drop-shadow(2px 0 0 rgba(255,0,0,0.4)) drop-shadow(-2px 0 0 rgba(0,255,255,0.4))' : 'drop-shadow(2px 0 0 rgba(255,0,0,0.4)) drop-shadow(-2px 0 0 rgba(0,255,255,0.4))'
                                 }}
                             />
 
@@ -155,6 +155,25 @@ export const Hero = ({
                             .bg-glitch-1 { background-color: rgba(255, 0, 0, 0.3); }
                             .bg-glitch-2 { background-color: rgba(0, 255, 255, 0.3); }
                             .animate-glitch-2 { animation: glitch-2 3s infinite linear alternate; }
+                            @keyframes jitter {
+                                0% { transform: translate(0,0); }
+                                5% { transform: translate(-2px, 1px); }
+                                10% { transform: translate(2px, -1px); }
+                                15% { transform: translate(-1px, -2px); }
+                                20% { transform: translate(1px, 2px); }
+                                25% { transform: translate(0,0); }
+                                100% { transform: translate(0,0); }
+                            }
+                            @keyframes chromatic-split {
+                                0% { text-shadow: 2px 0 0 rgba(255,0,0,0.5), -2px 0 0 rgba(0,255,255,0.5); filter: hue-rotate(0deg); }
+                                5% { filter: hue-rotate(90deg) contrast(1.5); }
+                                10% { filter: hue-rotate(0deg) contrast(1); }
+                                100% { text-shadow: 1px 0 0 rgba(255,0,0,0.3), -1px 0 0 rgba(0,255,255,0.3); }
+                            }
+                            .animate-jitter { animation: jitter 0.2s infinite; }
+                            .chromatic-aberration {
+                                filter: drop-shadow(2px 0 0 rgba(255,0,0,0.4)) drop-shadow(-2px 0 0 rgba(0,255,255,0.4));
+                            }
                         `}</style>
                     </div>
                 </div>
