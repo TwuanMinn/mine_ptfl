@@ -55,8 +55,8 @@ PROJECTS:
    - Features real-time inventory and secure checkout
 
 CERTIFICATIONS:
-1. IELTS (Overall Band 7.0) - British Council / IDP (2024)
-   - Proficiency in English communication
+1. IELTS (Overall Band 6.5) - British Council / IDP (2023)
+   - Proficiency in English communication (Listening 7.5, Writing 7.0)
 2. Full-Stack Web Development - Coursera (2024)
    - Covered React, Node.js, and REST APIs
 3. UI/UX Design Essentials - Google (2023)

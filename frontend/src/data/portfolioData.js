@@ -329,16 +329,16 @@ Performance optimization ensures smooth interactions. Virtual scrolling handles 
             id: 'cert-ielts',
             title: "IELTS Certificate",
             issuer: "British Council / IDP",
-            date: "2024",
-            image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1373&auto=format&fit=crop",
+            date: "2023",
+            image: "/ielts_certificate.jpg",
             gallery: [
-                "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1470&auto=format&fit=crop",
+                "/ielts_certificate.jpg",
                 "https://images.unsplash.com/photo-1513258496099-48168024adb0?q=80&w=1470&auto=format&fit=crop"
             ],
-            description: "Achieved an Overall Band Score of 7.0, demonstrating proficiency in English communication.",
-            fullDescription: "The International English Language Testing System (IELTS) is the world's most popular English language proficiency test for higher education and global migration. Achieving a band score of 7.0 indicates a 'Good User' level, showing a high level of accuracy and appropriateness in a wide range of situations, with only occasional inaccuracies and misunderstandings.\n\nThis certification covers all four language skills: Listening, Reading, Writing, and Speaking. The preparation required extensive practice in academic writing, skimming and scanning techniques for reading, and developing fluency and coherence in spoken English.\n\nDemonstrating high-level English proficiency is essential for success in international environments. This score reflects strong analytical reading skills, the ability to follow complex verbal discussions, and clear, structured writing techniques used in academic and professional settings.",
-            skills: ["English Proficiency", "Academic Writing", "Communication", "Public Speaking"],
-            link: "https://www.ielts.org/"
+            description: "Achieved an Overall Band Score of 6.5, with Listening 7.5 and Writing 7.0.",
+            fullDescription: "The International English Language Testing System (IELTS) is the world's most popular English language proficiency test. My score of 6.5 (B2/C1 level) demonstrates a good command of the language, particularly in professional contexts.\n\nKey Strengths:\n- Listening: 7.5\n- Writing: 7.0\n- Reading: 6.0\n- Speaking: 6.0\n\nThis certification validates my ability to communicate complex ideas, follow technical discussions, and write structured, academic-level documentation in English.",
+            skills: ["English Proficiency", "Professional Communication", "Technical Writing", "Listening Comprehension"],
+            link: "/ielts_certificate.jpg"
         },
         {
             id: 'cert-fullstack',

@@ -63,6 +63,7 @@ export const Hero = ({
                                 <div className="absolute inset-0 bg-scanlines opacity-40" />
                                 <div className="absolute inset-0 bg-glitch-1 animate-glitch-1 mix-blend-screen opacity-20 sm:opacity-30" />
                                 <div className="absolute inset-0 bg-glitch-2 animate-glitch-2 mix-blend-multiply opacity-20 sm:opacity-30" />
+                                <div className="bg-vhs-tracking" />
                             </div>
 
                             <img
@@ -134,6 +135,22 @@ export const Hero = ({
                                 60% { clip-path: inset(80% 0 10% 0); transform: translate(-5px); }
                                 80% { clip-path: inset(30% 0 50% 0); transform: translate(10px); }
                                 100% { clip-path: inset(60% 0 20% 0); transform: translate(-15px); }
+                            }
+                            @keyframes vhs-tracking {
+                                0% { transform: translateY(0) scaleY(1); opacity: 0.1; }
+                                2% { transform: translateY(10px) scaleY(1.5); opacity: 0.5; }
+                                4% { transform: translateY(0) scaleY(1); opacity: 0.1; }
+                                90% { transform: translateY(0) scaleY(1); opacity: 0.1; }
+                                92% { transform: translateY(-15px) scaleY(2); opacity: 0.4; }
+                                94% { transform: translateY(0) scaleY(1); opacity: 0.1; }
+                            }
+                            .bg-vhs-tracking {
+                                background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+                                height: 20px;
+                                width: 100%;
+                                position: absolute;
+                                z-index: 15;
+                                animation: vhs-tracking 5s linear infinite;
                             }
                             .bg-glitch-1 { background-color: rgba(255, 0, 0, 0.3); }
                             .bg-glitch-2 { background-color: rgba(0, 255, 255, 0.3); }
