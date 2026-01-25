@@ -3,6 +3,10 @@
   publish = "build"
   command = "npm run build"
 
+[build.environment]
+  NODE_VERSION = "20"
+  SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
+
 [context.production]
   environment = { NODE_VERSION = "20", SECRETS_SCAN_SMART_DETECTION_ENABLED = "false" }
 

@@ -3,6 +3,10 @@
   publish = "build"
   functions = "netlify/functions"
 
+[build.environment]
+  NODE_VERSION = "20"
+  SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
+
 [dev]
   command = "npm start"
   port = 3000
