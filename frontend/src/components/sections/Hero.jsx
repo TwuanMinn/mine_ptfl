@@ -57,24 +57,29 @@ export const Hero = ({
                         <div className={`absolute -inset-1 bg-gradient-to-r ${darkMode ? 'from-blue-400 via-cyan-300 to-white' : 'from-blue-500 via-blue-400 to-blue-500'} rounded-full blur-xl ${darkMode ? 'opacity-80' : 'opacity-60'}`} style={{ animation: `pulse-custom 2s cubic-bezier(0.4, 0, 0.6, 1) infinite` }}></div>
                         <div className={`absolute -inset-2 bg-gradient-to-r ${darkMode ? 'from-blue-600 via-cyan-500 to-blue-600' : 'from-blue-600 via-blue-500 to-blue-600'} rounded-full blur-2xl ${darkMode ? 'opacity-60' : 'opacity-40'}`} style={{ animation: `pulse-custom 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite` }}></div>
                         <div className={`relative w-36 h-36 sm:w-48 sm:h-48 rounded-full ${darkMode ? 'bg-gradient-to-br from-[#0c0c0e] via-[#08080b] to-[#010101] border-4 border-[#0a0a0c] white-glow' : 'bg-gradient-to-br from-white via-blue-50 to-blue-100 border-4 border-blue-200'} flex items-center justify-center shadow-2xl overflow-hidden group`}>
-                            {/* TV Signal Interference Layers */}
-                            <div className="absolute inset-0 z-10 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300">
-                                <div className="absolute inset-0 bg-noise animate-noise opacity-20" />
-                                <div className="absolute inset-0 bg-scanlines opacity-30" />
-                                <div className="absolute inset-0 bg-glitch-1 animate-glitch-1 mix-blend-screen opacity-40" />
-                                <div className="absolute inset-0 bg-glitch-2 animate-glitch-2 mix-blend-multiply opacity-40" />
+                            {/* TV Signal Interference Layers - DIRECT EFFECT */}
+                            <div className="absolute inset-0 z-10 pointer-events-none transition-opacity duration-300">
+                                <div className="absolute inset-0 bg-noise animate-noise opacity-30" />
+                                <div className="absolute inset-0 bg-scanlines opacity-40" />
+                                <div className="absolute inset-0 bg-glitch-1 animate-glitch-1 mix-blend-screen opacity-20 sm:opacity-30" />
+                                <div className="absolute inset-0 bg-glitch-2 animate-glitch-2 mix-blend-multiply opacity-20 sm:opacity-30" />
                             </div>
 
                             <img
                                 src="/jonasptfl.jpg"
                                 alt="Profile"
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                style={{ maxWidth: '100%', height: 'auto', borderRadius: '50%' }}
+                                style={{
+                                    maxWidth: '100%',
+                                    height: 'auto',
+                                    borderRadius: '50%',
+                                    filter: darkMode ? 'contrast(1.1) brightness(1.1)' : 'none'
+                                }}
                             />
 
-                            {/* Static Interference Overlay (Subtle) */}
-                            <div className="absolute inset-0 z-20 pointer-events-none opacity-10 group-hover:opacity-30 transition-opacity">
-                                <div className="absolute top-0 left-0 w-full h-[2px] bg-white/50 animate-scanline" />
+                            {/* Static Interference Overlay (Subtle but constant) */}
+                            <div className="absolute inset-0 z-20 pointer-events-none opacity-20 sm:opacity-30">
+                                <div className="absolute top-0 left-0 w-full h-[2px] bg-white/60 animate-scanline" />
                             </div>
                         </div>
 
