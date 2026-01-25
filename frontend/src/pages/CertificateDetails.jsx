@@ -334,7 +334,7 @@ export default function CertificateDetails({ portfolioData, darkMode }) {
                                 <div className="space-y-1">
                                     <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Date Issued</p>
                                     <div className="flex items-center gap-2 text-slate-200">
-                                        <Calendar size={16} className="text-cyan-400" /> {certificate.date}
+                                        <Calendar size={16} className="text-cyan-400" /> {certificate.fullDate || certificate.date}
                                     </div>
                                 </div>
                                 <div className="space-y-1">

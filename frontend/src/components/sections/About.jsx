@@ -68,7 +68,7 @@ const aboutCodeTokens = [
         { text: ": [", className: "text-white" },
         { text: '"Photography"', className: "text-green-400" },
         { text: ", ", className: "text-white" },
-        { text: '"Gaming"', className: "text-green-400" },
+        { text: '"Design"', className: "text-green-400" },
         { text: "],", className: "text-white" }
     ],
     [
@@ -176,7 +176,7 @@ export const About = ({ portfolioData, darkMode, aboutHeadingVisible, aboutWords
         { icon: GraduationCap, label: 'Education', value: 'TDTU - Ton Duc Thang University (2021 - 2025)', delay: 0 },
         { icon: Code2, label: 'Major', value: 'Software Engineering', delay: 0.1 },
         { icon: MapPin, label: 'Location', value: 'District 7, Ho Chi Minh City, Vietnam', delay: 0.2 },
-        { icon: Languages, label: 'IELTS', value: '7.0', delay: 0.3 }
+        { icon: Languages, label: 'IELTS', value: 'Overall 7.0 ( L: 7.5 , R: 6.0 , W: 7.0 , S: 6.0)', delay: 0.3 }
     ];
 
     const handleRunCode = () => {
@@ -363,7 +363,7 @@ export const About = ({ portfolioData, darkMode, aboutHeadingVisible, aboutWords
                                             <p className={`text-sm font-medium ${darkMode ? 'text-blue-300' : 'text-blue-600'}`}>
                                                 {item.label}
                                             </p>
-                                            <p className={`text-base font-extralight ${darkMode ? 'text-blue-100' : 'text-blue-900'} truncate`}>
+                                            <p className={`text-sm font-extralight ${darkMode ? 'text-blue-100' : 'text-blue-900'} whitespace-normal leading-tight`}>
                                                 {item.value}
                                             </p>
                                         </div>

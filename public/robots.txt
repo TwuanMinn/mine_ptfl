@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# Block common non-content files
+Disallow: /build/
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /*.json$

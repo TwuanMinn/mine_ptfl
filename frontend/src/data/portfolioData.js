@@ -21,7 +21,7 @@ export const getPortfolioData = (bioText) => ({
 
     skillsProgress: [
         { name: "React Native", level: 87 },
-        { name: "GitHub", level: 88 },
+        { name: "GitHub", level: 97 },
         { name: "TypeScript", level: 83 },
         { name: "Tailwind CSS", level: 93 },
         { name: "Supabase", level: 92 }
@@ -114,7 +114,7 @@ The UI design follows Material Design 3 guidelines while incorporating custom co
 Social features enable friendly competition and accountability among friends and family. Users can create groups, share specific habits, and participate in challenges with custom rules and durations. A public leaderboard showcases the most consistent users, while private group leaderboards foster healthy competition among smaller circles. Users can send encouragement to friends when they complete habits or are struggling with their streaks.
 
 The application includes comprehensive offline support, storing habits and completions locally when network connectivity is unavailable and synchronizing seamlessly when connection is restored. Conflict resolution logic handles edge cases where habits are completed on multiple devices while offline. This ensures the app remains useful during travel, in areas with poor connectivity, or simply when users prefer to disconnect.`,
-            link: "#",
+            link: "https://habitora-6txvv7n9f-twuanminns-projects.vercel.app/",
             techStack: ["React Native", "Firebase", "JavaScript", "Tailwind CSS"]
         },
         {
@@ -329,13 +329,14 @@ Performance optimization ensures smooth interactions. Virtual scrolling handles 
             id: 'cert-ielts',
             title: "IELTS Certificate",
             issuer: "British Council / IDP",
-            date: "2023",
-            image: "/ielts_certificate.jpg",
+            date: "2025",
+            fullDate: "Sep 2025",
+            image: "https://images.unsplash.com/photo-1543165796-5426273eaab3?q=80&w=1470&auto=format&fit=crop",
             gallery: [
-                "/ielts_certificate.jpg",
+                "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1373&auto=format&fit=crop",
                 "https://images.unsplash.com/photo-1513258496099-48168024adb0?q=80&w=1470&auto=format&fit=crop"
             ],
-            description: "Achieved an Overall Band Score of 6.5, with Listening 7.5 and Writing 7.0.",
+            description: "Proof of English language proficiency and professional communication skills.",
             fullDescription: "The International English Language Testing System (IELTS) is the world's most popular English language proficiency test. My score of 6.5 (B2/C1 level) demonstrates a good command of the language, particularly in professional contexts.\n\nKey Strengths:\n- Listening: 7.5\n- Writing: 7.0\n- Reading: 6.0\n- Speaking: 6.0\n\nThis certification validates my ability to communicate complex ideas, follow technical discussions, and write structured, academic-level documentation in English.",
             skills: ["English Proficiency", "Professional Communication", "Technical Writing", "Listening Comprehension"],
             link: "/ielts_certificate.jpg"

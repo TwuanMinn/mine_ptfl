@@ -1,6 +1,7 @@
-import React from 'react';
-import { Mail, Github, Linkedin, Figma, MapPin } from 'lucide-react';
+import React, { useState } from 'react';
+import { Mail, Github, Linkedin, Figma, MapPin, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 import { Reveal } from '../common/Reveal';
+import { submitContactForm } from '../../services/supabase';
 
 const contactBadgeStyle = (isDark) => ({
     background: isDark
@@ -23,6 +24,61 @@ const contactIconStyle = (isDark) => ({
 });
 
 export const Contact = ({ portfolioData, darkMode }) => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+        // Clear status when user starts typing again
+        if (submitStatus) {
+            setSubmitStatus(null);
+            setErrorMessage('');
+        }
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        // Basic validation
+        if (!formData.name || !formData.email || !formData.message) {
+            setSubmitStatus('error');
+            setErrorMessage('Please fill in all required fields (Name, Email, Message)');
+            return;
+        }
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.email)) {
+            setSubmitStatus('error');
+            setErrorMessage('Please enter a valid email address');
+            return;
+        }
+
+        setIsSubmitting(true);
+        setSubmitStatus(null);
+        setErrorMessage('');
+
+        try {
+            await submitContactForm(formData);
+            setSubmitStatus('success');
+            // Reset form on success
+            setFormData({ name: '', email: '', subject: '', message: '' });
+        } catch (error) {
+            console.error('Contact form error:', error);
+            setSubmitStatus('error');
+            setErrorMessage(error.message || 'Failed to send message. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
     return (
         <section id="contact" className="py-16 px-2" style={{ maxWidth: '100vw' }}>
             <Reveal width="100%">
@@ -168,42 +224,75 @@ export const Contact = ({ portfolioData, darkMode }) => {
                         <div className={`glass-panel-illuminate rounded-3xl p-8 transition-all duration-300`} style={{
                             animation: 'levitateForm 4.5s ease-in-out infinite, levitateShadow 4.5s ease-in-out infinite'
                         }}>
-                            <form className="space-y-6">
+                            <form className="space-y-6" onSubmit={handleSubmit}>
+                                {/* Success Message */}
+                                {submitStatus === 'success' && (
+                                    <div className="flex items-center gap-3 p-4 rounded-xl bg-green-500/20 border border-green-500/50">
+                                        <CheckCircle className="text-green-400" size={24} />
+                                        <p className="text-green-300 font-medium">Message sent successfully! I'll get back to you soon.</p>
+                                    </div>
+                                )}
+
+                                {/* Error Message */}
+                                {submitStatus === 'error' && (
+                                    <div className="flex items-center gap-3 p-4 rounded-xl bg-red-500/20 border border-red-500/50">
+                                        <AlertCircle className="text-red-400" size={24} />
+                                        <p className="text-red-300 font-medium">{errorMessage}</p>
+                                    </div>
+                                )}
+
                                 <div>
                                     <input
                                         type="text"
-                                        placeholder="Name"
-                                        className={`w-full px-6 py-4 glass-input glass-input-glow rounded-2xl ${darkMode ? 'placeholder-white/50' : 'placeholder-slate-500'} focus:outline-none transition-colors`}
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        placeholder="Name *"
+                                        disabled={isSubmitting}
+                                        className={`w-full px-6 py-4 glass-input glass-input-glow rounded-2xl ${darkMode ? 'placeholder-white/50' : 'placeholder-slate-500'} focus:outline-none transition-colors disabled:opacity-50`}
                                     />
                                 </div>
 
                                 <div>
                                     <input
                                         type="email"
-                                        placeholder="Email"
-                                        className={`w-full px-6 py-4 glass-input glass-input-glow rounded-2xl ${darkMode ? 'placeholder-white/50' : 'placeholder-slate-500'} focus:outline-none transition-colors`}
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        placeholder="Email *"
+                                        disabled={isSubmitting}
+                                        className={`w-full px-6 py-4 glass-input glass-input-glow rounded-2xl ${darkMode ? 'placeholder-white/50' : 'placeholder-slate-500'} focus:outline-none transition-colors disabled:opacity-50`}
                                     />
                                 </div>
 
                                 <div>
                                     <input
                                         type="text"
+                                        name="subject"
+                                        value={formData.subject}
+                                        onChange={handleChange}
                                         placeholder="Subject"
-                                        className={`w-full px-6 py-4 glass-input glass-input-glow rounded-2xl ${darkMode ? 'placeholder-white/50' : 'placeholder-slate-500'} focus:outline-none transition-colors`}
+                                        disabled={isSubmitting}
+                                        className={`w-full px-6 py-4 glass-input glass-input-glow rounded-2xl ${darkMode ? 'placeholder-white/50' : 'placeholder-slate-500'} focus:outline-none transition-colors disabled:opacity-50`}
                                     />
                                 </div>
 
                                 <div>
                                     <textarea
-                                        placeholder="Message"
+                                        name="message"
+                                        value={formData.message}
+                                        onChange={handleChange}
+                                        placeholder="Message *"
                                         rows={6}
-                                        className={`w-full px-6 py-4 glass-input glass-input-glow rounded-2xl ${darkMode ? 'placeholder-white/50' : 'placeholder-slate-500'} focus:outline-none transition-colors resize-none`}
+                                        disabled={isSubmitting}
+                                        className={`w-full px-6 py-4 glass-input glass-input-glow rounded-2xl ${darkMode ? 'placeholder-white/50' : 'placeholder-slate-500'} focus:outline-none transition-colors resize-none disabled:opacity-50`}
                                     ></textarea>
                                 </div>
 
                                 <button
                                     type="submit"
-                                    className={`btn-ripple relative overflow-visible w-full ${darkMode ? 'bg-gradient-to-r from-blue-600 to-cyan-600' : 'bg-gradient-to-r from-blue-500 to-blue-600'} text-white font-semibold px-8 py-4 rounded-2xl transition-all duration-500 transform hover:scale-[1.02] ${darkMode ? 'shadow-lg shadow-cyan-500/30' : 'shadow-lg shadow-blue-400/30'}`}
+                                    disabled={isSubmitting}
+                                    className={`btn-ripple relative overflow-visible w-full ${darkMode ? 'bg-gradient-to-r from-blue-600 to-cyan-600' : 'bg-gradient-to-r from-blue-500 to-blue-600'} text-white font-semibold px-8 py-4 rounded-2xl transition-all duration-500 transform hover:scale-[1.02] ${darkMode ? 'shadow-lg shadow-cyan-500/30' : 'shadow-lg shadow-blue-400/30'} disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100`}
                                     style={{
                                         transition: 'background 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease',
                                         boxShadow: darkMode
@@ -211,9 +300,11 @@ export const Contact = ({ portfolioData, darkMode }) => {
                                             : 'inset 0 1px 0 rgba(255,255,255,0.45), 0 10px 24px rgba(59,130,246,0.28)'
                                     }}
                                     onMouseEnter={(e) => {
-                                        e.currentTarget.style.background = darkMode
-                                            ? 'linear-gradient(to right, rgb(34, 211, 238), rgb(59, 130, 246))'
-                                            : 'linear-gradient(to right, rgb(59, 130, 246), rgb(34, 211, 238))';
+                                        if (!isSubmitting) {
+                                            e.currentTarget.style.background = darkMode
+                                                ? 'linear-gradient(to right, rgb(34, 211, 238), rgb(59, 130, 246))'
+                                                : 'linear-gradient(to right, rgb(59, 130, 246), rgb(34, 211, 238))';
+                                        }
                                     }}
                                     onMouseLeave={(e) => {
                                         e.currentTarget.style.background = darkMode
@@ -227,7 +318,16 @@ export const Contact = ({ portfolioData, darkMode }) => {
                                     <span className="ripple-wave-2 absolute inset-0 rounded-xl pointer-events-none" style={{
                                         background: 'radial-gradient(circle, rgba(59, 130, 246, 0.5) 0%, transparent 70%)'
                                     }}></span>
-                                    <span className="relative z-10">Send Message</span>
+                                    <span className="relative z-10 flex items-center justify-center gap-2">
+                                        {isSubmitting ? (
+                                            <>
+                                                <Loader2 className="animate-spin" size={20} />
+                                                Sending...
+                                            </>
+                                        ) : (
+                                            'Send Message'
+                                        )}
+                                    </span>
                                 </button>
                             </form>
                         </div>

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Mic, MicOff, Paperclip, X, FileText } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 export default function ChatBot({ isOpen, onClose }) {
   const [messages, setMessages] = useState([
@@ -135,9 +136,6 @@ export default function ChatBot({ isOpen, onClose }) {
     }
   };
 
-  // Initialize Gemini AI
-  const { GoogleGenerativeAI } = require("@google/generative-ai");
-
   // Portfolio context
   const PORTFOLIO_CONTEXT = `
 You are an AI assistant for Nguyen Huynh Minh Tuan's portfolio website. You ONLY answer questions about Tuan.
@@ -249,8 +247,13 @@ WORK EXPERIENCE:
     try {
       const apiKey = process.env.REACT_APP_GEMINI_API_KEY;
 
+      // Debug logging
+      console.log('API Key exists:', !!apiKey);
+      console.log('API Key length:', apiKey?.length || 0);
+
       if (!apiKey) {
-        throw new Error("API key not configured");
+        console.error('REACT_APP_GEMINI_API_KEY is not set in .env file');
+        throw new Error("API key not configured. Please check your .env file.");
       }
 
       const genAI = new GoogleGenerativeAI(apiKey);
@@ -270,9 +273,11 @@ WORK EXPERIENCE:
 
       prompt += `Visitor's new message: ${messageText}\n\nYour response:`;
 
+      console.log('Sending request to Gemini API...');
       const result = await model.generateContent(prompt);
       const response = await result.response;
       const text = response.text();
+      console.log('Received response from Gemini API');
 
       // Add bot response
       const botMessage = {
@@ -284,10 +289,27 @@ WORK EXPERIENCE:
 
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
-      console.error('Chat error:', error);
+      console.error('Chat error details:', {
+        message: error.message,
+        name: error.name,
+        stack: error.stack
+      });
+
+      let errorText = "Sorry, I encountered an error. ";
+
+      if (error.message?.includes('API key')) {
+        errorText += "The API key is not configured correctly.";
+      } else if (error.message?.includes('fetch')) {
+        errorText += "Network error - please check your internet connection.";
+      } else if (error.message?.includes('quota') || error.message?.includes('rate')) {
+        errorText += "API rate limit reached. Please wait a moment and try again.";
+      } else {
+        errorText += "Please try again later.";
+      }
+
       const errorMessage = {
         id: messages.length + 2,
-        text: "Sorry, I encountered an error. Please try again later.",
+        text: errorText,
         sender: 'bot',
         timestamp: new Date(),
       };

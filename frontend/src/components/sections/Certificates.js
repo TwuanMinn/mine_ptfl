@@ -95,7 +95,7 @@ export const Certificates = ({ portfolioData, darkMode }) => {
                                                 : 'text-blue-600 hover:text-blue-800'
                                                 }`}
                                         >
-                                            View <ExternalLink size={16} />
+                                            View Credential <ExternalLink size={16} />
                                         </button>
                                     </div>
                                 </div>

@@ -10,8 +10,6 @@ import ExperienceSection from './components/ExperienceSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import ChatBot from './ChatBot';
-import SEOOptimizer from './components/SEOOptimizer';
-import useKeyboardNavigation from './hooks/useKeyboardNavigation';
 
 const AppContent = () => {
   const { 
@@ -38,10 +36,6 @@ const AppContent = () => {
   const [experienceVisible, setExperienceVisible] = useState(false);
   const [visibleProjects, setVisibleProjects] = useState(false);
   const [visibleSkills, setVisibleSkills] = useState(false);
-  
-  // Keyboard navigation
-  const sections = ['about', 'skills', 'projects', 'experience', 'contact'];
-  const { keyboardShortcuts } = useKeyboardNavigation(sections, scrollToSection);
 
   // Intersection observer for experience section
   useEffect(() => {
@@ -125,11 +119,7 @@ const AppContent = () => {
   }, []);
 
   return (
-    <>
-      <SEOOptimizer darkMode={darkMode} portfolioData={portfolioData} />
-      <div className={`min-h-screen ${darkMode ? 'bg-gradient-to-br from-black via-slate-900 to-black' : 'bg-gradient-to-br from-blue-50 via-cyan-50 to-white'}`}
-           role="application"
-           aria-label={`${portfolioData.name} Portfolio`}>
+    <div className={`min-h-screen ${darkMode ? 'bg-gradient-to-br from-black via-slate-900 to-black' : 'bg-gradient-to-br from-blue-50 via-cyan-50 to-white'}`}>
       {/* Navigation */}
       <Navigation
         darkMode={darkMode}
@@ -299,7 +289,6 @@ const AppContent = () => {
         }
       `}</style>
     </div>
-    </>
   );
 };
 
