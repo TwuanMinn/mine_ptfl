@@ -57,10 +57,18 @@ export const Hero = ({
                         <div className={`absolute -inset-1 bg-gradient-to-r ${darkMode ? 'from-blue-400 via-cyan-300 to-white' : 'from-blue-500 via-blue-400 to-blue-500'} rounded-full blur-xl ${darkMode ? 'opacity-80' : 'opacity-60'}`} style={{ animation: `pulse-custom 2s cubic-bezier(0.4, 0, 0.6, 1) infinite` }}></div>
                         <div className={`absolute -inset-2 bg-gradient-to-r ${darkMode ? 'from-blue-600 via-cyan-500 to-blue-600' : 'from-blue-600 via-blue-500 to-blue-600'} rounded-full blur-2xl ${darkMode ? 'opacity-60' : 'opacity-40'}`} style={{ animation: `pulse-custom 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite` }}></div>
                         <div className={`relative w-36 h-36 sm:w-48 sm:h-48 rounded-full ${darkMode ? 'bg-gradient-to-br from-[#0c0c0e] via-[#08080b] to-[#010101] border-4 border-[#0a0a0c] white-glow' : 'bg-gradient-to-br from-white via-blue-50 to-blue-100 border-4 border-blue-200'} flex items-center justify-center shadow-2xl overflow-hidden group`}>
-                            {/* TV Signal Running Through - Infinite Scanning Glitch Line */}
+                            {/* TV Signal Running Through - High Intensity Glitch */}
                             <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden rounded-full">
-                                <div className="absolute top-0 left-0 w-full h-[3px] bg-cyan-400/80 shadow-[0_0_15px_rgba(34,211,238,0.8)] animate-signal-run" />
-                                <div className="absolute top-0 left-0 w-full h-[5px] bg-blue-500/40 shadow-[0_0_10px_rgba(59,130,246,0.6)] animate-signal-run-slow" />
+                                {/* Regular Scanning Lines */}
+                                <div className="absolute top-0 left-0 w-full h-[3px] bg-cyan-400/60 shadow-[0_0_15px_rgba(34,211,238,0.8)] animate-signal-run" />
+                                <div className="absolute top-0 left-0 w-full h-[15px] bg-white/10 blur-[2px] animate-signal-run-slow" />
+
+                                {/* Glitch Slices */}
+                                <div className="absolute inset-0 bg-blue-500/20 mix-blend-overlay animate-glitch-slice-1" />
+                                <div className="absolute inset-0 bg-red-500/10 mix-blend-screen animate-glitch-slice-2" />
+
+                                {/* Random Flickering Static */}
+                                <div className="absolute inset-0 bg-noise opacity-0 animate-static-flicker" />
                             </div>
 
                             <img
@@ -71,29 +79,57 @@ export const Hero = ({
                                     maxWidth: '100%',
                                     height: 'auto',
                                     borderRadius: '50%',
-                                    filter: darkMode ? 'contrast(1.1) brightness(1.1) drop-shadow(2px 0 0 rgba(255,0,0,0.4)) drop-shadow(-2px 0 0 rgba(0,255,255,0.4))' : 'drop-shadow(2px 0 0 rgba(255,0,0,0.4)) drop-shadow(-2px 0 0 rgba(0,255,255,0.4))'
+                                    filter: darkMode ? 'contrast(1.2) brightness(1.1) drop-shadow(2px 0 0 rgba(255,0,0,0.4)) drop-shadow(-2px 0 0 rgba(0,255,255,0.4))' : 'drop-shadow(2px 0 0 rgba(255,0,0,0.4)) drop-shadow(-2px 0 0 rgba(0,255,255,0.4))'
                                 }}
                             />
 
                             <style>{`
+                            .bg-noise {
+                                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+                            }
                             @keyframes signal-run {
-                                0% { transform: translateY(-100%); opacity: 0.8; }
-                                50% { opacity: 1; }
-                                100% { transform: translateY(1000%); opacity: 0.8; }
+                                0% { transform: translateY(-100%); opacity: 0; }
+                                10% { opacity: 1; }
+                                90% { opacity: 1; }
+                                100% { transform: translateY(1000%); opacity: 0; }
                             }
                             @keyframes signal-run-slow {
-                                0% { transform: translateY(-100%); opacity: 0.4; }
-                                100% { transform: translateY(1500%); opacity: 0.4; }
+                                0% { transform: translateY(-100%); }
+                                100% { transform: translateY(1200%); }
+                            }
+                            @keyframes glitch-slice-1 {
+                                0%, 100% { clip-path: inset(100% 0 0 0); opacity: 0; }
+                                10% { clip-path: inset(20% 0 75% 0); opacity: 0.6; transform: translateX(-5px); }
+                                12% { clip-path: inset(80% 0 5% 0); opacity: 0.4; transform: translateX(5px); }
+                                14% { clip-path: inset(100% 0 0 0); opacity: 0; }
+                            }
+                            @keyframes glitch-slice-2 {
+                                0%, 100% { clip-path: inset(100% 0 0 0); opacity: 0; }
+                                45% { clip-path: inset(40% 0 55% 0); opacity: 0.5; transform: translateX(8px); }
+                                47% { clip-path: inset(10% 0 85% 0); opacity: 0.3; transform: translateX(-8px); }
+                                49% { clip-path: inset(100% 0 0 0); opacity: 0; }
+                            }
+                            @keyframes static-flicker {
+                                0%, 100% { opacity: 0; }
+                                31% { opacity: 0; }
+                                32% { opacity: 0.15; }
+                                33% { opacity: 0; }
+                                82% { opacity: 0; }
+                                83% { opacity: 0.2; }
+                                84% { opacity: 0; }
                             }
                             @keyframes chromatic-split {
-                                0% { text-shadow: 2px 0 0 rgba(255,0,0,0.5), -2px 0 0 rgba(0,255,255,0.5); filter: hue-rotate(0deg); }
-                                5% { filter: hue-rotate(90deg) contrast(1.5); }
-                                10% { filter: hue-rotate(0deg) contrast(1); }
-                                100% { text-shadow: 1px 0 0 rgba(255,0,0,0.3), -1px 0 0 rgba(0,255,255,0.3); }
+                                0%, 100% { filter: hue-rotate(0deg) contrast(1.2); }
+                                32% { filter: hue-rotate(180deg) contrast(2); }
+                                83% { filter: hue-rotate(-90deg) contrast(1.5); }
                             }
-                            .animate-signal-run { animation: signal-run 3s linear infinite; }
-                            .animate-signal-run-slow { animation: signal-run-slow 5s linear infinite; }
+                            .animate-signal-run { animation: signal-run 2s linear infinite; }
+                            .animate-signal-run-slow { animation: signal-run-slow 4s linear infinite; }
+                            .animate-glitch-slice-1 { animation: glitch-slice-1 4s steps(1) infinite; }
+                            .animate-glitch-slice-2 { animation: glitch-slice-2 5s steps(1) infinite; }
+                            .animate-static-flicker { animation: static-flicker 0.5s infinite; }
                             .chromatic-aberration {
+                                animation: chromatic-split 6s infinite;
                                 filter: drop-shadow(2px 0 0 rgba(255,0,0,0.4)) drop-shadow(-2px 0 0 rgba(0,255,255,0.4));
                             }
                         `}</style>
