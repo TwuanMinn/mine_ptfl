@@ -49,12 +49,19 @@ PROJECTS:
    - AI-powered chatbot for visitor engagement
    - Smooth animations, dark/light mode, backend API integration
 
+4. Furniture Haven
+   - High-end furniture e-commerce platform
+   - Built with Next.js, Supabase, and Express.js
+   - Features real-time inventory and secure checkout
+
 CERTIFICATIONS:
-1. Full-Stack Web Development - Coursera (2024)
+1. IELTS (Overall Band 7.0) - British Council / IDP (2024)
+   - Proficiency in English communication
+2. Full-Stack Web Development - Coursera (2024)
    - Covered React, Node.js, and REST APIs
-2. UI/UX Design Essentials - Google (2023)
+3. UI/UX Design Essentials - Google (2023)
    - Design fundamentals, user research, wireframing
-3. Cloud Fundamentals - Microsoft (2023)
+4. Cloud Fundamentals - Microsoft (2023)
    - Core cloud concepts, services, security principles
 
 WORK EXPERIENCE:

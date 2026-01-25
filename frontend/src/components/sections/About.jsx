@@ -176,7 +176,7 @@ export const About = ({ portfolioData, darkMode, aboutHeadingVisible, aboutWords
         { icon: GraduationCap, label: 'Education', value: 'TDTU - Ton Duc Thang University (2021 - 2025)', delay: 0 },
         { icon: Code2, label: 'Major', value: 'Software Engineering', delay: 0.1 },
         { icon: MapPin, label: 'Location', value: 'District 7, Ho Chi Minh City, Vietnam', delay: 0.2 },
-        { icon: Languages, label: 'IELTS', value: '7.0 (L: 7.5, R: 6.0, S: 6.0, W: 7.0)', delay: 0.3 }
+        { icon: Languages, label: 'IELTS', value: '7.0', delay: 0.3 }
     ];
 
     const handleRunCode = () => {
