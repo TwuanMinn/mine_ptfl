@@ -47,12 +47,12 @@ export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick,
     };
 
     return (
-        <section id="projects" className="py-16 px-2">
+        <section id="projects" className="py-16 px-4">
             <Reveal width="100%">
-                <div className="max-w-6xl mx-auto w-full" style={{ padding: '0 0.5rem' }}>
+                <div className="max-w-6xl mx-auto w-full" style={{ padding: '0 1rem' }}>
                     <h2 className={`text-3xl font-bold mb-6 ${darkMode ? 'text-blue-100' : 'text-blue-800'}`} style={{ fontSize: '2rem' }}>Projects</h2>
                     <div
-                        className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4"
+                        className="grid grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8"
                         style={{
                             transition: 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
                         }}
