@@ -49,7 +49,7 @@ Key features include an advanced search and filtering system, allowing users to 
 
 This project represents a deep dive into building functional, beautiful commerce applications that meet modern standards for performance, security, and aesthetics.`,
             link: "https://furniture-haven.vercel.app/",
-            techStack: ["Next.js", "React", "TypeScript", "Supabase", "Tailwind CSS", "Vercel", "JavaScript"]
+            techStack: ["Next.js", "React", "TypeScript", "Supabase", "Express.js", "PostgreSQL", "Tailwind CSS", "Vercel", "JavaScript"]
         },
         {
             id: 'proj-shoestore',
