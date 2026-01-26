@@ -78,7 +78,21 @@ export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick,
                                                 src={project.image}
                                                 alt={project.title}
                                                 className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
+                                                onError={(e) => {
+                                                    e.target.onerror = null;
+                                                    e.target.style.display = 'none';
+                                                    e.target.nextSibling.style.display = 'flex';
+                                                }}
                                             />
+                                            {/* Fallback placeholder when image fails to load */}
+                                            <div
+                                                className="absolute inset-0 hidden items-center justify-center text-white text-center p-4"
+                                                style={{
+                                                    background: `linear-gradient(135deg, ${darkMode ? '#1e3a5f' : '#3b82f6'} 0%, ${darkMode ? '#0f172a' : '#1e40af'} 100%)`
+                                                }}
+                                            >
+                                                <span className="text-xs sm:text-sm font-medium opacity-80">{project.title}</span>
+                                            </div>
 
                                             {/* Heart Button Top Right */}
                                             <button

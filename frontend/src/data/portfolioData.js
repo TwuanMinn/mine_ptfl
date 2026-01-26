@@ -29,6 +29,31 @@ export const getPortfolioData = (bioText) => ({
 
     projects: [
         {
+            id: 'proj-barber',
+            title: "Barber Haircut Booking System",
+            category: "Full Stack Development",
+            image: "https://images.pexels.com/photos/1813272/pexels-photo-1813272.jpeg?auto=compress&cs=tinysrgb&w=800",
+            gallery: [
+                "https://images.pexels.com/photos/1319460/pexels-photo-1319460.jpeg?auto=compress&cs=tinysrgb&w=800",
+                "https://images.pexels.com/photos/897262/pexels-photo-897262.jpeg?auto=compress&cs=tinysrgb&w=800",
+                "https://images.pexels.com/photos/1813272/pexels-photo-1813272.jpeg?auto=compress&cs=tinysrgb&w=800"
+            ],
+            description: "A comprehensive booking system for barber shops featuring real-time appointment scheduling, staff management, and automated notifications.",
+            fullDescription: `The Barber Haircut Booking System is a modern solution designed to streamline operations for barber shops and salons. Built with TypeScript and PostgreSQL, it offers a seamless booking experience for customers while providing shop owners with powerful management tools.
+
+The application allows clients to view real-time availability of their favorite barbers, select services, and book appointments instantly. It handles complex scheduling scenarios, including varying service durations, staff breaks, and shop operating hours.
+
+Key features include:
+- Real-time Availability: Leaning on Supabase's real-time capabilities to prevent double bookings.
+- Staff Management: Barbers can manage their own schedules, view upcoming appointments, and block out time off.
+- Automated Notifications: Confirmation emails and appointment reminders reduce schedule gaps and no-shows.
+- Customer Profiles: History of past cuts and preferences helps barbers provide personalized service.
+
+Technically, the project utilizes PostgreSQL for robust data integrity and complex relation handling. Row Level Security (RLS) policies in Supabase ensure data privacy. The application is deployed on Vercel, utilizing serverless functions for scalability.`,
+            link: "#",
+            techStack: ["TypeScript", "PostgreSQL", "Supabase", "Vercel", "JavaScript"]
+        },
+        {
             id: 'proj-furniture',
             title: "Furniture Haven",
             category: "E-Commerce Development",

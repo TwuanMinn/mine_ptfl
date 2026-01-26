@@ -47,22 +47,27 @@ SKILL PROFICIENCY:
 - Tailwind CSS: 93%
 
 PROJECTS:
-1. Habit Tracking Mobile Application
+1. Barber Haircut Booking System
+   - Tech Stack: TypeScript, PostgreSQL, Supabase, Vercel, JavaScript
+   - Features: Real-time appointment scheduling, staff management, automated notifications
+   - Comprehensive booking solution for barber shops
+
+2. Habit Tracking Mobile Application
    - Native Android app with Firebase backend
    - Features: habit creation, monitoring, reminders, progress visualization
    - Intuitive UI design with real-time data sync
 
-2. LSTM Machine Translation (English → French)
+3. LSTM Machine Translation (English → French)
    - LSTM Encoder-Decoder with Attention mechanism
    - Built with PyTorch
    - Handled full ML workflow: preprocessing, training, evaluation
 
-3. Resume Portfolio Website
+4. Resume Portfolio Website
    - Responsive portfolio built with React and Tailwind CSS
    - AI-powered chatbot for visitor engagement
    - Smooth animations, dark/light mode, backend API integration
 
-4. Furniture Haven
+5. Furniture Haven
    - High-end furniture e-commerce platform
    - Built with Next.js, Supabase, and Express.js
    - Features real-time inventory and secure checkout
