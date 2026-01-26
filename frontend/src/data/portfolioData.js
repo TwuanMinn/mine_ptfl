@@ -50,7 +50,7 @@ Key features include:
 - Customer Profiles: History of past cuts and preferences helps barbers provide personalized service.
 
 Technically, the project utilizes PostgreSQL for robust data integrity and complex relation handling. Row Level Security (RLS) policies in Supabase ensure data privacy. The application is deployed on Vercel, utilizing serverless functions for scalability.`,
-            link: "#",
+            link: "https://fadelab.vercel.app/",
             techStack: ["TypeScript", "PostgreSQL", "Supabase", "Vercel", "JavaScript"]
         },
         {
