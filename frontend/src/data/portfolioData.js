@@ -73,7 +73,7 @@ On the backend, Supabase serves as the primary data and authentication layer. Le
 Key features include an advanced search and filtering system, allowing users to find pieces by material, style, color, and price. A persistent shopping cart handles guest and registered users alike, while the checkout flow is optimized for speed and security. The integration of Vercel for deployment guarantees lightning-fast load times and global availability through their edge network.
 
 This project represents a deep dive into building functional, beautiful commerce applications that meet modern standards for performance, security, and aesthetics.`,
-            link: "https://furnthome-8is07w6pa-twuanminns-projects.vercel.app/",
+            link: "https://fadelab-7y73wbveo-twuanminns-projects.vercel.app/",
             techStack: ["Next.js", "React", "TypeScript", "Supabase", "Express.js", "PostgreSQL", "Tailwind CSS", "Vercel", "JavaScript"]
         },
         {
