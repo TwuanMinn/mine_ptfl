@@ -155,7 +155,15 @@ export const About = ({ portfolioData, darkMode }) => {
                 </div>
 
                 {/* Main Card */}
-                <div className={`rounded-3xl p-6 sm:p-10 border ${darkMode ? 'bg-[#0f111a] border-white/10' : 'bg-white border-blue-100'} shadow-xl`}>
+                <div
+                    className={`rounded-3xl p-6 sm:p-10 border ${darkMode ? 'bg-[#0f111a] border-white/10' : 'bg-white border-blue-100'} shadow-xl`}
+                    style={{
+                        animation: 'aboutPulse 4s ease-in-out infinite',
+                        boxShadow: darkMode
+                            ? '0 0 30px rgba(34, 211, 238, 0.1), 0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+                            : '0 0 30px rgba(59, 130, 246, 0.1), 0 25px 50px -12px rgba(0, 0, 0, 0.1)'
+                    }}
+                >
 
                     {/* Bio text - Extra Light 200 Font - Wider */}
                     <p className={`${darkMode ? 'text-blue-100' : 'text-blue-900'} leading-relaxed text-xl sm:text-2xl mb-8 font-extralight max-w-4xl`} style={{ fontWeight: 200 }}>

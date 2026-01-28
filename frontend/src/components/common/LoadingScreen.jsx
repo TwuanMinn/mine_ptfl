@@ -190,7 +190,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
         const currentLineText = currentLineTokens.map(t => t.text).join('');
 
         // Typing speed
-        const typingSpeed = 15; // ms per char (faster typing)
+        const typingSpeed = 8; // ms per char (ultra fast typing)
 
         const timeout = setTimeout(() => {
             if (charIndex < currentLineText.length) {
@@ -323,7 +323,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
                                             }}
                                             initial={{ width: '0%' }}
                                             animate={{ width: '100%' }}
-                                            transition={{ duration: 8.5, ease: 'easeInOut' }}
+                                            transition={{ duration: 7, ease: 'easeInOut' }}
                                         />
                                     </motion.div>
                                     <div className="flex items-center gap-2">
