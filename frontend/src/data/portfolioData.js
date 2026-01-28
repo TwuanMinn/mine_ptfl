@@ -2,7 +2,7 @@
 export const getPortfolioData = (bioText) => ({
     name: "NGUYỄN HUỲNH MINH TUẤN",
     title: "Software Engineer",
-    bio: bioText,
+    bio: bioText || "A passionate software engineer with a strong foundation in full-stack development. With hands-on experience in programming, problem-solving, and teamwork through practical projects, I bring a proactive willingness to learn new technologies and contribute effectively in professional IT environments.",
     email: "twuanminn47@gmail.com",
     github: "https://github.com/twuanmin",
     linkedin: "https://www.linkedin.com/in/twuan-min-a98356344/",

@@ -75,7 +75,7 @@ export default function Home({
     const [chatOpen, setChatOpen] = useState(false);
 
     // About section animation state
-    const [aboutWordsVisible, setAboutWordsVisible] = useState({});
+
     const [aboutHeadingVisible, setAboutHeadingVisible] = useState(false);
 
     // Popup state
@@ -173,44 +173,36 @@ export default function Home({
         return () => clearTimeout(timer);
     }, [displayedText, isDeleting, textIndex]);
 
-    // About section word animation
+    // About section animation - Optimized
     useEffect(() => {
         const aboutSection = document.getElementById('about');
         const aboutObserver = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        aboutTimeoutsRef.current.forEach(t => clearTimeout(t));
-                        aboutTimeoutsRef.current = [];
-
                         setAboutHeadingVisible(true);
-                        const wordCount = bioText?.split(' ').length || 50;
-                        for (let idx = 0; idx < wordCount; idx++) {
-                            const timeout = setTimeout(() => {
-                                setAboutWordsVisible(prev => ({ ...prev, [idx]: true }));
-                            }, idx * 80);
-                            aboutTimeoutsRef.current.push(timeout);
-                        }
                     } else {
-                        aboutTimeoutsRef.current.forEach(t => clearTimeout(t));
-                        aboutTimeoutsRef.current = [];
                         setAboutHeadingVisible(false);
-                        setAboutWordsVisible({});
                     }
                 });
             },
-            { threshold: 0.2 }
+            { threshold: 0.1 }
         );
 
         if (aboutSection) {
             aboutObserver.observe(aboutSection);
         }
 
+        // Fallback to ensure it becomes visible eventually
+        const fallbackTimer = setTimeout(() => {
+            setAboutHeadingVisible(true);
+        }, 1000);
+
         return () => {
             aboutObserver.disconnect();
-            aboutTimeoutsRef.current.forEach(t => clearTimeout(t));
+            clearTimeout(fallbackTimer);
         };
-    }, [bioText]);
+    }, []);
 
     return (
         <motion.div
@@ -247,8 +239,7 @@ export default function Home({
                 <About
                     portfolioData={portfolioData}
                     darkMode={darkMode}
-                    aboutHeadingVisible={aboutHeadingVisible}
-                    aboutWordsVisible={aboutWordsVisible}
+                    isVisible={aboutHeadingVisible}
                 />
             </SectionErrorBoundary>
 

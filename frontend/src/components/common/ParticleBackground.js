@@ -8,32 +8,22 @@ const ParticleBackground = ({ darkMode }) => {
         const ctx = canvas.getContext('2d');
         let animationFrameId;
         let particles = [];
-        let mouse = { x: null, y: null };
 
         const resizeCanvas = () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         };
 
-        const handleMouseMove = (e) => {
-            mouse.x = e.x;
-            mouse.y = e.y;
-        };
-
         window.addEventListener('resize', resizeCanvas);
-        window.addEventListener('mousemove', handleMouseMove);
         resizeCanvas();
 
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.size = Math.random() * 2;
-                this.baseX = this.x;
-                this.baseY = this.y;
-                this.density = (Math.random() * 30) + 1;
+                this.vx = (Math.random() - 0.5) * 0.3;
+                this.vy = (Math.random() - 0.5) * 0.3;
+                this.size = Math.random() * 2 + 0.5;
             }
 
             update() {
@@ -42,29 +32,10 @@ const ParticleBackground = ({ darkMode }) => {
 
                 if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
                 if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-
-                // Mouse interaction
-                if (mouse.x != null) {
-                    let dx = mouse.x - this.x;
-                    let dy = mouse.y - this.y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < 100) {
-                        const forceDirectionX = dx / distance;
-                        const forceDirectionY = dy / distance;
-                        const maxDistance = 100;
-                        const force = (maxDistance - distance) / maxDistance;
-                        const directionX = forceDirectionX * force * this.density;
-                        const directionY = forceDirectionY * force * this.density;
-                        if (distance < 100) {
-                            this.x -= directionX;
-                            this.y -= directionY;
-                        }
-                    }
-                }
             }
 
             draw() {
-                ctx.fillStyle = darkMode ? 'rgba(167, 139, 250, 0.5)' : 'rgba(59, 130, 246, 0.5)';
+                ctx.fillStyle = darkMode ? 'rgba(56, 189, 248, 0.6)' : 'rgba(59, 130, 246, 0.5)';
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -73,9 +44,8 @@ const ParticleBackground = ({ darkMode }) => {
 
         const init = () => {
             particles = [];
-            const isMobile = window.innerWidth < 768;
-            const densityDivisor = isMobile ? 30000 : 15000; // Fewer particles on mobile
-            const numberOfParticles = (canvas.width * canvas.height) / densityDivisor;
+            // Much fewer particles for performance
+            const numberOfParticles = Math.min(30, Math.floor((canvas.width * canvas.height) / 50000));
 
             for (let i = 0; i < numberOfParticles; i++) {
                 particles.push(new Particle());
@@ -85,22 +55,33 @@ const ParticleBackground = ({ darkMode }) => {
         const animate = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+            // Draw particles only (no connecting lines for performance)
             for (let i = 0; i < particles.length; i++) {
                 particles[i].update();
                 particles[i].draw();
+            }
 
-                for (let j = i; j < particles.length; j++) {
+            // Draw limited connections (only nearby particles, max 50 lines)
+            let lineCount = 0;
+            const maxLines = 40;
+
+            for (let i = 0; i < particles.length && lineCount < maxLines; i++) {
+                for (let j = i + 1; j < particles.length && lineCount < maxLines; j++) {
                     const dx = particles[i].x - particles[j].x;
                     const dy = particles[i].y - particles[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const distSq = dx * dx + dy * dy; // Skip sqrt for performance
 
-                    if (distance < 100) {
+                    if (distSq < 12000) { // ~110px distance
+                        const distance = Math.sqrt(distSq);
                         ctx.beginPath();
-                        ctx.strokeStyle = darkMode ? `rgba(167, 139, 250, ${1 - distance / 100})` : `rgba(59, 130, 246, ${1 - distance / 100})`;
+                        ctx.strokeStyle = darkMode
+                            ? `rgba(56, 189, 248, ${0.3 - distance / 400})`
+                            : `rgba(59, 130, 246, ${0.3 - distance / 400})`;
                         ctx.lineWidth = 0.5;
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
                         ctx.stroke();
+                        lineCount++;
                     }
                 }
             }
@@ -113,7 +94,6 @@ const ParticleBackground = ({ darkMode }) => {
 
         return () => {
             window.removeEventListener('resize', resizeCanvas);
-            window.removeEventListener('mousemove', handleMouseMove);
             cancelAnimationFrame(animationFrameId);
         };
     }, [darkMode]);

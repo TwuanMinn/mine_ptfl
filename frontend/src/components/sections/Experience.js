@@ -5,64 +5,7 @@ import { Briefcase, Flag } from 'lucide-react';
 import { Reveal } from '../common/Reveal';
 
 
-const TiltCard = ({ children, className }) => {
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-
-    const mouseX = useSpring(x, { stiffness: 150, damping: 15 });
-    const mouseY = useSpring(y, { stiffness: 150, damping: 15 });
-
-    const rotateX = useTransform(mouseY, [-0.5, 0.5], [8, -8]);
-    const rotateY = useTransform(mouseX, [-0.5, 0.5], [-8, 8]);
-
-    const handleInteraction = (clientX, clientY, rect) => {
-        const width = rect.width;
-        const height = rect.height;
-        const xVal = clientX - rect.left;
-        const yVal = clientY - rect.top;
-        const xPct = xVal / width - 0.5;
-        const yPct = yVal / height - 0.5;
-        x.set(xPct);
-        y.set(yPct);
-    };
-
-    const handleMouseMove = (e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        handleInteraction(e.clientX, e.clientY, rect);
-    };
-
-    const handleTouchMove = (e) => {
-        if (e.touches.length > 0) {
-            const touch = e.touches[0];
-            const rect = e.currentTarget.getBoundingClientRect();
-            handleInteraction(touch.clientX, touch.clientY, rect);
-        }
-    };
-
-    const handleLeave = () => {
-        x.set(0);
-        y.set(0);
-    };
-
-    return (
-        <motion.div
-            className={className}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleLeave}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleLeave}
-            style={{
-                rotateX,
-                rotateY,
-                transformStyle: "preserve-3d",
-            }}
-        >
-            <div style={{ transform: "translateZ(50px)", transformStyle: "preserve-3d" }}>
-                {children}
-            </div>
-        </motion.div>
-    );
-};
+import { TiltCard } from '../common/TiltCard.jsx';
 
 
 export const Experience = ({ portfolioData, darkMode }) => {
