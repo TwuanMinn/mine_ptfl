@@ -2,94 +2,108 @@ import React, { useState } from 'react';
 import { GraduationCap, Code2, MapPin, Languages, Sparkles, Play, Terminal } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-// Exactly 15 lines of code for the About section
+// Exactly 17 lines of code for the About section (Python Version)
 const aboutCodeTokens = [
     [ // Line 1
         { text: "class ", className: "text-purple-400" },
-        { text: "Developer ", className: "text-yellow-300" },
-        { text: "extends ", className: "text-purple-400" },
-        { text: "Human ", className: "text-yellow-300" },
-        { text: "{", className: "text-white" }
+        { text: "Developer", className: "text-yellow-300" },
+        { text: "(", className: "text-white" },
+        { text: "Human", className: "text-green-400" },
+        { text: "):", className: "text-white" }
     ],
     [ // Line 2
-        { text: "  constructor", className: "text-blue-300" },
-        { text: "() {", className: "text-white" }
+        { text: "    def ", className: "text-purple-400" },
+        { text: "__init__", className: "text-blue-300" },
+        { text: "(", className: "text-white" },
+        { text: "self", className: "text-orange-300" },
+        { text: "):", className: "text-white" }
     ],
     [ // Line 3
-        { text: "    super", className: "text-blue-300" },
-        { text: "();", className: "text-white" }
+        { text: "        super", className: "text-blue-300" },
+        { text: "().", className: "text-white" },
+        { text: "__init__", className: "text-blue-300" },
+        { text: "()", className: "text-white" }
     ],
     [ // Line 4
-        { text: "    this", className: "text-cyan-300" },
+        { text: "        self", className: "text-orange-300" },
         { text: ".name ", className: "text-white" },
         { text: "= ", className: "text-purple-400" },
-        { text: '"Minh Tuấn"', className: "text-green-400" },
-        { text: ";", className: "text-white" }
+        { text: '"Minh Tuấn"', className: "text-green-300" }
     ],
     [ // Line 5
-        { text: "    this", className: "text-cyan-300" },
+        { text: "        self", className: "text-orange-300" },
         { text: ".role ", className: "text-white" },
         { text: "= ", className: "text-purple-400" },
-        { text: '"Software Engineer"', className: "text-green-400" },
-        { text: ";", className: "text-white" }
+        { text: '"Software Engineer"', className: "text-green-300" }
     ],
     [ // Line 6
-        { text: "    this", className: "text-cyan-300" },
-        { text: ".location ", className: "text-white" },
-        { text: "= ", className: "text-purple-400" },
-        { text: '"Vietnam"', className: "text-green-400" },
-        { text: ";", className: "text-white" }
-    ],
-    [ // Line 7
-        { text: "    this", className: "text-cyan-300" },
+        { text: "        self", className: "text-orange-300" },
         { text: ".skills ", className: "text-white" },
         { text: "= [", className: "text-white" },
-        { text: '"React"', className: "text-green-400" },
+        { text: '"React"', className: "text-green-300" },
         { text: ", ", className: "text-white" },
-        { text: '"Node"', className: "text-green-400" },
-        { text: "];", className: "text-white" }
+        { text: '"Node"', className: "text-green-300" },
+        { text: "]", className: "text-white" }
+    ],
+    [ // Line 7
+        { text: "        self", className: "text-orange-300" },
+        { text: ".traits ", className: "text-white" },
+        { text: "= [", className: "text-white" },
+        { text: '"Passion"', className: "text-green-300" },
+        { text: ", ", className: "text-white" },
+        { text: '"Curiosity"', className: "text-green-300" },
+        { text: "]", className: "text-white" }
     ],
     [ // Line 8
-        { text: "  }", className: "text-white" }
-    ],
-    [ // Line 9
         { text: "", className: "" }
     ],
+    [ // Line 9
+        { text: "    def ", className: "text-purple-400" },
+        { text: "say_hello", className: "text-blue-300" },
+        { text: "(", className: "text-white" },
+        { text: "self", className: "text-orange-300" },
+        { text: "):", className: "text-white" }
+    ],
     [ // Line 10
-        { text: "  writeCode", className: "text-yellow-300" },
-        { text: "() {", className: "text-white" }
+        { text: "        print", className: "text-yellow-300" },
+        { text: "(", className: "text-white" }
     ],
     [ // Line 11
-        { text: "    const ", className: "text-purple-400" },
-        { text: "ideas ", className: "text-cyan-300" },
-        { text: "= ", className: "text-white" },
-        { text: "fetch", className: "text-yellow-300" },
-        { text: "(", className: "text-white" },
-        { text: '"inspiration"', className: "text-green-400" },
-        { text: ");", className: "text-white" }
+        { text: "            ", className: "text-white" },
+        { text: 'f"Ready to build {', className: "text-green-300" },
+        { text: "self", className: "text-orange-300" },
+        { text: ".", className: "text-white" },
+        { text: "role", className: "text-white" },
+        { text: '}"', className: "text-green-300" }
     ],
     [ // Line 12
-        { text: "    return ", className: "text-purple-400" },
-        { text: "ideas.", className: "text-white" },
-        { text: "map", className: "text-yellow-300" },
-        { text: "(", className: "text-white" },
-        { text: "i ", className: "text-cyan-300" },
-        { text: "=> ", className: "text-purple-400" },
-        { text: "i.", className: "text-white" },
-        { text: "build", className: "text-yellow-300" },
-        { text: "());", className: "text-white" }
+        { text: "        )", className: "text-white" }
     ],
     [ // Line 13
-        { text: "  }", className: "text-white" }
+        { text: "        return ", className: "text-purple-400" },
+        { text: "self", className: "text-orange-300" },
+        { text: ".smile()", className: "text-white" }
     ],
     [ // Line 14
-        { text: "}", className: "text-white" }
+        { text: "", className: "" }
     ],
     [ // Line 15
-        { text: "export ", className: "text-purple-400" },
-        { text: "default ", className: "text-purple-400" },
+        { text: "if ", className: "text-purple-400" },
+        { text: "__name__ ", className: "text-blue-300" },
+        { text: "== ", className: "text-purple-400" },
+        { text: '"__main__"', className: "text-green-300" },
+        { text: ":", className: "text-white" }
+    ],
+    [ // Line 16
+        { text: "    me ", className: "text-white" },
+        { text: "= ", className: "text-purple-400" },
         { text: "Developer", className: "text-yellow-300" },
-        { text: ";", className: "text-white" }
+        { text: "()", className: "text-white" }
+    ],
+    [ // Line 17
+        { text: "    me.", className: "text-white" },
+        { text: "say_hello", className: "text-blue-300" },
+        { text: "()", className: "text-white" }
     ]
 ];
 
@@ -110,7 +124,8 @@ export const About = ({ portfolioData, darkMode }) => {
         setIsRunning(true);
         setShowOutput(true);
 
-        const message = "✨ Ready to build amazing things together!";
+        // Python-style formatted output
+        const message = "Ready to build Software Engineer";
         let currentIndex = 0;
 
         const typeInterval = setInterval(() => {
@@ -134,7 +149,8 @@ export const About = ({ portfolioData, darkMode }) => {
 
     return (
         <section id="about" className="py-20 px-4 relative">
-            <div className="max-w-4xl mx-auto w-full">
+            {/* Increased max-width to allow more wide content */}
+            <div className="max-w-5xl mx-auto w-full">
                 {/* Section Header */}
                 <div className="flex items-center gap-3 mb-8">
                     <Sparkles className={`w-6 h-6 ${darkMode ? 'text-cyan-400' : 'text-blue-500'}`} />
@@ -146,8 +162,8 @@ export const About = ({ portfolioData, darkMode }) => {
                 {/* Main Card */}
                 <div className={`rounded-3xl p-6 sm:p-10 border ${darkMode ? 'bg-[#0f111a] border-white/10' : 'bg-white border-blue-100'} shadow-xl`}>
 
-                    {/* Bio text - Extra Light 200 Font */}
-                    <p className={`${darkMode ? 'text-blue-100' : 'text-blue-900'} leading-relaxed text-lg mb-8 font-extralight`} style={{ fontWeight: 200 }}>
+                    {/* Bio text - Extra Light 200 Font - Wider */}
+                    <p className={`${darkMode ? 'text-blue-100' : 'text-blue-900'} leading-relaxed text-lg mb-8 font-extralight max-w-4xl`} style={{ fontWeight: 200 }}>
                         {portfolioData.bio}
                     </p>
 
@@ -161,14 +177,15 @@ export const About = ({ portfolioData, darkMode }) => {
                                     <div className="w-3 h-3 rounded-full bg-yellow-500/80 shadow-sm" />
                                     <div className="w-3 h-3 rounded-full bg-green-500/80 shadow-sm" />
                                 </div>
-                                <span className={`text-xs font-mono ml-3 ${darkMode ? 'text-slate-400' : 'text-blue-600'} opacity-70`}>about.ts</span>
+                                {/* Corrected File Extension for Python */}
+                                <span className={`text-xs font-mono ml-3 ${darkMode ? 'text-slate-400' : 'text-blue-600'} opacity-70`}>about.py</span>
                             </div>
                             <button
                                 onClick={handleRunCode}
                                 disabled={isRunning}
                                 className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-semibold transition-all duration-300 ${isRunning
-                                    ? 'bg-slate-600 text-slate-400 cursor-not-allowed'
-                                    : 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-400 hover:to-blue-400 shadow-lg hover:shadow-cyan-500/25'
+                                        ? 'bg-slate-600 text-slate-400 cursor-not-allowed'
+                                        : 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-400 hover:to-blue-400 shadow-lg hover:shadow-cyan-500/25'
                                     }`}
                             >
                                 <Play size={14} fill="currentColor" />
@@ -190,6 +207,7 @@ export const About = ({ portfolioData, darkMode }) => {
                                     <span className="text-slate-600 w-6 text-right mr-4 select-none flex-shrink-0 font-light opacity-50">
                                         {idx + 1}
                                     </span>
+                                    {/* Standard font weight */}
                                     <div className={`${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
                                         {renderLine(tokens)}
                                     </div>
@@ -227,13 +245,13 @@ export const About = ({ portfolioData, darkMode }) => {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.4, delay: 0.2 + (index * 0.1) }}
                                 className={`flex items-start gap-4 p-4 rounded-2xl transition-all duration-300 hover:scale-105 ${darkMode
-                                    ? 'bg-slate-800/40 hover:bg-slate-800/60 border border-white/5 hover:border-cyan-500/20'
-                                    : 'bg-blue-50/50 hover:bg-white border border-blue-100 hover:border-blue-300'
+                                        ? 'bg-slate-800/40 hover:bg-slate-800/60 border border-white/5 hover:border-cyan-500/20'
+                                        : 'bg-blue-50/50 hover:bg-white border border-blue-100 hover:border-blue-300'
                                     }`}
                             >
                                 <div className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${darkMode
-                                    ? 'bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-500/30'
-                                    : 'bg-gradient-to-br from-blue-100 to-blue-200 border border-blue-300/50'
+                                        ? 'bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-500/30'
+                                        : 'bg-gradient-to-br from-blue-100 to-blue-200 border border-blue-300/50'
                                     }`}>
                                     <item.icon className={`w-5 h-5 ${darkMode ? 'text-cyan-400' : 'text-blue-600'}`} />
                                 </div>
