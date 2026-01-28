@@ -21,38 +21,50 @@ export default function Pending({ darkMode }) {
             >
                 <div className="relative inline-block mb-8 sm:mb-12">
                     {/* Premium Cyber-Flux Loader Container */}
-                    <div className="w-40 h-40 sm:w-56 sm:h-56 rounded-[2.5rem] sm:rounded-[3.5rem] bg-slate-900/40 backdrop-blur-2xl border border-white/10 flex items-center justify-center shadow-[0_0_50px_rgba(0,0,0,0.3)] sm:shadow-[0_0_80px_rgba(0,0,0,0.5)] relative overflow-hidden group">
+                    <motion.div
+                        animate={{
+                            borderColor: ["rgba(255,255,255,0.1)", "rgba(34,211,238,0.8)", "rgba(255,255,255,0.1)"],
+                            boxShadow: [
+                                "0 0 50px rgba(0,0,0,0.3)",
+                                "0 0 80px rgba(34,211,238,0.5)",
+                                "0 0 50px rgba(0,0,0,0.3)"
+                            ],
+                            scale: [1, 1.02, 1]
+                        }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        className="w-40 h-40 sm:w-56 sm:h-56 rounded-[2.5rem] sm:rounded-[3.5rem] bg-slate-900/40 backdrop-blur-2xl border-2 flex items-center justify-center relative overflow-hidden group"
+                    >
                         {/* Ambient Internal Glow */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 via-transparent to-purple-500/20" />
 
                         <div className="relative w-24 h-24 sm:w-32 sm:h-32">
                             {/* Outer Hyper-Ring */}
                             <motion.div
                                 animate={{ rotate: 360 }}
-                                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                                className="absolute inset-0 border-2 border-transparent border-t-cyan-500 border-l-cyan-400/30 rounded-full"
+                                transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
+                                className="absolute inset-0 border-[3px] border-transparent border-t-cyan-400 border-l-cyan-300/40 rounded-full"
                             />
 
                             {/* Middle Counter-Ring */}
                             <motion.div
                                 animate={{ rotate: -360 }}
-                                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                                className="absolute inset-2 sm:inset-3 border-2 border-transparent border-b-blue-500 border-r-blue-400/30 rounded-full"
+                                transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                                className="absolute inset-2 sm:inset-3 border-[3px] border-transparent border-b-blue-400 border-r-blue-300/40 rounded-full"
                             />
 
                             {/* Inner Energy Pulse */}
                             <motion.div
                                 animate={{
-                                    scale: [1, 1.2, 1],
-                                    opacity: [0.3, 0.7, 0.3],
+                                    scale: [1, 1.3, 1],
+                                    opacity: [0.4, 0.9, 0.4],
                                     boxShadow: [
-                                        "0 0 15px rgba(34,211,238,0.2)",
-                                        "0 0 50px rgba(34,211,238,0.5)",
-                                        "0 0 15px rgba(34,211,238,0.2)"
+                                        "0 0 20px rgba(34,211,238,0.4)",
+                                        "0 0 70px rgba(34,211,238,0.8)",
+                                        "0 0 20px rgba(34,211,238,0.4)"
                                     ]
                                 }}
-                                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                                className="absolute inset-6 sm:inset-8 bg-gradient-to-tr from-cyan-400 to-blue-600 rounded-full blur-[2px]"
+                                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                                className="absolute inset-6 sm:inset-8 bg-gradient-to-tr from-cyan-300 to-blue-500 rounded-full blur-[2px] z-10"
                             />
 
                             {/* Orbiting Particles */}
@@ -60,22 +72,34 @@ export default function Pending({ darkMode }) {
                                 <motion.div
                                     key={i}
                                     animate={{ rotate: 360 }}
-                                    transition={{ duration: 1.5 + i, repeat: Infinity, ease: "linear" }}
+                                    transition={{ duration: 1 + i * 0.5, repeat: Infinity, ease: "linear" }}
                                     className="absolute inset-0"
                                 >
                                     <div
-                                        className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full absolute top-0 left-1/2 -translate-x-1/2 shadow-lg"
+                                        className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full absolute top-0 left-1/2 -translate-x-1/2 shadow-[0_0_20px_#fff]"
                                         style={{
                                             background: i === 0 ? '#22d3ee' : i === 1 ? '#3b82f6' : '#a855f7',
-                                            boxShadow: `0 0 10px ${i === 0 ? '#22d3ee' : i === 1 ? '#3b82f6' : '#a855f7'}`
+                                            boxShadow: `0 0 25px ${i === 0 ? '#22d3ee' : i === 1 ? '#3b82f6' : '#a855f7'}`
                                         }}
                                     />
                                 </motion.div>
                             ))}
                         </div>
-                    </div>
+                    </motion.div>
 
-                    <div className="absolute -bottom-2 -right-2 sm:-bottom-3 sm:-right-3 w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-500 via-cyan-500 to-purple-600 flex items-center justify-center border border-white/20 shadow-xl z-20">
+                    <motion.div
+                        animate={{
+                            boxShadow: [
+                                "0 10px 30px rgba(34,211,238,0.4)",
+                                "0 10px 70px rgba(34,211,238,0.9)",
+                                "0 10px 30px rgba(34,211,238,0.4)"
+                            ],
+                            borderColor: ["rgba(255,255,255,0.2)", "rgba(34,211,238,1)", "rgba(255,255,255,0.2)"],
+                            scale: [1, 1.1, 1]
+                        }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                        className="absolute -bottom-2 -right-2 sm:-bottom-3 sm:-right-3 w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-blue-500 via-cyan-500 to-purple-600 flex items-center justify-center border-2 z-20"
+                    >
                         <motion.div
                             animate={{ rotate: 360 }}
                             transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
@@ -83,7 +107,7 @@ export default function Pending({ darkMode }) {
                             <Clock size={24} className="text-white sm:hidden" />
                             <Clock size={32} className="text-white hidden sm:block" />
                         </motion.div>
-                    </div>
+                    </motion.div>
                 </div>
 
                 <motion.h1

@@ -368,9 +368,10 @@ export default function CertificateDetails({ portfolioData, darkMode }) {
 
                                     <motion.button
                                         onClick={() => {
-                                            if (certificate.link.startsWith('/')) {
+                                            if (certificate.link === '/pending') {
                                                 navigate(certificate.link);
                                             } else {
+                                                // For external links and static files (.pdf, .jpg etc)
                                                 window.open(certificate.link, '_blank', 'noopener,noreferrer');
                                             }
                                         }}
