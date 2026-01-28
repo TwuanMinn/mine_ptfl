@@ -1,20 +1,45 @@
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
 * {
-  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
 
-  body {
-    margin: 0;
-    font-family: 'Inter', 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      -apple-system, BlinkMacSystemFont, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background: linear-gradient(135deg, #0a0a0a 0%, #0f1419 20%, #1a1f2e 40%, #0d1117 60%, #000000 80%, #050507 100%);
-    color: #ffffff;
-    overflow-y: auto;
-    overflow-x: hidden;
-    touch-action: pan-y;
-  }
+html,
+body {
+  scroll-behavior: initial !important;
+  margin: 0;
+  padding: 0;
+}
 
+body {
+  font-family: 'Inter', 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #0a0a0a 0%, #0f1419 20%, #1a1f2e 40%, #0d1117 60%, #000000 80%, #050507 100%);
+  color: #ffffff;
+  overflow-y: auto;
+  overflow-x: hidden;
+  touch-action: pan-y;
 }
 
 html {

@@ -17,6 +17,7 @@ import { QrModal } from './components/common/QrModal.jsx';
 import ScrollProgress from './components/common/ScrollProgress.jsx';
 import CustomCursor from './components/common/CustomCursor.jsx';
 import { AppRoutes } from './routes/AppRoutes';
+import { SmoothScroll } from './components/layout/SmoothScroll';
 
 // Data
 import { getPortfolioData } from './data/portfolioData';
@@ -29,8 +30,6 @@ import './i18n';
 // Lazy loaded components
 const ParticleBackground = lazy(() => import('./components/common/ParticleBackground'));
 const StatusBadge = lazy(() => import('./components/common/StatusBadge.jsx'));
-
-import { SmoothScroll } from './components/layout/SmoothScroll';
 
 export default function Portfolio() {
   const { t } = useTranslation();
