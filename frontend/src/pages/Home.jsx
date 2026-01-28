@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect, useRef, memo, lazy, Suspense } from 'react';
+import React, { useState, useEffect, useLayoutEffect, memo, lazy, Suspense } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowUp } from 'lucide-react';
@@ -83,7 +83,7 @@ export default function Home({
     const [popupVisible, setPopupVisible] = useState(true);
 
     // Refs
-    const aboutTimeoutsRef = useRef([]);
+
 
     // Handle hash-based scrolling (e.g., /#projects) - runs BEFORE browser paint
     useLayoutEffect(() => {
