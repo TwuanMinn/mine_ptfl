@@ -366,19 +366,23 @@ export default function CertificateDetails({ portfolioData, darkMode }) {
                                         )}
                                     </AnimatePresence>
 
-                                    <motion.a
-                                        href={certificate.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                    <motion.button
+                                        onClick={() => {
+                                            if (certificate.link.startsWith('/')) {
+                                                navigate(certificate.link);
+                                            } else {
+                                                window.open(certificate.link, '_blank', 'noopener,noreferrer');
+                                            }
+                                        }}
                                         onMouseEnter={() => setIsHovered(true)}
                                         onMouseLeave={() => setIsHovered(false)}
                                         whileHover={{ scale: 1.02 }}
                                         whileTap={{ scale: 0.98 }}
-                                        className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 text-white font-bold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-300"
+                                        className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 text-white font-bold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-300 cursor-pointer"
                                     >
                                         <ExternalLink size={18} />
                                         View Credential
-                                    </motion.a>
+                                    </motion.button>
                                 </div>
                             </div>
                         </motion.div>

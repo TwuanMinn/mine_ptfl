@@ -16,7 +16,7 @@ export const getPortfolioData = (bioText) => ({
         "NodeJS (Express, NestJS)", "PostgreSQL",
         "Git", "Firebase", "Machine Learning",
         "Vercel", "Angular", "Docker", "Vue.js",
-        "ExpressJS", "AWS", "Spring Boot", "Supabase"
+        "ExpressJS", "AWS", "Spring Boot", "Supabase", "NestJS"
     ],
 
     skillsProgress: [
@@ -388,15 +388,14 @@ Performance optimization ensures smooth interactions. Virtual scrolling handles 
             issuer: "Google",
             date: "2026",
             fullDate: "Jan 2026",
-            image: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=1470&auto=format&fit=crop",
+            image: "/ux_cert_2.png",
             gallery: [
-                "https://images.unsplash.com/photo-1561070791-230f18ef99f7?q=80&w=1470&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=1470&auto=format&fit=crop"
+                "/ux_cert_1.png"
             ],
             description: "Design fundamentals, user research, and wireframing best practices.",
             fullDescription: "Through this certification, I mastered the end-to-end design process, from initial user research to creating high-fidelity prototypes. The course emphasized user-centered design principles and the importance of solving real user problems.\n\nI learned to conduct user interviews, create personas, map user journeys, and perform usability testing. On the visual side, I focused on layout, typography, color theory, and creating consistent design systems using Figma. This foundation ensures that the software I build isn't just functional, but also intuitive and accessible.",
             skills: ["User Research", "Wireframing", "Prototyping", "Figma", "Design Systems", "Usability Testing"],
-            link: "https://grow.google/certificates/ui-ux-design/"
+            link: "/pending"
         },
         {
             id: 'cert-google-pm',
@@ -412,7 +411,7 @@ Performance optimization ensures smooth interactions. Virtual scrolling handles 
             description: "Foundations of traditional and agile project management.",
             fullDescription: "This professional certificate covers the skills needed to manage projects effectively. I learned about the project life cycle, from initiation and planning to execution and closing.\n\nThe curriculum included Agile methodologies (Scrum), risk management, stakeholder communication, and project documentation. I gained proficiency in using project management tools and techniques to ensure projects are delivered on time and within scope.",
             skills: ["Project Management", "Agile", "Scrum", "Risk Management", "Stakeholder Management"],
-            link: "https://grow.google/certificates/project-management/"
+            link: "/pending"
         },
         {
             id: 'cert-google-ai',
@@ -428,7 +427,7 @@ Performance optimization ensures smooth interactions. Virtual scrolling handles 
             description: "Fundamental concepts of Artificial Intelligence and Machine Learning.",
             fullDescription: "This specialization provides a solid introduction to AI concepts, tools, and applications. I explored how generative AI works, its capabilities, and its potential impact on various industries.\n\nThe course covered practical skills in using AI tools for productivity, content creation, and problem-solving, along with a strong emphasis on responsible AI use and mitigating bias.",
             skills: ["Artificial Intelligence", "Generative AI", "Machine Learning Concepts", "AI Productivity Tools"],
-            link: "https://www.coursera.org/specializations/google-ai-essentials"
+            link: "/pending"
         },
         {
             id: 'cert-google-bi',
@@ -444,7 +443,7 @@ Performance optimization ensures smooth interactions. Virtual scrolling handles 
             description: "Data modeling, visualization, and business reporting.",
             fullDescription: "This certificate focuses on the skills needed to turn data into actionable insights. I learned how to design data models, create effective visualizations, and build interactive dashboards.\n\nThe program covered the entire business intelligence workflow, from data preparation to reporting, using tools like BigQuery, Looker, and Tableau. I developed the ability to communicate data-driven findings to stakeholders effectively.",
             skills: ["Business Intelligence", "Data Modeling", "SQL", "Tableau", "Data Visualization"],
-            link: "https://grow.google/certificates/business-intelligence/"
+            link: "/pending"
         }
     ],
 

@@ -8,6 +8,7 @@ import Home from '../pages/Home';
 import { HeartedProjectsPage } from '../pages/HeartedProjects';
 import ProjectDetails from '../pages/ProjectDetails';
 import CertificateDetails from '../pages/CertificateDetails';
+import Pending from '../pages/Pending';
 
 
 // Loading fallback component
@@ -98,6 +99,10 @@ export const AppRoutes = ({
                             </Suspense>
                         </motion.div>
                     }
+                />
+                <Route
+                    path="/pending"
+                    element={<Pending darkMode={darkMode} />}
                 />
             </Routes>
         </AnimatePresence>
