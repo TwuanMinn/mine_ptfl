@@ -1,7 +1,7 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useMemo } from 'react';
 import { Reveal } from '../common/Reveal';
 
-const skillsLogos = [
+const baseSkillsLogos = [
     { name: 'JavaScript', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg' },
     { name: 'TypeScript', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg' },
     { name: 'Java', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg' },
@@ -37,6 +37,9 @@ const skillsLogos = [
 export const Skills = ({ portfolioData, darkMode }) => {
     const skillsRef = useRef(null);
     const [visibleSkills, setVisibleSkills] = useState(false);
+
+    // Memoize skills logos to prevent re-renders
+    const skillsLogos = useMemo(() => baseSkillsLogos, []);
 
     useEffect(() => {
         const skillObserver = new IntersectionObserver(
@@ -106,7 +109,7 @@ export const Skills = ({ portfolioData, darkMode }) => {
                                     </div>
                                     <div className={`w-full h-3 rounded-full ${darkMode ? 'bg-slate-800' : 'bg-blue-200'} overflow-hidden border ${darkMode ? 'border-blue-700/50' : 'border-blue-300/50'}`}>
                                         <div
-                                            className={`h-full ${darkMode ? 'bg-gradient-to-r from-blue-500 to-cyan-500' : 'bg-gradient-to-r from-blue-500 to-blue-600'} transition-all duration-1000 ease-out`}
+                                            className={`h-full ${darkMode ? 'bg-gradient-to-r from-blue-500 to-cyan-500' : 'bg-gradient-to-r from-blue-500 to-blue-600'} transition-all duration-700 ease-out`}
                                             style={{
                                                 width: visibleSkills ? `${skill.level}%` : '0%'
                                             }}

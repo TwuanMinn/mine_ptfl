@@ -92,6 +92,7 @@ export const Experience = ({ portfolioData, darkMode }) => {
                                             className={`relative glass-card rounded-2xl p-8 transition-all duration-500 group-hover:-translate-y-2 animate-card-wave overflow-hidden min-h-[220px] flex flex-col justify-center ${darkMode
                                                 ? 'border border-white/10 hover:border-cyan-400/50 hover:shadow-[0_0_40px_rgba(34,211,238,0.2)] bg-[#0f111a]/80'
                                                 : 'hover:shadow-xl border-blue-100 hover:border-blue-300'}`}
+                                            style={{ willChange: 'transform' }}
                                         >
                                             {/* Decorative Background Blob */}
                                             <div className={`absolute -top-10 -right-10 w-40 h-40 rounded-full blur-3xl transition-opacity duration-500 group-hover:opacity-70 ${darkMode ? 'bg-cyan-500/10 opacity-0' : 'bg-blue-200/40 opacity-0'}`} style={{ transform: "translateZ(-20px)" }} />

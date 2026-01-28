@@ -159,42 +159,50 @@ export const Contact = ({ portfolioData, darkMode }) => {
                                     href={portfolioData.github}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-12 h-12 rounded-2xl backdrop-blur flex items-center justify-center transition-all hover:scale-110 hover:-translate-y-1"
+                                    aria-label="Visit my GitHub profile"
+                                    className="group relative w-12 h-12 rounded-2xl backdrop-blur flex items-center justify-center transition-all hover:scale-110 hover:-translate-y-1 overflow-hidden"
                                     style={contactIconStyle(darkMode)}
                                 >
-                                    <Github className={darkMode ? "text-cyan-400" : "text-blue-600"} size={20} />
+                                    <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                                    <Github className={`relative z-10 ${darkMode ? "text-cyan-400" : "text-blue-600"}`} size={20} />
                                 </a>
                                 <a
                                     href={portfolioData.linkedin}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-12 h-12 rounded-2xl backdrop-blur flex items-center justify-center transition-all hover:scale-110 hover:-translate-y-1"
+                                    aria-label="Connect with me on LinkedIn"
+                                    className="group relative w-12 h-12 rounded-2xl backdrop-blur flex items-center justify-center transition-all hover:scale-110 hover:-translate-y-1 overflow-hidden"
                                     style={contactIconStyle(darkMode)}
                                 >
-                                    <Linkedin className={darkMode ? "text-cyan-400" : "text-blue-600"} size={20} />
+                                    <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                                    <Linkedin className={`relative z-10 ${darkMode ? "text-cyan-400" : "text-blue-600"}`} size={20} />
                                 </a>
                                 <a
                                     href={portfolioData.figma}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-12 h-12 rounded-2xl backdrop-blur flex items-center justify-center transition-all hover:scale-110 hover:-translate-y-1"
+                                    aria-label="View my Figma designs"
+                                    className="group relative w-12 h-12 rounded-2xl backdrop-blur flex items-center justify-center transition-all hover:scale-110 hover:-translate-y-1 overflow-hidden"
                                     style={contactIconStyle(darkMode)}
                                 >
-                                    <Figma className={darkMode ? "text-cyan-400" : "text-blue-600"} size={20} />
+                                    <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                                    <Figma className={`relative z-10 ${darkMode ? "text-cyan-400" : "text-blue-600"}`} size={20} />
                                 </a>
                                 <a
                                     href={portfolioData.whatsapp}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-12 h-12 rounded-2xl backdrop-blur flex items-center justify-center transition-all hover:scale-110 hover:-translate-y-1"
+                                    aria-label="Message me on WhatsApp"
+                                    className="group relative w-12 h-12 rounded-2xl backdrop-blur flex items-center justify-center transition-all hover:scale-110 hover:-translate-y-1 overflow-hidden"
                                     style={contactIconStyle(darkMode)}
                                 >
+                                    <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                                     <svg
                                         viewBox="0 0 24 24"
                                         width="20"
                                         height="20"
                                         fill="currentColor"
-                                        className={darkMode ? "text-cyan-400" : "text-blue-600"}
+                                        className={`relative z-10 ${darkMode ? "text-cyan-400" : "text-blue-600"}`}
                                         aria-hidden="true"
                                     >
                                         <path d="M20.52 3.48A11.9 11.9 0 0 0 12 0C5.37 0 .01 5.36 0 11.99c0 2.11.55 4.16 1.6 5.98L0 24l6.2-1.63a11.95 11.95 0 0 0 5.8 1.48h.01c6.63 0 11.99-5.37 11.99-12 0-3.2-1.24-6.2-3.48-8.37ZM12 21.85h-.01a9.9 9.9 0 0 1-5.05-1.38l-.36-.21-3.68.97.98-3.58-.23-.37A9.9 9.9 0 1 1 21.9 11.85 9.9 9.9 0 0 1 12 21.85Zm5.44-7.38c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.88-.79-1.47-1.76-1.64-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.48-.5-.67-.5h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.08 4.48.71.31 1.26.5 1.69.64.71.22 1.36.19 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.12-.27-.2-.57-.35Z" />
@@ -204,15 +212,17 @@ export const Contact = ({ portfolioData, darkMode }) => {
                                     href={portfolioData.discord}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-12 h-12 rounded-2xl backdrop-blur flex items-center justify-center transition-all hover:scale-110 hover:-translate-y-1"
+                                    aria-label="Join me on Discord"
+                                    className="group relative w-12 h-12 rounded-2xl backdrop-blur flex items-center justify-center transition-all hover:scale-110 hover:-translate-y-1 overflow-hidden"
                                     style={contactIconStyle(darkMode)}
                                 >
+                                    <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                                     <svg
                                         viewBox="0 0 24 24"
                                         width="20"
                                         height="20"
                                         fill="currentColor"
-                                        className={darkMode ? "text-cyan-400" : "text-blue-600"}
+                                        className={`relative z-10 ${darkMode ? "text-cyan-400" : "text-blue-600"}`}
                                         aria-hidden="true"
                                     >
                                         <path d="M20.317 4.369a19.791 19.791 0 0 0-4.885-1.515.07.07 0 0 0-.074.035c-.21.375-.444.864-.608 1.249a18.36 18.36 0 0 0-5.487 0 12.61 12.61 0 0 0-.617-1.249.073.073 0 0 0-.074-.035 19.736 19.736 0 0 0-4.885 1.515.066.066 0 0 0-.03.027C.533 9.045-.32 13.58.099 18.057a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.046.074.074 0 0 0 .081-.027c.462-.63.874-1.295 1.226-1.994a.072.072 0 0 0-.038-.098 12.6 12.6 0 0 1-1.872-.9.073.073 0 0 1-.007-.122c.125-.094.25-.192.369-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.099.245.197.37.291a.073.073 0 0 1-.006.122 12.3 12.3 0 0 1-1.873.9.072.072 0 0 0-.038.098c.36.699.773 1.364 1.225 1.994a.073.073 0 0 0 .081.027 19.82 19.82 0 0 0 6.002-3.046.077.077 0 0 0 .031-.056c.5-5.177-.838-9.673-3.548-13.662a.061.061 0 0 0-.031-.027ZM8.02 15.331c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.175 1.095 2.157 2.419 0 1.334-.956 2.419-2.157 2.419Zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.175 1.095 2.157 2.419 0 1.334-.947 2.419-2.157 2.419Z" />

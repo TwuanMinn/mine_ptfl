@@ -77,6 +77,7 @@ export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick,
                                             <img
                                                 src={project.image}
                                                 alt={project.title}
+                                                loading="lazy"
                                                 className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
                                                 onError={(e) => {
                                                     e.target.onerror = null;
@@ -141,7 +142,7 @@ export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick,
                                                 </span>
                                             </div>
 
-                                            <h3 className={`text-sm sm:text-xl font-bold ${darkMode ? 'text-white' : 'text-slate-900'} mb-1 sm:mb-2 leading-tight line-clamp-1 sm:line-clamp-none`}>{project.title}</h3>
+                                            <h3 className={`text-sm sm:text-xl font-bold mb-1 sm:mb-2 leading-tight line-clamp-1 sm:line-clamp-none transition-all duration-300 ${darkMode ? 'text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:via-blue-400 group-hover:to-purple-400' : 'text-slate-900 group-hover:text-blue-600'}`}>{project.title}</h3>
 
                                             <p className={`${darkMode ? 'text-slate-400' : 'text-slate-600'} text-[10px] sm:text-sm mb-2 sm:mb-4 flex-grow line-clamp-2 sm:line-clamp-3 leading-relaxed`}>
                                                 {project.description}

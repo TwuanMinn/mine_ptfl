@@ -70,11 +70,7 @@ const aboutCodeTokens = [
     ],
     [ // Line 11
         { text: "            ", className: "text-white" },
-        { text: 'f"Ready to build {', className: "text-green-300" },
-        { text: "self", className: "text-orange-300" },
-        { text: ".", className: "text-white" },
-        { text: "role", className: "text-white" },
-        { text: '}"', className: "text-green-300" }
+        { text: '"Ready to build amazing things together!"', className: "text-green-300" }
     ],
     [ // Line 12
         { text: "        )", className: "text-white" }
@@ -124,8 +120,7 @@ export const About = ({ portfolioData, darkMode }) => {
         setIsRunning(true);
         setShowOutput(true);
 
-        // Python-style formatted output
-        const message = "Ready to build Software Engineer";
+        const message = "Ready to build amazing things together!";
         let currentIndex = 0;
 
         const typeInterval = setInterval(() => {
@@ -163,12 +158,12 @@ export const About = ({ portfolioData, darkMode }) => {
                 <div className={`rounded-3xl p-6 sm:p-10 border ${darkMode ? 'bg-[#0f111a] border-white/10' : 'bg-white border-blue-100'} shadow-xl`}>
 
                     {/* Bio text - Extra Light 200 Font - Wider */}
-                    <p className={`${darkMode ? 'text-blue-100' : 'text-blue-900'} leading-relaxed text-lg mb-8 font-extralight max-w-4xl`} style={{ fontWeight: 200 }}>
+                    <p className={`${darkMode ? 'text-blue-100' : 'text-blue-900'} leading-relaxed text-xl sm:text-2xl mb-8 font-extralight max-w-4xl`} style={{ fontWeight: 200 }}>
                         {portfolioData.bio}
                     </p>
 
                     {/* Interactive Code Block */}
-                    <div className={`rounded-2xl overflow-hidden border mb-8 transform transition-all hover:scale-[1.01] duration-500 ${darkMode ? 'border-slate-700/50 shadow-2xl shadow-cyan-900/10' : 'border-blue-200 shadow-xl'}`}>
+                    <div className={`rounded-2xl overflow-hidden border mb-8 transform transition-all hover:scale-[1.01] duration-500 ${darkMode ? 'border-slate-700/50 shadow-2xl shadow-cyan-900/10 hover:shadow-cyan-500/30 hover:border-cyan-500/50' : 'border-blue-200 shadow-xl hover:shadow-blue-400/40 hover:border-blue-400'}`}>
                         {/* Code Editor Header */}
                         <div className={`flex items-center justify-between px-4 py-3 ${darkMode ? 'bg-slate-800/80' : 'bg-blue-50'} border-b ${darkMode ? 'border-slate-700/50' : 'border-blue-200'}`}>
                             <div className="flex items-center gap-2">
@@ -184,8 +179,8 @@ export const About = ({ portfolioData, darkMode }) => {
                                 onClick={handleRunCode}
                                 disabled={isRunning}
                                 className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-semibold transition-all duration-300 ${isRunning
-                                        ? 'bg-slate-600 text-slate-400 cursor-not-allowed'
-                                        : 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-400 hover:to-blue-400 shadow-lg hover:shadow-cyan-500/25'
+                                    ? 'bg-slate-600 text-slate-400 cursor-not-allowed'
+                                    : 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-400 hover:to-blue-400 shadow-lg hover:shadow-cyan-500/25'
                                     }`}
                             >
                                 <Play size={14} fill="currentColor" />
@@ -226,9 +221,10 @@ export const About = ({ portfolioData, darkMode }) => {
                                     <Terminal size={14} className="text-slate-500" />
                                     <span className="text-xs text-slate-500 font-mono">Console</span>
                                 </div>
-                                <div className="font-mono text-sm text-green-400 font-light">
+                                <div className="font-mono text-sm text-green-400 font-light flex items-center">
                                     <span className="text-slate-500 mr-2">{">"}</span>
                                     {outputText}
+                                    {!isRunning && outputText && <Sparkles size={14} className="text-lime-400 ml-2 flex-shrink-0 animate-pulse" />}
                                     {isRunning && <span className="inline-block w-2 h-4 bg-green-400 ml-1 animate-pulse align-middle" />}
                                 </div>
                             </motion.div>
@@ -245,13 +241,13 @@ export const About = ({ portfolioData, darkMode }) => {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.4, delay: 0.2 + (index * 0.1) }}
                                 className={`flex items-start gap-4 p-4 rounded-2xl transition-all duration-300 hover:scale-105 ${darkMode
-                                        ? 'bg-slate-800/40 hover:bg-slate-800/60 border border-white/5 hover:border-cyan-500/20'
-                                        : 'bg-blue-50/50 hover:bg-white border border-blue-100 hover:border-blue-300'
+                                    ? 'bg-slate-800/40 hover:bg-slate-800/60 border border-white/5 hover:border-cyan-500/20'
+                                    : 'bg-blue-50/50 hover:bg-white border border-blue-100 hover:border-blue-300'
                                     }`}
                             >
                                 <div className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${darkMode
-                                        ? 'bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-500/30'
-                                        : 'bg-gradient-to-br from-blue-100 to-blue-200 border border-blue-300/50'
+                                    ? 'bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-500/30'
+                                    : 'bg-gradient-to-br from-blue-100 to-blue-200 border border-blue-300/50'
                                     }`}>
                                     <item.icon className={`w-5 h-5 ${darkMode ? 'text-cyan-400' : 'text-blue-600'}`} />
                                 </div>

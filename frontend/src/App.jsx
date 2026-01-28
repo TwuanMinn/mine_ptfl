@@ -90,11 +90,15 @@ export default function Portfolio() {
     storage.set(STORAGE_KEYS.heartedProjects, heartedProjects);
   }, [heartedProjects]);
 
-  // Toolbar visibility on scroll
+  // Combined scroll handler for toolbar visibility and scroll-to-top button
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
+      // Scroll-to-top button visibility
+      setShowScrollTop(currentScrollY > TIMING.scrollThreshold);
+
+      // Toolbar visibility with jitter prevention
       if (Math.abs(currentScrollY - lastScrollY.current) < TIMING.scrollJitterThreshold) {
         return;
       }
@@ -107,16 +111,6 @@ export default function Portfolio() {
         setToolbarVisible(true);
       }
       lastScrollY.current = currentScrollY;
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Scroll to top button visibility
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > TIMING.scrollThreshold);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
