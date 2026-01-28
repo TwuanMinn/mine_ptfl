@@ -367,94 +367,84 @@ Performance optimization ensures smooth interactions. Virtual scrolling handles 
             link: "/ielts_certificate.jpg"
         },
         {
-            id: 'cert-fullstack',
-            title: "Full-Stack Web Development",
-            issuer: "Coursera",
-            date: "2024",
-            image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1472&auto=format&fit=crop",
+            id: 'cert-google-prompting',
+            title: "Prompting Essentials Specialization",
+            issuer: "Google",
+            date: "2026",
+            fullDate: "Jan 2026",
+            image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1632&auto=format&fit=crop",
             gallery: [
-                "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1469&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1470&auto=format&fit=crop"
+                "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1530&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1676299081847-824916de030a?q=80&w=1470&auto=format&fit=crop"
             ],
-            description: "Completed a full-stack program covering React, Node.js, and REST APIs.",
-            fullDescription: "This comprehensive specialization covers modern full-stack development from frontend to backend. It involved building dynamic web applications using the MERN stack (MongoDB, Express, React, and Node.js).\n\nKey areas of focus included responsive web design, state management with React hooks and context API, building RESTful APIs, database design and optimization, and deploying applications to cloud platforms. The program concluded with a capstone project that integrated all these technologies into a production-ready application.\n\nThroughout the course, I developed a deeper understanding of how to architect scalable applications. From designing efficient database schemas to implementing secure authentication flows and creating highly performant user interfaces, this certification validated my ability to handle end-to-end development cycles.",
-            skills: ["React", "Node.js", "Express", "MongoDB", "REST APIs", "Deployment"],
-            link: "https://www.coursera.org/"
+            description: "Mastering the art of prompt engineering for generative AI tools.",
+            fullDescription: "This specialization provides comprehensive training in designing effective prompts to elicit the best possible responses from large language models. \n\nI learned techniques for zero-shot, few-shot, and chain-of-thought prompting, along with strategies for fine-tuning inputs for various AI models. The curriculum covered ethical considerations, limitations of AI, and practical applications in coding, writing, and data analysis.",
+            skills: ["Prompt Engineering", "Generative AI", "Large Language Models", "AI Ethics"],
+            link: "/gg.prompting.essentials.pdf"
         },
         {
-            id: 'cert-uiux',
-            title: "UI/UX Design Essentials",
+            id: 'cert-google-ux',
+            title: "UX Design Certificate",
             issuer: "Google",
-            date: "2023",
+            date: "2026",
+            fullDate: "Jan 2026",
             image: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=1470&auto=format&fit=crop",
             gallery: [
                 "https://images.unsplash.com/photo-1561070791-230f18ef99f7?q=80&w=1470&auto=format&fit=crop",
                 "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=1470&auto=format&fit=crop"
             ],
             description: "Design fundamentals, user research, and wireframing best practices.",
-            fullDescription: "Through this certification, I mastered the end-to-end design process, from initial user research to creating high-fidelity prototypes. The course emphasized user-centered design principles and the importance of solving real user problems.\n\nI learned to conduct user interviews, create personas, map user journeys, and perform usability testing. On the visual side, I focused on layout, typography, color theory, and creating consistent design systems using Figma. This foundation ensures that the software I build isn't just functional, but also intuitive and accessible.\n\nThe process of iterative design and feedback was central to this program. I developed skills in translating complex user needs into simple, elegant visual solutions, while always maintaining a strong focus on accessibility standards and modern UI trends.",
+            fullDescription: "Through this certification, I mastered the end-to-end design process, from initial user research to creating high-fidelity prototypes. The course emphasized user-centered design principles and the importance of solving real user problems.\n\nI learned to conduct user interviews, create personas, map user journeys, and perform usability testing. On the visual side, I focused on layout, typography, color theory, and creating consistent design systems using Figma. This foundation ensures that the software I build isn't just functional, but also intuitive and accessible.",
             skills: ["User Research", "Wireframing", "Prototyping", "Figma", "Design Systems", "Usability Testing"],
             link: "https://grow.google/certificates/ui-ux-design/"
         },
         {
-            id: 'cert-cloud',
-            title: "Cloud Fundamentals",
-            issuer: "Microsoft",
-            date: "2023",
-            image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1472&auto=format&fit=crop",
+            id: 'cert-google-pm',
+            title: "Project Management Certificate",
+            issuer: "Google",
+            date: "2026",
+            fullDate: "Jan 2026",
+            image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1470&auto=format&fit=crop",
             gallery: [
-                "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=1470&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1334&auto=format&fit=crop"
+                "https://images.unsplash.com/photo-1542626991-cbc4e32524cc?q=80&w=1469&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1512314889357-e157c22f938d?q=80&w=1471&auto=format&fit=crop"
             ],
-            description: "Core cloud concepts, services, and security principles.",
-            fullDescription: "This certification provides a solid foundation in cloud computing concepts and Microsoft Azure services. It covers the benefits of cloud computing, different cloud service models (IaaS, PaaS, SaaS), and cloud deployment models.\n\nI explored core Azure services including compute, networking, storage, and databases, as well as essential security, privacy, compliance, and trust features. This knowledge allows me to architect applications that leverage the scalability and reliability of modern cloud infrastructure.\n\nTransitioning from traditional on-premise infrastructure to cloud-native solutions is a key focus here. I learned how to optimize costs while increasing availability through load balancing, auto-scaling, and geographically distributed deployments.",
-            skills: ["Azure", "Cloud Computing", "Virtualization", "Cloud Security", "Infrastructure as Code"],
-            link: "https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/"
+            description: "Foundations of traditional and agile project management.",
+            fullDescription: "This professional certificate covers the skills needed to manage projects effectively. I learned about the project life cycle, from initiation and planning to execution and closing.\n\nThe curriculum included Agile methodologies (Scrum), risk management, stakeholder communication, and project documentation. I gained proficiency in using project management tools and techniques to ensure projects are delivered on time and within scope.",
+            skills: ["Project Management", "Agile", "Scrum", "Risk Management", "Stakeholder Management"],
+            link: "https://grow.google/certificates/project-management/"
         },
         {
-            id: 'cert-aws',
-            title: "AWS Cloud Practitioner",
-            issuer: "Amazon Web Services",
-            date: "2023",
-            image: "https://images.unsplash.com/photo-1484417894907-623942c8ee29?q=80&w=1632&auto=format&fit=crop",
+            id: 'cert-google-ai',
+            title: "AI Essentials Specialization",
+            issuer: "Google",
+            date: "2026",
+            fullDate: "Jan 2026",
+            image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1530&auto=format&fit=crop",
             gallery: [
-                "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1472&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=1470&auto=format&fit=crop"
+                "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=1470&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1632&auto=format&fit=crop"
             ],
-            description: "Foundational understanding of AWS Cloud concepts, services, and terminology.",
-            fullDescription: "The AWS Certified Cloud Practitioner validation provides a high-level overview of the AWS Cloud platform. It covers basic global infrastructure, architectural principles, value proposition, and key services.\n\nI gained insights into AWS billing and pricing models, security and compliance protocols, and the shared responsibility model. This certification enables me to effectively communicate with stakeholders and technical teams about AWS Cloud solutions and their business impact.\n\nUnderstanding the AWS Well-Architected Framework has been a major takeaway. This knowledge allows me to build systems that are secure, high-performing, resilient, and efficient, ensuring that cloud resources are utilized effectively to meet business goals.",
-            skills: ["AWS", "Cloud Economics", "IAM", "VPC", "S3", "EC2"],
-            link: "https://aws.amazon.com/certification/certified-cloud-practitioner/"
+            description: "Fundamental concepts of Artificial Intelligence and Machine Learning.",
+            fullDescription: "This specialization provides a solid introduction to AI concepts, tools, and applications. I explored how generative AI works, its capabilities, and its potential impact on various industries.\n\nThe course covered practical skills in using AI tools for productivity, content creation, and problem-solving, along with a strong emphasis on responsible AI use and mitigating bias.",
+            skills: ["Artificial Intelligence", "Generative AI", "Machine Learning Concepts", "AI Productivity Tools"],
+            link: "https://www.coursera.org/specializations/google-ai-essentials"
         },
         {
-            id: 'cert-python',
-            title: "Python for Data Science",
-            issuer: "IBM",
-            date: "2023",
-            image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1470&auto=format&fit=crop",
+            id: 'cert-google-bi',
+            title: "Business Intelligence Certificate",
+            issuer: "Google",
+            date: "2026",
+            fullDate: "Jan 2026",
+            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1426&auto=format&fit=crop",
             gallery: [
                 "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1470&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1426&auto=format&fit=crop"
+                "https://images.unsplash.com/photo-1543286386-2e659306cd6c?q=80&w=1470&auto=format&fit=crop"
             ],
-            description: "Python programming, data analysis with Pandas, and data visualization techniques.",
-            fullDescription: "This IBM certification focuses on using Python for data analysis and visualization. It starts with Python fundamentals including data structures, loops, and functions, then dives deep into data-centric libraries.\n\nI learned to use NumPy for numerical operations, Pandas for data manipulation and cleaning, and Matplotlib and Seaborn for creating insightful visualizations. The course also introduced basic machine learning concepts and how to apply them to real-world datasets for predictive modeling.\n\nWorking with real-world datasets enabled me to practice complex data cleaning tasks and statistical analysis. I developed the ability to present findings through compelling visualizations, transforming raw data into actionable business insights.",
-            skills: ["Python", "Pandas", "NumPy", "Data Visualization", "Data Analysis", "Jupyter Notebooks"],
-            link: "https://www.ibm.com/training/certification/"
-        },
-        {
-            id: 'cert-js',
-            title: "JavaScript Algorithms",
-            issuer: "freeCodeCamp",
-            date: "2022",
-            image: "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?q=80&w=1470&auto=format&fit=crop",
-            gallery: [
-                "https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=1528&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?q=80&w=1470&auto=format&fit=crop"
-            ],
-            description: "Advanced JavaScript concepts, algorithms, and data structures certification.",
-            fullDescription: "This rigorous certification involves completing hundreds of coding challenges focused on JavaScript fundamentals, algorithms, and data structures. It covers ES6+, Regular Expressions, Debugging, Basic and Intermediate Algorithm Scripting, and Object-Oriented Programming.\n\nI gained deep expertise in functional programming, recursive algorithms, and managing complex data structures. The final projects required building complex applications like a Roman Numeral Converter, Caesar's Cipher, and a Cash Register system, all passing extensive test suites.\n\nThis certification significantly strengthened my problem-solving abilities. Mastering algorithms and data structures is fundamental to writing efficient, maintainable code, and this program provided the perfect platform to sharpen those skills in an intensive, project-oriented environment.",
-            skills: ["JavaScript ES6+", "Algorithms", "Data Structures", "Functional Programming", "RegEx"],
-            link: "https://www.freecodecamp.org/certification/fcc123/javascript-algorithms-and-data-structures"
+            description: "Data modeling, visualization, and business reporting.",
+            fullDescription: "This certificate focuses on the skills needed to turn data into actionable insights. I learned how to design data models, create effective visualizations, and build interactive dashboards.\n\nThe program covered the entire business intelligence workflow, from data preparation to reporting, using tools like BigQuery, Looker, and Tableau. I developed the ability to communicate data-driven findings to stakeholders effectively.",
+            skills: ["Business Intelligence", "Data Modeling", "SQL", "Tableau", "Data Visualization"],
+            link: "https://grow.google/certificates/business-intelligence/"
         }
     ],
 

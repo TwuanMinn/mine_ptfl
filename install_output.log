@@ -1,0 +1,26 @@
+npm WARN using --force Recommended protections disabled.
+
+> my_portfolioo@0.1.0 postinstall
+> node scripts/ensure-rrd-index.js
+
+node:internal/modules/cjs/loader:1093
+  throw err;
+  ^
+
+Error: Cannot find module 'C:\Users\Admin\Downloads\my_portfolioo\scripts\ensure-rrd-index.js'
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1090:15)
+    at Module._load (node:internal/modules/cjs/loader:934:27)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:83:12)
+    at node:internal/main/run_main_module:23:47 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v19.8.1
+npm ERR! code 1
+npm ERR! path C:\Users\Admin\Downloads\my_portfolioo
+npm ERR! command failed
+npm ERR! command C:\WINDOWS\system32\cmd.exe /d /s /c node scripts/ensure-rrd-index.js
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     C:\Users\Admin\AppData\Local\npm-cache\_logs\2026-01-28T00_20_46_430Z-debug-0.log

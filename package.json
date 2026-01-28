@@ -23,7 +23,6 @@
   },
   "scripts": {
     "start": "cross-env BROWSER=none react-scripts start",
-    "postinstall": "node scripts/ensure-rrd-index.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
