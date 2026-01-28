@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
 
-export default function CustomCursor({ darkMode }) {
+export const CustomCursor = ({ darkMode }) => {
     const [isHovered, setIsHovered] = useState(false);
 
     const mouseX = useMotionValue(-100);
@@ -19,7 +19,7 @@ export default function CustomCursor({ darkMode }) {
 
         const handleHover = (e) => {
             const target = e.target;
-            const isClickable = target.closest('button, a, .cursor-pointer, [role="button"]');
+            const isClickable = target.closest('button, a, .cursor-pointer');
             setIsHovered(!!isClickable);
         };
 
@@ -37,34 +37,34 @@ export default function CustomCursor({ darkMode }) {
             {/* Main Cursor Dot */}
             <motion.div
                 style={{
-                    left: cursorX,
-                    top: cursorY,
+                    x: cursorX,
+                    y: cursorY,
                     translateX: '-50%',
                     translateY: '-50%',
                 }}
-                className={`fixed w-2 h-2 rounded-full z-50 ${darkMode ? 'bg-cyan-400' : 'bg-blue-600'} shadow-[0_0_10px_rgba(34,211,238,0.5)]`}
+                className={`w-3 h-3 rounded-full bg-cyan-400 z-50`}
             />
 
             {/* Aura Spotlight Effect */}
             <motion.div
                 style={{
-                    left: cursorX,
-                    top: cursorY,
+                    x: cursorX,
+                    y: cursorY,
                     translateX: '-50%',
                     translateY: '-50%',
                 }}
                 animate={{
-                    scale: isHovered ? 2.5 : 1,
-                    opacity: isHovered ? 0.35 : 0.2,
+                    scale: isHovered ? 2 : 1,
+                    opacity: isHovered ? 0.3 : 0.15,
                 }}
-                className={`fixed w-48 h-48 rounded-full blur-3xl ${darkMode ? 'bg-cyan-500/50' : 'bg-blue-400/40'}`}
+                className="w-40 h-40 rounded-full bg-cyan-500 blur-3xl"
             />
 
             {/* Inverted Circle on Hover */}
             <motion.div
                 style={{
-                    left: cursorX,
-                    top: cursorY,
+                    x: cursorX,
+                    y: cursorY,
                     translateX: '-50%',
                     translateY: '-50%',
                 }}
@@ -72,8 +72,8 @@ export default function CustomCursor({ darkMode }) {
                     scale: isHovered ? 1.5 : 0,
                     opacity: isHovered ? 1 : 0,
                 }}
-                className={`fixed w-14 h-14 rounded-full border ${darkMode ? 'border-cyan-400/50' : 'border-blue-500/50'}`}
+                className="w-12 h-12 rounded-full border border-cyan-400/50"
             />
         </div>
     );
-}
+};

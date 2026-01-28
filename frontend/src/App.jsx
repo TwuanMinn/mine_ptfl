@@ -30,6 +30,8 @@ import './i18n';
 const ParticleBackground = lazy(() => import('./components/common/ParticleBackground'));
 const StatusBadge = lazy(() => import('./components/common/StatusBadge.jsx'));
 
+import { SmoothScroll } from './components/layout/SmoothScroll';
+
 export default function Portfolio() {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -212,63 +214,65 @@ export default function Portfolio() {
 
   return (
     <ErrorBoundary>
-      {/* Loading Screen */}
-      <LoadingScreen />
+      <SmoothScroll>
+        {/* Loading Screen */}
+        <LoadingScreen />
 
-      <div className={`min-h-screen ${darkMode ? 'bg-gradient-to-br from-[#050508] via-[#0a0a10] to-[#070709]' : 'bg-gradient-to-br from-blue-50 via-cyan-50 to-white'}`}>
-        <ScrollProgress darkMode={darkMode} />
-        <CustomCursor darkMode={darkMode} />
+        <div className={`min-h-screen ${darkMode ? 'bg-gradient-to-br from-[#050508] via-[#0a0a10] to-[#070709]' : 'bg-gradient-to-br from-blue-50 via-cyan-50 to-white'}`}>
+          <ScrollProgress darkMode={darkMode} />
+          <CustomCursor darkMode={darkMode} />
 
-        {/* Status Badge - Only show on main home page */}
-        {location.pathname === '/' && (
+          {/* Status Badge - Only show on main home page */}
+          {location.pathname === '/' && (
+            <Suspense fallback={null}>
+              <StatusBadge darkMode={darkMode} />
+            </Suspense>
+          )}
+
           <Suspense fallback={null}>
-            <StatusBadge darkMode={darkMode} />
+            <ParticleBackground darkMode={darkMode} />
           </Suspense>
-        )}
 
-        <Suspense fallback={null}>
-          <ParticleBackground darkMode={darkMode} />
-        </Suspense>
+          <AppRoutes
+            portfolioData={portfolioData}
+            darkMode={darkMode}
+            bioText={bioText}
+            setActiveSection={setActiveSection}
+            scrollToSection={scrollToSection}
+            scrollToTop={scrollToTop}
+            showScrollTop={showScrollTop}
+            isHearted={isHearted}
+            handleHeartClick={handleHeartClick}
+            heartAnimating={heartAnimating}
+            navigate={navigate}
+            location={location}
+          />
 
-        <AppRoutes
-          portfolioData={portfolioData}
-          darkMode={darkMode}
-          bioText={bioText}
-          setActiveSection={setActiveSection}
-          scrollToSection={scrollToSection}
-          scrollToTop={scrollToTop}
-          showScrollTop={showScrollTop}
-          isHearted={isHearted}
-          handleHeartClick={handleHeartClick}
-          heartAnimating={heartAnimating}
-          navigate={navigate}
-          location={location}
-        />
+          {/* Floating Toolbar */}
+          <Toolbar
+            toolbarVisible={toolbarVisible}
+            activeSection={activeSection}
+            scrollToSection={scrollToSection}
+            darkMode={darkMode}
+            setDarkMode={setDarkMode}
+            toggleReadAloud={toggleReadAloud}
+            isReading={isReading}
+            handleCopyLink={handleCopyLink}
+            copySuccess={copySuccess}
+            handleShareLink={handleShareLink}
+            shareSuccess={shareSuccess}
+            setQrOpen={setQrOpen}
+          />
 
-        {/* Floating Toolbar */}
-        <Toolbar
-          toolbarVisible={toolbarVisible}
-          activeSection={activeSection}
-          scrollToSection={scrollToSection}
-          darkMode={darkMode}
-          setDarkMode={setDarkMode}
-          toggleReadAloud={toggleReadAloud}
-          isReading={isReading}
-          handleCopyLink={handleCopyLink}
-          copySuccess={copySuccess}
-          handleShareLink={handleShareLink}
-          shareSuccess={shareSuccess}
-          setQrOpen={setQrOpen}
-        />
-
-        <QrModal
-          qrOpen={qrOpen}
-          setQrOpen={setQrOpen}
-          portfolioUrl={portfolioUrl}
-          qrCodeUrl={qrCodeUrl}
-          handleDownloadQr={handleDownloadQr}
-        />
-      </div>
+          <QrModal
+            qrOpen={qrOpen}
+            setQrOpen={setQrOpen}
+            portfolioUrl={portfolioUrl}
+            qrCodeUrl={qrCodeUrl}
+            handleDownloadQr={handleDownloadQr}
+          />
+        </div>
+      </SmoothScroll>
     </ErrorBoundary>
   );
 }
