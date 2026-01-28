@@ -73,7 +73,7 @@ On the backend, Supabase serves as the primary data and authentication layer. Le
 Key features include an advanced search and filtering system, allowing users to find pieces by material, style, color, and price. A persistent shopping cart handles guest and registered users alike, while the checkout flow is optimized for speed and security. The integration of Vercel for deployment guarantees lightning-fast load times and global availability through their edge network.
 
 This project represents a deep dive into building functional, beautiful commerce applications that meet modern standards for performance, security, and aesthetics.`,
-            link: "https://fadelab-7y73wbveo-twuanminns-projects.vercel.app/",
+            link: "https://furnthome.vercel.app/",
             techStack: ["Next.js", "React", "TypeScript", "Supabase", "Express.js", "PostgreSQL", "Tailwind CSS", "Vercel", "JavaScript"]
         },
         {
@@ -354,8 +354,8 @@ Performance optimization ensures smooth interactions. Virtual scrolling handles 
             id: 'cert-ielts',
             title: "IELTS Certificate",
             issuer: "British Council / IDP",
-            date: "2025",
-            fullDate: "Sep 2025",
+            date: "2023",
+            fullDate: "Sep 2023",
             image: "https://images.unsplash.com/photo-1543165796-5426273eaab3?q=80&w=1470&auto=format&fit=crop",
             gallery: [
                 "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1373&auto=format&fit=crop",

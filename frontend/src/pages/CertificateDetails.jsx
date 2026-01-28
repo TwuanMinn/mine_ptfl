@@ -30,6 +30,7 @@ export default function CertificateDetails({ portfolioData, darkMode }) {
     const { certId } = useParams();
     const navigate = useNavigate();
     const [showScrollTop, setShowScrollTop] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
 
     // Scroll to top when component mounts
     useLayoutEffect(() => {
@@ -99,6 +100,7 @@ export default function CertificateDetails({ portfolioData, darkMode }) {
         // Default
         return <Shield size={16} className="text-cyan-500/50 group-hover/skill:text-cyan-400 transition-colors" />;
     };
+
 
 
     const longDescription = certificate.fullDescription || certificate.description;
@@ -344,30 +346,41 @@ export default function CertificateDetails({ portfolioData, darkMode }) {
                                     </div>
                                 </div>
 
-                                <motion.a
-                                    href={certificate.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 text-white font-bold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-300"
-                                >
-                                    <ExternalLink size={18} />
-                                    View Credential
-                                </motion.a>
-                            </div>
-                        </motion.div>
+                                <div className="relative pt-4 border-t border-white/10">
+                                    <AnimatePresence>
+                                        {isHovered && (
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                                                animate={{ opacity: 1, y: -10, scale: 1 }}
+                                                exit={{ opacity: 0, y: 10, scale: 0.9 }}
+                                                transition={{ duration: 0.2 }}
+                                                className="absolute bottom-full left-0 right-0 mb-4 p-6 rounded-3xl border border-cyan-500/30 bg-slate-900/90 backdrop-blur-xl shadow-[0_0_30px_rgba(34,211,238,0.2)] z-50"
+                                            >
+                                                <h3 className="text-sm font-semibold text-white mb-3">About this certification</h3>
+                                                <p className="text-xs text-slate-400 leading-relaxed text-justify">
+                                                    This credential verifies the successful completion of all requirements for {certificate.title} as issued by {certificate.issuer}. Individual results and competencies may vary by candidate.
+                                                </p>
+                                                {/* Arrow pointing down */}
+                                                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-slate-900 border-r border-b border-cyan-500/30 rotate-45" />
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
 
-                        <motion.div
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.7 }}
-                            className="p-6 rounded-3xl border border-white/5 bg-white/5 backdrop-blur-sm"
-                        >
-                            <h3 className="text-sm font-semibold text-white mb-3">About this certification</h3>
-                            <p className="text-xs text-slate-400 leading-relaxed">
-                                This credential verifies the successful completion of all requirements for {certificate.title} as issued by {certificate.issuer}. Individual results and competencies may vary by candidate.
-                            </p>
+                                    <motion.a
+                                        href={certificate.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        onMouseEnter={() => setIsHovered(true)}
+                                        onMouseLeave={() => setIsHovered(false)}
+                                        whileHover={{ scale: 1.02 }}
+                                        whileTap={{ scale: 0.98 }}
+                                        className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 text-white font-bold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all duration-300"
+                                    >
+                                        <ExternalLink size={18} />
+                                        View Credential
+                                    </motion.a>
+                                </div>
+                            </div>
                         </motion.div>
                     </div>
                 </div>
