@@ -190,7 +190,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
         const currentLineText = currentLineTokens.map(t => t.text).join('');
 
         // Typing speed
-        const typingSpeed = 1; // ms per char (faster typing)
+        const typingSpeed = 15; // ms per char (faster typing)
 
         const timeout = setTimeout(() => {
             if (charIndex < currentLineText.length) {
