@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Clock, ArrowLeft, Loader2 } from 'lucide-react';
+import { Clock, ArrowLeft } from 'lucide-react';
 
 export default function Pending({ darkMode }) {
     const navigate = useNavigate();
