@@ -126,30 +126,39 @@ export const Skills = ({ portfolioData, darkMode }) => {
                                     {[...skillsLogos, ...skillsLogos].filter((_, i) => i % 2 === row).map((skill, index) => (
                                         <div
                                             key={`${skill.name}-${row}-${index}`}
-                                            className={`group relative flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-2xl border ${darkMode ? 'border-blue-700/60 bg-slate-900/70' : 'border-blue-500 border-2 bg-white'} shadow-[0_10px_22px_rgba(59,130,246,0.12)] hover:-translate-y-2 hover:shadow-[0_14px_28px_rgba(59,130,246,0.2)] transition duration-300`}
+                                            className={`group relative flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-2xl border ${darkMode ? 'border-blue-700/60 bg-slate-900/70' : 'border-blue-500 border-2 bg-white'} shadow-[0_10px_22px_rgba(59,130,246,0.12)] hover:-translate-y-4 hover:scale-110 hover:shadow-[0_20px_40px_rgba(34,211,238,0.4)] transition-all duration-500 cursor-pointer`}
                                             title={skill.name}
                                             style={{
                                                 background: darkMode
-                                                    ? 'linear-gradient(160deg, rgba(12, 20, 37, 0.85), rgba(30, 58, 138, 0.22))'
+                                                    ? 'linear-gradient(160deg, rgba(34, 211, 238, 0.1), rgba(30, 58, 138, 0.4))'
                                                     : 'linear-gradient(160deg, rgba(255, 255, 255, 1), rgba(219, 234, 254, 0.85))',
-                                                transformStyle: 'preserve-3d'
+                                                transformStyle: 'preserve-3d',
+                                                perspective: '1000px'
                                             }}
                                         >
                                             <div
-                                                className="absolute -inset-0.5 rounded-2xl opacity-50 blur-sm"
+                                                className="absolute -inset-1 rounded-2xl opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500"
                                                 style={{
-                                                    background: darkMode
-                                                        ? 'linear-gradient(120deg, rgba(59,130,246,0.24), rgba(96,165,250,0.2), rgba(59,130,246,0.24))'
-                                                        : 'linear-gradient(120deg, rgba(59,130,246,0.2), rgba(147,197,253,0.22), rgba(59,130,246,0.2))'
+                                                    background: 'linear-gradient(135deg, #22d3ee, #3b82f6, #8b5cf6)'
                                                 }}
                                             />
-                                            <img
-                                                src={skill.url}
-                                                alt={skill.name}
-                                                className="relative w-8 h-8 sm:w-11 sm:h-11 object-contain drop-shadow-[0_10px_16px_rgba(59,130,246,0.28)] group-hover:drop-shadow-[0_14px_20px_rgba(59,130,246,0.38)]"
-                                                loading="lazy"
-                                                style={{ transform: 'translateZ(20px)', filter: darkMode ? 'brightness(1.12) saturate(1.05)' : 'brightness(1.25) saturate(1.1) drop-shadow(0 2px 2px rgba(30,64,175,0.2))' }}
-                                            />
+                                            <div className="relative z-10 w-full h-full flex items-center justify-center rounded-2xl bg-[#0a0a0f] border border-white/10 group-hover:border-transparent transition-colors duration-500 overflow-hidden">
+                                                {/* Shimmer effect on hover */}
+                                                <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+                                                <img
+                                                    src={skill.url}
+                                                    alt={skill.name}
+                                                    className="w-8 h-8 sm:w-11 sm:h-11 object-contain transition-transform duration-500 group-hover:scale-125 group-hover:rotate-12"
+                                                    loading="lazy"
+                                                    style={{ transform: 'translateZ(30px)' }}
+                                                />
+                                            </div>
+
+                                            {/* Name tooltip */}
+                                            <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded bg-slate-900 border border-white/10 text-[10px] text-white opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-30">
+                                                {skill.name}
+                                            </div>
                                         </div>
                                     ))}
                                 </div>

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ExternalLink, Heart } from 'lucide-react';
 import { Reveal } from '../common/Reveal';
 import { GithubActivity } from '../common/GithubActivity.jsx';
 import { TypingSpeed } from '../common/TypingSpeed.jsx';
+import { Gallery3D } from '../common/Gallery3D.jsx';
 
 // Tech stack icon URLs mapping
 const techIcons = {
@@ -36,7 +37,6 @@ const techIcons = {
 };
 
 
-
 export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick, heartAnimating }) => {
     const navigate = useNavigate();
     const [showAll, setShowAll] = useState(false);
@@ -51,6 +51,13 @@ export const Projects = ({ portfolioData, darkMode, isHearted, handleHeartClick,
             <Reveal width="100%">
                 <div className="max-w-6xl mx-auto w-full" style={{ padding: '0 1rem' }}>
                     <h2 className={`text-3xl font-bold mb-6 ${darkMode ? 'text-blue-100' : 'text-blue-800'}`} style={{ fontSize: '2rem' }}>Projects</h2>
+
+                    {/* Featured 3D Exhibition */}
+                    <div className="mb-12">
+                        <Suspense fallback={<div className="h-[400px] w-full bg-slate-900/20 animate-pulse rounded-3xl" />}>
+                            <Gallery3D projects={portfolioData.projects} />
+                        </Suspense>
+                    </div>
                     <div
                         className="grid grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8"
                         style={{
