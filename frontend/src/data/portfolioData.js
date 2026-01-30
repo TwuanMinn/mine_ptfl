@@ -29,6 +29,34 @@ export const getPortfolioData = (bioText) => ({
 
     projects: [
         {
+            id: 'proj-clevcipe',
+            title: "Clevcipe - AI Recipe & Meal Planning",
+            category: "Full Stack Development",
+            image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1453&auto=format&fit=crop",
+            gallery: [
+                "https://images.unsplash.com/photo-1466637574441-749b8f19452f?q=80&w=1480&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1470&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1470&auto=format&fit=crop"
+            ],
+            description: "A modern, full-stack recipe discovery and meal planning platform with AI-powered suggestions, weekly meal planner with calorie tracking, and a beautiful mobile-first interface.",
+            fullDescription: `Clevcipe is a modern, full-stack recipe discovery and meal planning platform designed to help users find, save, and organize recipes based on their dietary preferences and nutritional goals. Built with Next.js 14 and TypeScript, the application features AI-powered recipe suggestions, a weekly meal planner with calorie tracking, and a beautiful mobile-first interface with smooth animations.
+
+The backend leverages Supabase for authentication, real-time database operations, and secure API routes. Users can create accounts, save their favorite recipes, and sync their meal plans across devices seamlessly.
+
+Key features include:
+- AI-Powered Recommendations: Personalized "For You" recipe suggestions based on dietary preferences, past interactions, and nutritional goals.
+- Dynamic Category Filtering: Browse recipes by cuisine, meal type, difficulty, cooking time, and dietary restrictions with intuitive filters.
+- Weekly Meal Planner: Drag-and-drop interface for planning meals throughout the week with automatic calorie and macro tracking.
+- Nutritional Insights Dashboard: Comprehensive breakdown of daily and weekly nutritional intake with visual charts and goal tracking.
+- Detailed Recipe Pages: Step-by-step instructions with timers, ingredient scaling, and serving size adjustments.
+
+The mobile-first design ensures a seamless experience across all devices, with smooth Framer Motion animations enhancing user interactions. The application uses Tailwind CSS for styling, creating a cohesive and modern visual language throughout.
+
+Performance optimization was a priority, with server-side rendering for fast initial loads, image optimization, and efficient data fetching strategies. The platform is deployed on Vercel, taking advantage of edge functions for optimal global performance.`,
+            link: "https://clevecipe-o78i9czd0-twuanminns-projects.vercel.app/",
+            techStack: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Framer Motion", "Vercel"]
+        },
+        {
             id: 'proj-barber',
             title: "Barber Haircut Booking System",
             category: "Full Stack Development",

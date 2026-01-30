@@ -322,17 +322,29 @@ export default function ProjectDetails({ portfolioData, darkMode }) {
                             </div>
 
                             {/* Visit Button - Clean and simple */}
-                            <motion.a
-                                href={project.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="group/btn inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-white cursor-pointer shrink-0 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-shadow duration-300"
-                            >
-                                <ExternalLink size={18} className="group-hover/btn:rotate-12 transition-transform" />
-                                <span className="font-bold">Visit</span>
-                            </motion.a>
+                            {project.link && project.link !== '#' ? (
+                                <motion.a
+                                    href={project.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="group/btn inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-white cursor-pointer shrink-0 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-shadow duration-300"
+                                >
+                                    <ExternalLink size={18} className="group-hover/btn:rotate-12 transition-transform" />
+                                    <span className="font-bold">Visit</span>
+                                </motion.a>
+                            ) : (
+                                <motion.button
+                                    onClick={() => navigate('/under-construction')}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="group/btn inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-white cursor-pointer shrink-0 bg-gradient-to-r from-orange-500 via-yellow-500 to-amber-600 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 transition-shadow duration-300"
+                                >
+                                    <ExternalLink size={18} className="group-hover/btn:rotate-12 transition-transform" />
+                                    <span className="font-bold">Visit</span>
+                                </motion.button>
+                            )}
                         </div>
 
                         {/* Long description with images side-by-side */}

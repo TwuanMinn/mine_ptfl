@@ -9,6 +9,7 @@ import { HeartedProjectsPage } from '../pages/HeartedProjects';
 import ProjectDetails from '../pages/ProjectDetails';
 import CertificateDetails from '../pages/CertificateDetails';
 import Pending from '../pages/Pending';
+import UnderConstruction from '../pages/UnderConstruction';
 
 
 // Loading fallback component
@@ -103,6 +104,10 @@ export const AppRoutes = ({
                 <Route
                     path="/pending"
                     element={<Pending darkMode={darkMode} />}
+                />
+                <Route
+                    path="/under-construction"
+                    element={<UnderConstruction darkMode={darkMode} />}
                 />
             </Routes>
         </AnimatePresence>
