@@ -472,6 +472,54 @@ Performance optimization ensures smooth interactions. Virtual scrolling handles 
             fullDescription: "This certificate focuses on the skills needed to turn data into actionable insights. I learned how to design data models, create effective visualizations, and build interactive dashboards.\n\nThe program covered the entire business intelligence workflow, from data preparation to reporting, using tools like BigQuery, Looker, and Tableau. I developed the ability to communicate data-driven findings to stakeholders effectively.",
             skills: ["Business Intelligence", "Data Modeling", "SQL", "Tableau", "Data Visualization"],
             link: "/pending"
+        },
+        {
+            id: 'cert-ibm-ai',
+            title: "IBM AI Developer Professional Certificate",
+            issuer: "IBM",
+            date: "2026",
+            fullDate: "Jan 2026",
+            image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1632&auto=format&fit=crop",
+            gallery: [
+                "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1530&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=1470&auto=format&fit=crop"
+            ],
+            description: "Comprehensive training in AI development, machine learning, and deep learning with Python.",
+            fullDescription: "The IBM AI Developer Professional Certificate provides hands-on training in building AI-powered applications. This program covers the fundamentals of machine learning, deep learning, and neural networks using Python and popular frameworks.\n\nKey areas include:\n- Machine Learning algorithms and model training\n- Deep Learning with TensorFlow and PyTorch\n- Natural Language Processing (NLP)\n- Computer Vision fundamentals\n- AI model deployment and MLOps\n\nThe certificate demonstrates proficiency in developing, training, and deploying AI models for real-world applications.",
+            skills: ["Machine Learning", "Deep Learning", "Python", "TensorFlow", "PyTorch", "NLP", "Computer Vision"],
+            link: "/pending"
+        },
+        {
+            id: 'cert-google-it',
+            title: "Google IT Support Professional Certificate",
+            issuer: "Google",
+            date: "2026",
+            fullDate: "Jan 2026",
+            image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1534&auto=format&fit=crop",
+            gallery: [
+                "https://images.unsplash.com/photo-1597852074816-d933c7d2b988?q=80&w=1470&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1470&auto=format&fit=crop"
+            ],
+            description: "Foundation in IT support, networking, system administration, and security.",
+            fullDescription: "The Google IT Support Professional Certificate provides comprehensive training in essential IT skills. This program covers the foundational knowledge needed to succeed in IT support roles.\n\nKey topics include:\n- Technical Support Fundamentals\n- Computer Networking basics and protocols\n- Operating Systems (Windows, Linux, macOS)\n- System Administration and automation\n- IT Security principles and best practices\n\nThis certification validates skills in troubleshooting, customer service, networking, operating systems, and security—core competencies for any IT professional.",
+            skills: ["IT Support", "Networking", "Linux", "System Administration", "IT Security", "Troubleshooting"],
+            link: "/pending"
+        },
+        {
+            id: 'cert-meta-frontend',
+            title: "Meta Frontend Developer Professional Certificate",
+            issuer: "Meta",
+            date: "2026",
+            fullDate: "Jan 2026",
+            image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1470&auto=format&fit=crop",
+            gallery: [
+                "https://images.unsplash.com/photo-1581276879432-15e50529f34b?q=80&w=1470&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=1631&auto=format&fit=crop"
+            ],
+            description: "Advanced frontend development with React, including testing, state management, and best practices.",
+            fullDescription: "The Meta Frontend Developer Professional Certificate is an industry-recognized program that provides in-depth training in modern frontend development. Created by Meta's engineering team, this certificate covers the skills needed to build professional-grade web applications.\n\nKey areas include:\n- Advanced React patterns and hooks\n- State management with Redux and Context API\n- Testing with Jest and React Testing Library\n- Version control with Git and GitHub\n- UI/UX principles for frontend developers\n- Performance optimization techniques\n\nThis certification demonstrates expertise in React development and modern frontend engineering practices as taught by Meta's world-class engineering team.",
+            skills: ["React", "JavaScript", "HTML/CSS", "Redux", "Jest", "Git", "UI/UX", "Performance Optimization"],
+            link: "/pending"
         }
     ],
 
