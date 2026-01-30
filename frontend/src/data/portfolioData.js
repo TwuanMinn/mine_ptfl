@@ -57,6 +57,42 @@ Performance optimization was a priority, with server-side rendering for fast ini
             techStack: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Framer Motion", "Vercel"]
         },
         {
+            id: 'proj-typlax',
+            title: "Typlax - Visual Typing Experience",
+            category: "Full Stack Development",
+            image: "/typlax_logo.jpg",
+            gallery: [
+                "/typlax_gallery1.png",
+                "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1470&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1470&auto=format&fit=crop"
+            ],
+            description: "A visually immersive typing practice application where keystrokes transform beautiful visual scenes. Features 6 unique visual modes, real-time metrics, global leaderboard, and a premium space-themed dark UI.",
+            fullDescription: `Typlax is a visually immersive typing practice application that transforms the mundane act of typing into an artistic experience. Unlike traditional typing tutors, Typlax gamifies practice by letting users watch their progress unfold through stunning animations — from growing a tree from seed, to hatching an egg into a bird, to clearing TV static to reveal hidden images.
+
+The application features 6 unique visual "TypeVibe" modes, each offering a distinct meditative experience:
+- Tree Growing: Watch a seed sprout and grow into a majestic tree with each keystroke
+- Egg Hatching: Nurture an egg until it cracks open to reveal a beautiful bird
+- TV Static: Clear the noise to reveal stunning hidden imagery
+- Starfield: Type through a cosmic journey across the universe
+- Ocean Waves: Create rippling wave patterns with your keystrokes
+- Fire Embers: Ignite and control dancing flames through typing
+
+Real-time typing metrics track WPM (Words Per Minute), accuracy percentage, and streak counts, providing instant feedback on performance. The global leaderboard system powered by Firebase enables competitive ranking among users worldwide, while comprehensive progress tracking helps users monitor their improvement over time.
+
+The UI embraces a premium space-themed dark aesthetic with glassmorphism effects, smooth Framer Motion animations, and responsive design that feels premium on any device. The "Pulse Key" logo — a 3D keyboard key merged with a typing pulse wave — embodies the app's core identity of rhythm and precision.
+
+Key technical features include:
+- Canvas API for high-performance visual animations
+- Web Audio API for optional ambient soundscapes
+- Firebase Realtime Database for leaderboard and user progress
+- Express.js backend for secure API operations
+- Responsive design optimized for both desktop and mobile experiences
+
+Typlax represents the fusion of productivity and artistry, turning typing practice into a form of digital meditation where every keystroke brings visual transformation.`,
+            link: "https://typlax-eg1rzheex-twuanminns-projects.vercel.app/",
+            techStack: ["TypeScript", "React", "Express.js", "Node.js", "Firebase", "Canvas API", "Framer Motion", "Tailwind CSS"]
+        },
+        {
             id: 'proj-barber',
             title: "Barber Haircut Booking System",
             category: "Full Stack Development",
