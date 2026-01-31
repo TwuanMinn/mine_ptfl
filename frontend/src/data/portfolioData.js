@@ -700,6 +700,22 @@ Performance optimization ensures smooth interactions. Virtual scrolling handles 
             fullDescription: "The University of California, Irvine Effective Problem-Solving and Decision-Making course provides essential skills for analyzing complex situations and making informed decisions. This program focuses on practical frameworks and analytical techniques used by professionals.\n\nKey areas include:\n- Critical thinking methodologies\n- Problem identification and root cause analysis\n- Decision-making frameworks and models\n- Risk assessment and mitigation strategies\n- Creative problem-solving techniques\n- Data-driven decision making\n- Collaborative problem resolution\n\nThis certification demonstrates proficiency in systematic problem-solving approaches and the ability to make sound decisions under pressure.",
             skills: ["Critical Thinking", "Problem-Solving", "Decision-Making", "Risk Assessment", "Analytical Skills", "Strategic Planning"],
             link: "/pending"
+        },
+        {
+            id: 'cert-ibm-soft-skills',
+            title: "People & Soft Skills Essentials",
+            issuer: "IBM",
+            date: "2026",
+            fullDate: "Jan 2026",
+            image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1470&auto=format&fit=crop",
+            gallery: [
+                "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1470&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1470&auto=format&fit=crop"
+            ],
+            description: "Assessment of interpersonal skills, communication, and professional collaboration abilities.",
+            fullDescription: "The IBM People and Soft Skills Assessment evaluates essential interpersonal and professional skills critical for success in modern workplaces. This assessment validates competencies in human-centered collaboration and communication.\n\nKey areas include:\n- Effective communication and active listening\n- Teamwork and collaboration\n- Emotional intelligence and empathy\n- Conflict resolution and negotiation\n- Leadership and influence\n- Adaptability and flexibility\n- Time management and organization\n\nThis assessment demonstrates proficiency in the soft skills that enable effective collaboration and professional growth in diverse team environments.",
+            skills: ["Communication", "Teamwork", "Emotional Intelligence", "Leadership", "Conflict Resolution", "Adaptability"],
+            link: "/pending"
         }
     ],
 
