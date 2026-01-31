@@ -32,7 +32,7 @@ const baseSkillsLogos = [
     { name: 'Tailwind CSS', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg' },
     { name: 'NestJS', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg' },
     { name: 'Flutter', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg' },
-    { name: 'Convex', url: '/convex_logo.png' },
+    { name: 'Convex', url: '/convex_logo.png', roundIcon: true },
     { name: 'Antigravity', url: '/gg_anitigravity.png' }
 ];
 
@@ -154,7 +154,7 @@ export const Skills = ({ portfolioData, darkMode }) => {
                                                 <img
                                                     src={skill.url}
                                                     alt={skill.name}
-                                                    className="w-8 h-8 sm:w-11 sm:h-11 object-contain transition-transform duration-500 group-hover:scale-125 group-hover:rotate-12"
+                                                    className={`w-8 h-8 sm:w-11 sm:h-11 object-contain transition-transform duration-500 group-hover:scale-125 group-hover:rotate-12 ${skill.roundIcon ? 'rounded-full' : ''}`}
                                                     loading="lazy"
                                                     style={{
                                                         transform: 'translateZ(30px)',
