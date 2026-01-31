@@ -90,7 +90,7 @@ Key technical features include:
 
 Typlax represents the fusion of productivity and artistry, turning typing practice into a form of digital meditation where every keystroke brings visual transformation.`,
             link: "https://typlax-eg1rzheex-twuanminns-projects.vercel.app/",
-            techStack: ["TypeScript", "React", "Express.js", "Node.js", "Firebase", "Canvas API", "Framer Motion", "Tailwind CSS"]
+            techStack: ["TypeScript", "React", "Express.js", "Node.js", "Firebase", "Tailwind CSS"]
         },
         {
             id: 'proj-barber',
@@ -683,6 +683,22 @@ Performance optimization ensures smooth interactions. Virtual scrolling handles 
             description: "Comprehensive understanding of financial markets, risk management, and behavioral finance from Yale University.",
             fullDescription: "The Yale University Financial Markets Specialization provides an in-depth understanding of financial markets and institutions. Taught by Professor Robert Shiller, Nobel Laureate in Economics, this program covers the theory and practice of securities, insurance, and banking industries.\n\nKey areas include:\n- Financial market fundamentals and securities\n- Risk management and portfolio diversification\n- Behavioral finance and market psychology\n- Banking and financial intermediation\n- Investment strategies and asset allocation\n- Understanding of bonds, stocks, and derivatives\n- Real estate finance and mortgage markets\n\nThis specialization demonstrates knowledge of financial systems and the ability to make informed financial decisions in professional contexts.",
             skills: ["Financial Markets", "Risk Management", "Behavioral Finance", "Investment Strategy", "Portfolio Management", "Securities"],
+            link: "/pending"
+        },
+        {
+            id: 'cert-uci-problem-solving',
+            title: "Effective Problem-Solving and Decision-Making",
+            issuer: "University of California, Irvine",
+            date: "2026",
+            fullDate: "Jan 2026",
+            image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1470&auto=format&fit=crop",
+            gallery: [
+                "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1470&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1470&auto=format&fit=crop"
+            ],
+            description: "Critical thinking and strategic decision-making skills for professional problem resolution.",
+            fullDescription: "The University of California, Irvine Effective Problem-Solving and Decision-Making course provides essential skills for analyzing complex situations and making informed decisions. This program focuses on practical frameworks and analytical techniques used by professionals.\n\nKey areas include:\n- Critical thinking methodologies\n- Problem identification and root cause analysis\n- Decision-making frameworks and models\n- Risk assessment and mitigation strategies\n- Creative problem-solving techniques\n- Data-driven decision making\n- Collaborative problem resolution\n\nThis certification demonstrates proficiency in systematic problem-solving approaches and the ability to make sound decisions under pressure.",
+            skills: ["Critical Thinking", "Problem-Solving", "Decision-Making", "Risk Assessment", "Analytical Skills", "Strategic Planning"],
             link: "/pending"
         }
     ],
