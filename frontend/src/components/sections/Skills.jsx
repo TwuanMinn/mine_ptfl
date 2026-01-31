@@ -32,6 +32,7 @@ const baseSkillsLogos = [
     { name: 'Tailwind CSS', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg' },
     { name: 'NestJS', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg' },
     { name: 'Flutter', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg' },
+    { name: 'Convex', url: '/convex_logo.png' },
     { name: 'Antigravity', url: '/gg_anitigravity.png' }
 ];
 
