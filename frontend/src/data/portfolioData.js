@@ -16,7 +16,7 @@ export const getPortfolioData = (bioText) => ({
         "NodeJS (Express, NestJS)", "PostgreSQL",
         "Git", "Firebase", "Machine Learning",
         "Vercel", "Angular", "Docker", "Vue.js",
-        "ExpressJS", "AWS", "Spring Boot", "Supabase", "NestJS"
+        "ExpressJS", "AWS", "Spring Boot", "Supabase", "NestJS", "Flutter"
     ],
 
     skillsProgress: [
