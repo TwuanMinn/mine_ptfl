@@ -444,7 +444,7 @@ Performance optimization ensures smooth interactions. Virtual scrolling handles 
             description: "Mastering the art of prompt engineering for generative AI tools.",
             fullDescription: "This specialization provides comprehensive training in designing effective prompts to elicit the best possible responses from large language models. \n\nI learned techniques for zero-shot, few-shot, and chain-of-thought prompting, along with strategies for fine-tuning inputs for various AI models. The curriculum covered ethical considerations, limitations of AI, and practical applications in coding, writing, and data analysis.",
             skills: ["Prompt Engineering", "Generative AI", "Large Language Models", "AI Ethics"],
-            link: "/gg.prompting.essentials.pdf"
+            link: "/Google Certificate/gg.prompting.essentials.pdf"
         },
         {
             id: 'cert-google-ux',
@@ -491,7 +491,7 @@ Performance optimization ensures smooth interactions. Virtual scrolling handles 
             description: "Fundamental concepts of Artificial Intelligence and Machine Learning.",
             fullDescription: "This specialization provides a solid introduction to AI concepts, tools, and applications. I explored how generative AI works, its capabilities, and its potential impact on various industries.\n\nThe course covered practical skills in using AI tools for productivity, content creation, and problem-solving, along with a strong emphasis on responsible AI use and mitigating bias.",
             skills: ["Artificial Intelligence", "Generative AI", "Machine Learning Concepts", "AI Productivity Tools"],
-            link: "/pending"
+            link: "/Google Certificate/gg.ai.essential.pdf"
         },
         {
             id: 'cert-google-bi',
