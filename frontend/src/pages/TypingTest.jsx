@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Trophy, Hash, AtSign, Clock, Type, RotateCcw, Volume2, VolumeX, ChevronDown, Palette, Zap, Crown, Target, Flame, AlertTriangle, Music } from 'lucide-react';
+import { Trophy, Hash, AtSign, Clock, Type, RotateCcw, Volume2, VolumeX, ChevronDown, Palette, Zap, Crown, Target, Flame, AlertTriangle, Music } from 'lucide-react';
 import {
     DURATIONS, SOUND_PROFILES, SOUND_KEYS, MUSIC_TRACKS, MUSIC_KEYS,
     THEMES, THEME_KEYS, generateWords,
@@ -368,11 +368,11 @@ export default function TypingTest({ darkMode = true }) {
                     {/* ─── Back button (top-left, subtle) ─── */}
                     <button
                         onClick={() => navigate('/')}
-                        className={`flex items-center gap-1.5 mb-4 sm:mb-6 font-mono text-xs sm:text-sm transition-colors ${darkMode
+                        className={`flex items-center gap-1.5 mb-4 sm:mb-6 font-mono text-xs sm:text-sm transition-all group ${darkMode
                             ? 'text-slate-500 hover:text-white' : 'text-slate-400 hover:text-blue-700'
                             }`}
                     >
-                        <ArrowLeft size={14} />
+                        <span className="transition-transform group-hover:-translate-x-0.5">←</span>
                         back
                     </button>
 
@@ -783,26 +783,39 @@ export default function TypingTest({ darkMode = true }) {
                                             if (!isActive) return <span key={charIdx}>{char}</span>;
 
                                             const inputChar = currentInput[charIdx];
-                                            let charClass = '';
-                                            let displayChar = char;
                                             if (charIdx === currentInput.length) {
                                                 // Cursor position
-                                                charClass = `border-l-2 ${darkMode ? theme.cursorDark : theme.cursorLight}`;
+                                                return (
+                                                    <span key={charIdx} className={`border-l-2 ${darkMode ? theme.cursorDark : theme.cursorLight}`}>
+                                                        {char}
+                                                    </span>
+                                                );
                                             }
                                             if (inputChar !== undefined) {
                                                 if (inputChar === char) {
-                                                    charClass = darkMode ? theme.charCorrectDark : theme.charCorrectLight;
+                                                    return (
+                                                        <span key={charIdx} className={darkMode ? theme.charCorrectDark : theme.charCorrectLight}>
+                                                            {char}
+                                                        </span>
+                                                    );
                                                 } else {
-                                                    // Show what user ACTUALLY typed on solid red bg
-                                                    displayChar = inputChar;
-                                                    charClass = 'text-white bg-red-500 rounded-sm px-[1px]';
+                                                    // Wrong: bright red char with thick bottom bar
+                                                    return (
+                                                        <span
+                                                            key={charIdx}
+                                                            className="text-red-500 font-bold"
+                                                            style={{
+                                                                borderBottom: '3px solid #ef4444',
+                                                                textShadow: '0 0 8px rgba(239,68,68,0.6)',
+                                                                paddingBottom: '1px',
+                                                            }}
+                                                        >
+                                                            {char}
+                                                        </span>
+                                                    );
                                                 }
                                             }
-                                            return (
-                                                <span key={charIdx} className={charClass}>
-                                                    {displayChar}
-                                                </span>
-                                            );
+                                            return <span key={charIdx}>{char}</span>;
                                         })}
                                         {/* Cursor at end of word */}
                                         {isActive && currentInput.length >= word.length && (
