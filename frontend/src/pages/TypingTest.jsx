@@ -772,7 +772,7 @@ export default function TypingTest({ darkMode = true }) {
                                             ${status === 'correct'
                                                 ? darkMode ? theme.correctDark : 'text-green-600'
                                                 : status === 'incorrect'
-                                                    ? 'text-red-400 underline decoration-red-500/60 decoration-2 underline-offset-4'
+                                                    ? 'text-red-400 line-through decoration-red-500/80 decoration-2'
                                                     : darkMode ? theme.wordDefaultDark : theme.wordDefaultLight
                                             }
                                             ${isActive ? darkMode ? theme.wordActiveDark : theme.wordActiveLight : ''}
@@ -784,18 +784,23 @@ export default function TypingTest({ darkMode = true }) {
 
                                             const inputChar = currentInput[charIdx];
                                             let charClass = '';
+                                            let displayChar = char;
                                             if (charIdx === currentInput.length) {
                                                 // Cursor position
                                                 charClass = `border-l-2 ${darkMode ? theme.cursorDark : theme.cursorLight}`;
                                             }
                                             if (inputChar !== undefined) {
-                                                charClass = inputChar === char
-                                                    ? darkMode ? theme.charCorrectDark : theme.charCorrectLight
-                                                    : 'text-red-400 bg-red-500/25 rounded-sm underline decoration-red-400 decoration-2 underline-offset-2';
+                                                if (inputChar === char) {
+                                                    charClass = darkMode ? theme.charCorrectDark : theme.charCorrectLight;
+                                                } else {
+                                                    // Show what user ACTUALLY typed on solid red bg
+                                                    displayChar = inputChar;
+                                                    charClass = 'text-white bg-red-500 rounded-sm px-[1px]';
+                                                }
                                             }
                                             return (
                                                 <span key={charIdx} className={charClass}>
-                                                    {char}
+                                                    {displayChar}
                                                 </span>
                                             );
                                         })}
