@@ -2,7 +2,7 @@ import React from 'react';
 import { ChevronDown, BotMessageSquare } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { AnimatePresence } from 'framer-motion';
-import ChatBot from '../../ChatBot';
+import ChatBot from '../common/ChatBot';
 
 export const Hero = ({
     portfolioData,

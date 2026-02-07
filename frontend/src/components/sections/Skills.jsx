@@ -96,7 +96,7 @@ export const Skills = ({ portfolioData, darkMode }) => {
                         <div className="space-y-6">
                             {portfolioData.skillsProgress.map((skill, index) => (
                                 <div
-                                    key={index}
+                                    key={skill.name}
                                     className={`transition-all duration-700 ${visibleSkills
                                         ? 'opacity-100 translate-x-0'
                                         : 'opacity-0 -translate-x-10'
@@ -147,7 +147,7 @@ export const Skills = ({ portfolioData, darkMode }) => {
                                                     background: 'linear-gradient(135deg, #22d3ee, #3b82f6, #8b5cf6)'
                                                 }}
                                             />
-                                            <div className="relative z-10 w-full h-full flex items-center justify-center rounded-2xl bg-[#0a0a0f] border border-white/10 group-hover:border-transparent transition-colors duration-500 overflow-hidden">
+                                            <div className={`relative z-10 w-full h-full flex items-center justify-center rounded-2xl ${darkMode ? 'bg-[#0a0a0f] border border-white/10' : 'bg-white border border-blue-200'} group-hover:border-transparent transition-colors duration-500 overflow-hidden`}>
                                                 {/* Shimmer effect on hover */}
                                                 <div className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 

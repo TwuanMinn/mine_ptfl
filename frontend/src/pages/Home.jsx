@@ -82,9 +82,6 @@ export default function Home({
     const [popupMessageIndex, setPopupMessageIndex] = useState(0);
     const [popupVisible, setPopupVisible] = useState(true);
 
-    // Refs
-
-
     // Handle hash-based scrolling (e.g., /#projects) - runs BEFORE browser paint
     useLayoutEffect(() => {
         if (location.hash) {
@@ -119,7 +116,7 @@ export default function Home({
         }
     }, [location.hash, location.key]); // Add location.key to trigger on every navigation
 
-    // Section observer for active section tracking
+    // Combined section observer for active section tracking + about heading visibility
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -127,9 +124,13 @@ export default function Home({
                     if (entry.isIntersecting) {
                         setActiveSection(entry.target.id);
                     }
+                    // Handle about heading visibility
+                    if (entry.target.id === 'about') {
+                        setAboutHeadingVisible(entry.isIntersecting);
+                    }
                 });
             },
-            { threshold: 0.5 }
+            { threshold: 0.1 }
         );
 
         NAV_SECTIONS.forEach(({ id }) => {
@@ -137,7 +138,15 @@ export default function Home({
             if (element) observer.observe(element);
         });
 
-        return () => observer.disconnect();
+        // Fallback to ensure about heading becomes visible eventually
+        const fallbackTimer = setTimeout(() => {
+            setAboutHeadingVisible(true);
+        }, 1000);
+
+        return () => {
+            observer.disconnect();
+            clearTimeout(fallbackTimer);
+        };
     }, [setActiveSection]);
 
     // Popup message rotation
@@ -172,37 +181,6 @@ export default function Home({
 
         return () => clearTimeout(timer);
     }, [displayedText, isDeleting, textIndex]);
-
-    // About section animation - Optimized
-    useEffect(() => {
-        const aboutSection = document.getElementById('about');
-        const aboutObserver = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setAboutHeadingVisible(true);
-                    } else {
-                        setAboutHeadingVisible(false);
-                    }
-                });
-            },
-            { threshold: 0.1 }
-        );
-
-        if (aboutSection) {
-            aboutObserver.observe(aboutSection);
-        }
-
-        // Fallback to ensure it becomes visible eventually
-        const fallbackTimer = setTimeout(() => {
-            setAboutHeadingVisible(true);
-        }, 1000);
-
-        return () => {
-            aboutObserver.disconnect();
-            clearTimeout(fallbackTimer);
-        };
-    }, []);
 
     return (
         <motion.div
