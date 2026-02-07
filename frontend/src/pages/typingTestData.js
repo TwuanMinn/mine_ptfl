@@ -304,14 +304,14 @@ export const MUSIC_TRACKS = {
             const notes = [261.63, 329.63, 392, 349.23, 293.66, 261.63, 329.63, 392];
             let noteIdx = 0;
             const gain = ctx.createGain();
-            gain.gain.value = 0.04;
+            gain.gain.value = 0.20;
             gain.connect(ctx.destination);
             const playNote = () => {
                 const osc = ctx.createOscillator();
                 const g = ctx.createGain();
                 osc.type = 'sine';
                 osc.frequency.value = notes[noteIdx % notes.length];
-                g.gain.setValueAtTime(0.04, ctx.currentTime);
+                g.gain.setValueAtTime(0.20, ctx.currentTime);
                 g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.8);
                 osc.connect(g).connect(gain);
                 osc.start(ctx.currentTime);
@@ -327,14 +327,14 @@ export const MUSIC_TRACKS = {
         label: 'Ambient Pad',
         create: (ctx) => {
             const gain = ctx.createGain();
-            gain.gain.value = 0.03;
+            gain.gain.value = 0.18;
             gain.connect(ctx.destination);
             const oscs = [220, 277.18, 329.63].map(freq => {
                 const osc = ctx.createOscillator();
                 osc.type = 'sine';
                 osc.frequency.value = freq;
                 const g = ctx.createGain();
-                g.gain.value = 0.02;
+                g.gain.value = 0.10;
                 osc.connect(g).connect(gain);
                 osc.start();
                 return { osc, g };
@@ -342,7 +342,7 @@ export const MUSIC_TRACKS = {
             const lfo = ctx.createOscillator();
             const lfoGain = ctx.createGain();
             lfo.frequency.value = 0.15;
-            lfoGain.gain.value = 0.01;
+            lfoGain.gain.value = 0.05;
             lfo.connect(lfoGain).connect(gain.gain);
             lfo.start();
             return { stop: () => { oscs.forEach(o => o.osc.stop()); lfo.stop(); gain.disconnect(); } };
@@ -352,7 +352,7 @@ export const MUSIC_TRACKS = {
         label: 'Rain',
         create: (ctx) => {
             const gain = ctx.createGain();
-            gain.gain.value = 0.06;
+            gain.gain.value = 0.25;
             gain.connect(ctx.destination);
             const filter = ctx.createBiquadFilter();
             filter.type = 'bandpass';
@@ -377,14 +377,14 @@ export const MUSIC_TRACKS = {
             const melody = [523.25, 587.33, 659.25, 587.33, 523.25, 493.88, 440, 493.88];
             let idx = 0;
             const master = ctx.createGain();
-            master.gain.value = 0.03;
+            master.gain.value = 0.18;
             master.connect(ctx.destination);
             const playNote = () => {
                 const osc = ctx.createOscillator();
                 const g = ctx.createGain();
                 osc.type = 'triangle';
                 osc.frequency.value = melody[idx % melody.length];
-                g.gain.setValueAtTime(0.04, ctx.currentTime);
+                g.gain.setValueAtTime(0.20, ctx.currentTime);
                 g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.2);
                 osc.connect(g).connect(master);
                 osc.start(ctx.currentTime);
@@ -400,14 +400,14 @@ export const MUSIC_TRACKS = {
         label: 'Deep Space',
         create: (ctx) => {
             const gain = ctx.createGain();
-            gain.gain.value = 0.025;
+            gain.gain.value = 0.15;
             gain.connect(ctx.destination);
             const oscs = [65.41, 98, 130.81].map(freq => {
                 const osc = ctx.createOscillator();
                 osc.type = 'sine';
                 osc.frequency.value = freq;
                 const g = ctx.createGain();
-                g.gain.value = 0.015;
+                g.gain.value = 0.08;
                 osc.connect(g).connect(gain);
                 osc.start();
                 return { osc, g };
@@ -415,7 +415,7 @@ export const MUSIC_TRACKS = {
             const lfo = ctx.createOscillator();
             const lfoG = ctx.createGain();
             lfo.frequency.value = 0.08;
-            lfoG.gain.value = 0.008;
+            lfoG.gain.value = 0.04;
             lfo.connect(lfoG).connect(gain.gain);
             lfo.start();
             return { stop: () => { oscs.forEach(o => o.osc.stop()); lfo.stop(); gain.disconnect(); } };
@@ -425,7 +425,7 @@ export const MUSIC_TRACKS = {
         label: 'Forest',
         create: (ctx) => {
             const gain = ctx.createGain();
-            gain.gain.value = 0.04;
+            gain.gain.value = 0.20;
             gain.connect(ctx.destination);
             const bufSize = ctx.sampleRate * 2;
             const buf = ctx.createBuffer(1, bufSize, ctx.sampleRate);
@@ -449,7 +449,7 @@ export const MUSIC_TRACKS = {
                 osc.frequency.setValueAtTime(base, ctx.currentTime);
                 osc.frequency.setValueAtTime(base * 1.2, ctx.currentTime + 0.05);
                 osc.frequency.setValueAtTime(base * 0.9, ctx.currentTime + 0.1);
-                g.gain.setValueAtTime(0.015, ctx.currentTime);
+                g.gain.setValueAtTime(0.08, ctx.currentTime);
                 g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
                 osc.connect(g).connect(gain);
                 osc.start(ctx.currentTime);
@@ -493,8 +493,30 @@ export const KEYBOARD_ROWS = [
 
 // ─── Color Themes ───
 export const THEMES = {
+    none: {
+        label: 'None', dot: '#94a3b8', accent: 'text-slate-400', accentLight: 'text-slate-600',
+        bgDark: 'bg-transparent', bgLight: 'bg-transparent',
+        wordDefaultDark: 'text-slate-600', wordDefaultLight: 'text-slate-300',
+        wordActiveDark: 'text-slate-300', wordActiveLight: 'text-slate-800',
+        activeTextDark: 'text-slate-300', correctDark: 'text-slate-400/80',
+        cursorDark: 'border-slate-400', cursorLight: 'border-slate-500',
+        charCorrectDark: 'text-slate-300', charCorrectLight: 'text-slate-600',
+        dropShadow: '',
+        hoverDark: 'hover:text-slate-300', hoverLight: 'hover:text-slate-700',
+        selectedDark: 'text-slate-300 bg-slate-300/10', selectedLight: 'text-slate-700 bg-slate-100',
+        btnGradientDark: 'bg-gradient-to-r from-slate-600 to-slate-700 shadow-lg shadow-slate-500/20',
+        btnGradientLight: 'bg-gradient-to-r from-slate-500 to-slate-600 shadow-lg shadow-slate-500/30',
+        keyActiveBgDark: 'linear-gradient(180deg, rgba(148,163,184,0.25) 0%, rgba(148,163,184,0.10) 100%)',
+        keyActiveBgLight: 'linear-gradient(180deg, rgba(100,116,139,0.15) 0%, rgba(100,116,139,0.05) 100%)',
+        keyActiveShadowDark: '0 1px 0 0 #0f1219, 0 0 20px rgba(148,163,184,0.35), inset 0 1px 1px rgba(148,163,184,0.15)',
+        keyActiveShadowLight: '0 1px 0 0 #cbd5e1, 0 0 15px rgba(100,116,139,0.25), inset 0 1px 1px rgba(100,116,139,0.1)',
+        keyActiveBorderDark: '1px solid rgba(148,163,184,0.5)', keyActiveBorderLight: '1px solid rgba(100,116,139,0.4)',
+    },
     cyan: {
         label: 'Cyan', dot: '#22d3ee', accent: 'text-cyan-400', accentLight: 'text-blue-600',
+        bgDark: 'bg-[#0a1628]', bgLight: 'bg-[#f0f9ff]',
+        wordDefaultDark: 'text-cyan-900/60', wordDefaultLight: 'text-blue-300',
+        wordActiveDark: 'text-cyan-100', wordActiveLight: 'text-blue-800',
         activeTextDark: 'text-cyan-300', correctDark: 'text-cyan-400/80',
         cursorDark: 'border-cyan-400', cursorLight: 'border-blue-500',
         charCorrectDark: 'text-cyan-300', charCorrectLight: 'text-blue-600',
@@ -511,6 +533,9 @@ export const THEMES = {
     },
     purple: {
         label: 'Purple', dot: '#a78bfa', accent: 'text-violet-400', accentLight: 'text-violet-600',
+        bgDark: 'bg-[#120e24]', bgLight: 'bg-[#f5f3ff]',
+        wordDefaultDark: 'text-violet-900/60', wordDefaultLight: 'text-violet-300',
+        wordActiveDark: 'text-violet-100', wordActiveLight: 'text-violet-800',
         activeTextDark: 'text-violet-300', correctDark: 'text-violet-400/80',
         cursorDark: 'border-violet-400', cursorLight: 'border-violet-500',
         charCorrectDark: 'text-violet-300', charCorrectLight: 'text-violet-600',
@@ -527,6 +552,9 @@ export const THEMES = {
     },
     rose: {
         label: 'Rose', dot: '#fb7185', accent: 'text-rose-400', accentLight: 'text-rose-600',
+        bgDark: 'bg-[#1a0a12]', bgLight: 'bg-[#fff1f2]',
+        wordDefaultDark: 'text-rose-900/60', wordDefaultLight: 'text-rose-300',
+        wordActiveDark: 'text-rose-100', wordActiveLight: 'text-rose-800',
         activeTextDark: 'text-rose-300', correctDark: 'text-rose-400/80',
         cursorDark: 'border-rose-400', cursorLight: 'border-rose-500',
         charCorrectDark: 'text-rose-300', charCorrectLight: 'text-rose-600',
@@ -543,6 +571,9 @@ export const THEMES = {
     },
     amber: {
         label: 'Amber', dot: '#fbbf24', accent: 'text-amber-400', accentLight: 'text-amber-600',
+        bgDark: 'bg-[#1a150a]', bgLight: 'bg-[#fffbeb]',
+        wordDefaultDark: 'text-amber-900/60', wordDefaultLight: 'text-amber-300',
+        wordActiveDark: 'text-amber-100', wordActiveLight: 'text-amber-800',
         activeTextDark: 'text-amber-300', correctDark: 'text-amber-400/80',
         cursorDark: 'border-amber-400', cursorLight: 'border-amber-500',
         charCorrectDark: 'text-amber-300', charCorrectLight: 'text-amber-600',
@@ -559,6 +590,9 @@ export const THEMES = {
     },
     emerald: {
         label: 'Emerald', dot: '#34d399', accent: 'text-emerald-400', accentLight: 'text-emerald-600',
+        bgDark: 'bg-[#0a1a14]', bgLight: 'bg-[#ecfdf5]',
+        wordDefaultDark: 'text-emerald-900/60', wordDefaultLight: 'text-emerald-300',
+        wordActiveDark: 'text-emerald-100', wordActiveLight: 'text-emerald-800',
         activeTextDark: 'text-emerald-300', correctDark: 'text-emerald-400/80',
         cursorDark: 'border-emerald-400', cursorLight: 'border-emerald-500',
         charCorrectDark: 'text-emerald-300', charCorrectLight: 'text-emerald-600',
@@ -575,6 +609,9 @@ export const THEMES = {
     },
     sakura: {
         label: 'Sakura', dot: '#f9a8d4', accent: 'text-pink-300', accentLight: 'text-pink-600',
+        bgDark: 'bg-[#1a0e18]', bgLight: 'bg-[#fdf2f8]',
+        wordDefaultDark: 'text-pink-900/60', wordDefaultLight: 'text-pink-300',
+        wordActiveDark: 'text-pink-100', wordActiveLight: 'text-pink-800',
         activeTextDark: 'text-pink-200', correctDark: 'text-pink-300/80',
         cursorDark: 'border-pink-300', cursorLight: 'border-pink-500',
         charCorrectDark: 'text-pink-200', charCorrectLight: 'text-pink-600',
@@ -595,6 +632,9 @@ export const THEMES = {
 const addTheme = (name, cfg) => { THEMES[name] = cfg; };
 addTheme('ocean', {
     label: 'Ocean', dot: '#38bdf8', accent: 'text-sky-400', accentLight: 'text-sky-600',
+    bgDark: 'bg-[#0a1525]', bgLight: 'bg-[#f0f9ff]',
+    wordDefaultDark: 'text-sky-900/60', wordDefaultLight: 'text-sky-300',
+    wordActiveDark: 'text-sky-100', wordActiveLight: 'text-sky-800',
     activeTextDark: 'text-sky-300', correctDark: 'text-sky-400/80',
     cursorDark: 'border-sky-400', cursorLight: 'border-sky-500',
     charCorrectDark: 'text-sky-300', charCorrectLight: 'text-sky-600',
@@ -611,6 +651,9 @@ addTheme('ocean', {
 });
 addTheme('blood', {
     label: 'Blood', dot: '#ef4444', accent: 'text-red-400', accentLight: 'text-red-600',
+    bgDark: 'bg-[#1a0808]', bgLight: 'bg-[#fef2f2]',
+    wordDefaultDark: 'text-red-900/60', wordDefaultLight: 'text-red-300',
+    wordActiveDark: 'text-red-100', wordActiveLight: 'text-red-800',
     activeTextDark: 'text-red-300', correctDark: 'text-red-400/80',
     cursorDark: 'border-red-400', cursorLight: 'border-red-500',
     charCorrectDark: 'text-red-300', charCorrectLight: 'text-red-600',
@@ -627,6 +670,9 @@ addTheme('blood', {
 });
 addTheme('arctic', {
     label: 'Arctic', dot: '#e2e8f0', accent: 'text-slate-300', accentLight: 'text-slate-600',
+    bgDark: 'bg-[#0e1218]', bgLight: 'bg-[#f8fafc]',
+    wordDefaultDark: 'text-slate-700/60', wordDefaultLight: 'text-slate-400',
+    wordActiveDark: 'text-white', wordActiveLight: 'text-slate-800',
     activeTextDark: 'text-white', correctDark: 'text-slate-300/80',
     cursorDark: 'border-white', cursorLight: 'border-slate-600',
     charCorrectDark: 'text-white', charCorrectLight: 'text-slate-700',
@@ -643,6 +689,9 @@ addTheme('arctic', {
 });
 addTheme('sunset', {
     label: 'Sunset', dot: '#fb923c', accent: 'text-orange-400', accentLight: 'text-orange-600',
+    bgDark: 'bg-[#1a100a]', bgLight: 'bg-[#fff7ed]',
+    wordDefaultDark: 'text-orange-900/60', wordDefaultLight: 'text-orange-300',
+    wordActiveDark: 'text-orange-100', wordActiveLight: 'text-orange-800',
     activeTextDark: 'text-orange-300', correctDark: 'text-orange-400/80',
     cursorDark: 'border-orange-400', cursorLight: 'border-orange-500',
     charCorrectDark: 'text-orange-300', charCorrectLight: 'text-orange-600',

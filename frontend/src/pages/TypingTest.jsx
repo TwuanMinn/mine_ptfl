@@ -20,7 +20,7 @@ export default function TypingTest({ darkMode = true }) {
     const [duration, setDuration] = useState(15);
     const [soundProfile, setSoundProfile] = useState('mechanical');
     const [showSoundMenu, setShowSoundMenu] = useState(false);
-    const [colorTheme, setColorTheme] = useState('cyan');
+    const [colorTheme, setColorTheme] = useState('none');
     const [showThemeMenu, setShowThemeMenu] = useState(false);
     const themeMenuRef = useRef(null);
     const audioCtxRef = useRef(null);
@@ -362,23 +362,23 @@ export default function TypingTest({ darkMode = true }) {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
         >
-            <section className="min-h-screen px-4 pt-4 pb-10 flex flex-col items-center">
+            <section className={`min-h-screen px-2 sm:px-4 pt-3 sm:pt-4 pb-6 sm:pb-10 flex flex-col items-center transition-colors duration-300 ${darkMode ? theme.bgDark : theme.bgLight}`}>
                 <div className="w-full max-w-4xl mx-auto">
 
                     {/* ─── Back button (top-left, subtle) ─── */}
                     <button
                         onClick={() => navigate('/')}
-                        className={`flex items-center gap-1.5 mb-6 font-mono text-sm transition-colors ${darkMode
+                        className={`flex items-center gap-1.5 mb-4 sm:mb-6 font-mono text-xs sm:text-sm transition-colors ${darkMode
                             ? 'text-slate-500 hover:text-white' : 'text-slate-400 hover:text-blue-700'
                             }`}
                     >
-                        <ArrowLeft size={16} />
+                        <ArrowLeft size={14} />
                         back
                     </button>
 
                     {/* ─── Mode selector bar (Monkeytype-style) ─── */}
-                    <div className="flex items-center justify-center mb-6">
-                        <div className={`inline-flex items-center flex-wrap justify-center gap-0.5 px-2 py-1.5 rounded-xl text-xs font-mono ${darkMode
+                    <div className="flex items-center justify-center mb-4 sm:mb-6">
+                        <div className={`inline-flex items-center flex-wrap justify-center gap-0.5 px-1.5 sm:px-2 py-1 sm:py-1.5 rounded-xl text-[10px] sm:text-xs font-mono ${darkMode
                             ? 'bg-white/[0.03] border border-white/[0.05]'
                             : 'bg-slate-100/80 border border-slate-200'
                             }`}>
@@ -387,33 +387,33 @@ export default function TypingTest({ darkMode = true }) {
                             <button
                                 onClick={togglePunctuation}
                                 disabled={isRunning}
-                                className={`flex items-center gap-1 px-2.5 py-1 rounded-lg transition-all ${punctuation ? accent : muted
+                                className={`flex items-center gap-1 px-1.5 sm:px-2.5 py-1 rounded-lg transition-all ${punctuation ? accent : muted
                                     } ${isRunning ? 'opacity-40 cursor-not-allowed' : 'hover:opacity-80'}`}
                             >
-                                <AtSign size={14} />
-                                punctuation
+                                <AtSign size={12} className="sm:w-3.5 sm:h-3.5" />
+                                <span className="hidden sm:inline">punctuation</span>
                             </button>
                             <button
                                 onClick={toggleNumbers}
                                 disabled={isRunning}
-                                className={`flex items-center gap-1 px-2.5 py-1 rounded-lg transition-all ${numbers ? accent : muted
+                                className={`flex items-center gap-1 px-1.5 sm:px-2.5 py-1 rounded-lg transition-all ${numbers ? accent : muted
                                     } ${isRunning ? 'opacity-40 cursor-not-allowed' : 'hover:opacity-80'}`}
                             >
-                                <Hash size={14} />
-                                numbers
+                                <Hash size={12} className="sm:w-3.5 sm:h-3.5" />
+                                <span className="hidden sm:inline">numbers</span>
                             </button>
 
                             {/* Divider */}
                             <div className={`w-px h-5 mx-1 ${darkMode ? 'bg-white/10' : 'bg-slate-300'}`} />
 
                             {/* Mode */}
-                            <div className={`flex items-center gap-1 px-2.5 py-1 ${accent}`}>
+                            <div className={`hidden sm:flex items-center gap-1 px-2.5 py-1 ${accent}`}>
                                 <Clock size={14} />
                                 time
                             </div>
 
                             {/* Divider */}
-                            <div className={`w-px h-5 mx-1 ${darkMode ? 'bg-white/10' : 'bg-slate-300'}`} />
+                            <div className={`hidden sm:block w-px h-5 mx-1 ${darkMode ? 'bg-white/10' : 'bg-slate-300'}`} />
 
                             {/* Duration pills */}
                             {DURATIONS.map((d) => (
@@ -658,7 +658,7 @@ export default function TypingTest({ darkMode = true }) {
                                         ) : (
                                             <Trophy size={40} className={`mx-auto mb-3 ${darkMode ? 'text-yellow-400' : 'text-yellow-500'}`} />
                                         )}
-                                        <div className={`text-6xl sm:text-7xl font-bold tracking-tight mb-1 ${darkMode
+                                        <div className={`text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-1 ${darkMode
                                             ? 'text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.15)]'
                                             : 'text-blue-900'}`}>
                                             {wpm}
@@ -700,7 +700,7 @@ export default function TypingTest({ darkMode = true }) {
                                             </div>
                                         )}
                                         {/* Stats — single compact row */}
-                                        <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-5">
+                                        <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 mb-5">
                                             <div>
                                                 <p className={`text-[10px] font-mono ${muted}`}>accuracy</p>
                                                 <p className={`text-xl font-bold ${accuracy >= 90 ? 'text-green-400' : accuracy >= 70 ? 'text-yellow-400' : 'text-red-400'}`}>
@@ -751,7 +751,7 @@ export default function TypingTest({ darkMode = true }) {
                         {/* Words */}
                         <div
                             ref={wordsContainerRef}
-                            className="flex flex-wrap gap-x-2 gap-y-1 font-mono text-lg sm:text-xl leading-relaxed py-3"
+                            className="flex flex-wrap gap-x-1.5 sm:gap-x-2 gap-y-1 font-mono text-sm sm:text-lg md:text-xl leading-relaxed py-3"
                             style={{
                                 maxHeight: '240px',
                                 overflow: 'hidden',
@@ -772,10 +772,10 @@ export default function TypingTest({ darkMode = true }) {
                                             ${status === 'correct'
                                                 ? darkMode ? theme.correctDark : 'text-green-600'
                                                 : status === 'incorrect'
-                                                    ? 'text-red-400'
-                                                    : darkMode ? 'text-slate-600' : 'text-slate-300'
+                                                    ? 'text-red-400 underline decoration-red-500/60 decoration-2 underline-offset-4'
+                                                    : darkMode ? theme.wordDefaultDark : theme.wordDefaultLight
                                             }
-                                            ${isActive ? darkMode ? 'text-slate-300' : 'text-slate-800' : ''}
+                                            ${isActive ? darkMode ? theme.wordActiveDark : theme.wordActiveLight : ''}
                                             ${flashWord === idx ? 'scale-110' : ''}
                                         `}
                                     >
@@ -791,7 +791,7 @@ export default function TypingTest({ darkMode = true }) {
                                             if (inputChar !== undefined) {
                                                 charClass = inputChar === char
                                                     ? darkMode ? theme.charCorrectDark : theme.charCorrectLight
-                                                    : 'text-red-400 bg-red-400/10';
+                                                    : 'text-red-400 bg-red-500/25 rounded-sm underline decoration-red-400 decoration-2 underline-offset-2';
                                             }
                                             return (
                                                 <span key={charIdx} className={charClass}>
@@ -829,8 +829,8 @@ export default function TypingTest({ darkMode = true }) {
                         <VirtualKeyboard activeKey={activeKey} darkMode={darkMode} theme={theme} />
                     </motion.div>
 
-                    {/* ─── Bottom shortcuts ─── */}
-                    <div className={`flex items-center justify-center gap-6 mt-6 text-xs font-mono ${muted}`}>
+                    {/* ─── Bottom shortcuts (hidden on very small screens) ─── */}
+                    <div className={`hidden sm:flex items-center justify-center gap-6 mt-6 text-xs font-mono ${muted}`}>
                         <div className="flex items-center gap-1.5">
                             <kbd className={`px-1.5 py-0.5 rounded text-[10px] ${darkMode
                                 ? 'bg-slate-800 border border-slate-700 text-slate-400'

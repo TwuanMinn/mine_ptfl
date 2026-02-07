@@ -313,3 +313,56 @@
 .hero-cta-transition {
   transition: background 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+/* ============================
+   Typing Test - Responsive Keyboard
+   ============================ */
+
+/* Key unit sizing: scales with viewport */
+.keyboard-responsive-grid {
+  --key-unit: 48px;
+}
+
+@media (max-width: 900px) {
+  .keyboard-responsive-grid {
+    --key-unit: 38px;
+  }
+}
+
+@media (max-width: 640px) {
+  .keyboard-responsive-grid {
+    --key-unit: 28px;
+  }
+}
+
+@media (max-width: 400px) {
+  .keyboard-responsive-grid {
+    --key-unit: 22px;
+  }
+}
+
+.keyboard-key {
+  width: calc(var(--key-unit) * 1);
+  height: calc(var(--key-unit) * 0.85);
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.keyboard-key[data-w="1.6"] {
+  width: calc(var(--key-unit) * 1.6);
+}
+
+.keyboard-key[data-w="1.8"] {
+  width: calc(var(--key-unit) * 1.8);
+}
+
+.keyboard-space {
+  width: calc(var(--key-unit) * 8);
+  height: calc(var(--key-unit) * 0.85);
+}
+
+@media (max-width: 640px) {
+  .keyboard-space {
+    width: calc(var(--key-unit) * 6);
+  }
+}
