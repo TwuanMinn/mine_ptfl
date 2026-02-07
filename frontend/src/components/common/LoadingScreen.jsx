@@ -157,6 +157,20 @@ const LoadingScreen = ({ onLoadingComplete }) => {
     const [lineIndex, setLineIndex] = useState(0);
     const [charIndex, setCharIndex] = useState(0);
     const [showCursor, setShowCursor] = useState(true);
+    const [showSkip, setShowSkip] = useState(false);
+
+    // Show skip button after a brief delay
+    useEffect(() => {
+        const timer = setTimeout(() => setShowSkip(true), 1500);
+        return () => clearTimeout(timer);
+    }, []);
+
+    const handleSkip = () => {
+        setIsLoading(false);
+        setTimeout(() => {
+            if (onLoadingComplete) onLoadingComplete();
+        }, 500);
+    };
 
     // Blinking cursor independent of typing
     useEffect(() => {
@@ -370,6 +384,35 @@ const LoadingScreen = ({ onLoadingComplete }) => {
                                         >
                                             Loading...
                                         </motion.span>
+                                        {showSkip && (
+                                            <motion.button
+                                                onClick={handleSkip}
+                                                className="relative ml-3 px-4 py-1.5 rounded-full font-mono text-xs font-medium tracking-wide
+                                                    bg-gradient-to-r from-slate-800/80 to-slate-700/60
+                                                    border border-slate-600/40 hover:border-cyan-400/50
+                                                    text-slate-400 hover:text-cyan-300
+                                                    shadow-sm hover:shadow-[0_0_15px_rgba(34,211,238,0.2)]
+                                                    transition-all duration-300 hover:scale-105 active:scale-95
+                                                    backdrop-blur-sm overflow-hidden"
+                                                initial={{ opacity: 0, x: 10 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                transition={{ duration: 0.6, ease: 'easeOut' }}
+                                                whileHover={{ y: -1 }}
+                                                aria-label="Skip loading animation"
+                                            >
+                                                {/* Shimmer overlay */}
+                                                <span className="absolute inset-0 rounded-full overflow-hidden pointer-events-none">
+                                                    <span className="absolute inset-0 -translate-x-full animate-[shimmer_3s_ease-in-out_infinite] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+                                                </span>
+                                                <span className="relative flex items-center gap-1.5">
+                                                    Skip
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                        <polyline points="13 17 18 12 13 7" />
+                                                        <polyline points="6 17 11 12 6 7" />
+                                                    </svg>
+                                                </span>
+                                            </motion.button>
+                                        )}
                                     </div>
                                 </div>
                             </div>

@@ -27,17 +27,13 @@ export const Hero = ({
                             className={`absolute -top-2 left-full ml-2 sm:top-1 sm:ml-4 z-10 transition-all duration-400 ease-in-out ${popupVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-4 scale-95'}`}
                         >
                             <div
-                                className="relative rounded-2xl shadow-lg text-left break-words"
+                                className={`relative rounded-2xl shadow-lg text-left break-words ${darkMode ? 'hero-popup-dark' : 'hero-popup-light'}`}
                                 style={{
-                                    background: darkMode ? 'rgba(15, 23, 42, 0.85)' : 'rgba(239, 246, 255, 0.95)',
-                                    color: darkMode ? '#93c5fd' : '#1e40af',
                                     fontWeight: '600',
                                     fontSize: 'clamp(0.8rem, 0.9vw + 0.35rem, 1.02rem)',
                                     lineHeight: '1.35',
                                     padding: 'clamp(0.5rem, 1.2vw, 0.75rem) clamp(0.7rem, 1.6vw, 1.25rem)',
-                                    maxWidth: 'clamp(340px, 60vw, 640px)',
-                                    border: darkMode ? '2px solid rgba(96, 165, 250, 0.5)' : '2px solid rgba(59, 130, 246, 0.4)',
-                                    boxShadow: darkMode ? '0 0 18px rgba(59, 130, 246, 0.35), 0 0 30px rgba(96, 165, 250, 0.18)' : '0 4px 12px rgba(59, 130, 246, 0.25)'
+                                    maxWidth: 'clamp(340px, 60vw, 640px)'
                                 }}
                             >
                                 {popupMessages[popupMessageIndex]}
@@ -59,7 +55,7 @@ export const Hero = ({
                         <div className={`relative w-36 h-36 sm:w-48 sm:h-48 rounded-full ${darkMode ? 'bg-gradient-to-br from-[#0c0c0e] via-[#08080b] to-[#010101] border-4 border-[#0a0a0c] white-glow' : 'bg-gradient-to-br from-white via-blue-50 to-blue-100 border-4 border-blue-200'} flex items-center justify-center shadow-2xl overflow-hidden group`}>
                             <img
                                 src="/jonasptfl.jpg"
-                                alt="Profile"
+                                alt="Nguyen Huynh Minh Tuan - Software Engineer"
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                 style={{
                                     maxWidth: '100%',
@@ -92,14 +88,13 @@ export const Hero = ({
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <button
                         onClick={() => scrollToSection('contact')}
-                        className={`btn-ripple relative overflow-visible ${darkMode ? 'bg-[#08080b]/70 border-2 border-blue-400/70 shadow-2xl shadow-blue-400/50 text-white' : 'bg-blue-200/80 border-2 border-blue-500/60 shadow-lg shadow-blue-400/30 text-blue-800'} px-8 py-3 rounded-full font-semibold transition-all duration-500 transform hover:scale-105 ${darkMode ? 'hover:shadow-blue-400/80 hover:border-blue-300' : 'hover:shadow-blue-500/60 hover:border-blue-500'}`}
-                        style={{ transition: 'background 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease' }}
+                        className={`btn-ripple hero-cta-transition relative overflow-visible ${darkMode ? 'bg-[#08080b]/70 border-2 border-blue-400/70 shadow-2xl shadow-blue-400/50 text-white' : 'bg-blue-200/80 border-2 border-blue-500/60 shadow-lg shadow-blue-400/30 text-blue-800'} px-8 py-3 rounded-full font-semibold transition-all duration-500 transform hover:scale-105 ${darkMode ? 'hover:shadow-blue-400/80 hover:border-blue-300' : 'hover:shadow-blue-500/60 hover:border-blue-500'}`}
                         onMouseEnter={(e) => { e.currentTarget.style.background = darkMode ? 'rgb(15, 40, 140)' : 'rgb(25, 70, 200)'; }}
                         onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
                     >
                         <span className="ripple-wave-1 absolute inset-0 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(34, 211, 238, 0.7) 0%, transparent 70%)' }}></span>
                         <span className="ripple-wave-2 absolute inset-0 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(37, 99, 235, 0.5) 0%, transparent 70%)' }}></span>
-                        <span className="relative z-10" style={{ fontFamily: "'Google Sans Code', 'Fira Code', monospace", fontWeight: 200 }}>{t('hero.getInTouch')}</span>
+                        <span className="relative z-10 font-hero-mono">{t('hero.getInTouch')}</span>
                     </button>
                     <a
                         href="/dev.cv.pdf"
@@ -117,7 +112,7 @@ export const Hero = ({
                     >
                         <span className="ripple-wave-1 absolute inset-0 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(59, 130, 246, 0.6) 0%, transparent 70%)' }}></span>
                         <span className="ripple-wave-2 absolute inset-0 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(37, 99, 235, 0.45) 0%, transparent 70%)' }}></span>
-                        <span className={`relative z-10 flex items-center gap-2 ${darkMode ? 'text-white' : 'text-blue-900'}`} style={{ fontFamily: "'Google Sans Code', 'Fira Code', monospace", fontWeight: 200 }}>
+                        <span className={`relative z-10 flex items-center gap-2 font-hero-mono ${darkMode ? 'text-white' : 'text-blue-900'}`}>
                             {i18n.t('hero.downloadCV')}
                             <svg className="w-5 h-5 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
@@ -147,7 +142,7 @@ export const Hero = ({
                                 if (icon) icon.style.transform = 'scale(1) rotate(0deg)';
                             }}
                         >
-                            <span className="relative z-10 flex items-center gap-2" style={{ fontFamily: "'Google Sans Code', 'Fira Code', monospace", fontWeight: 200 }}>
+                            <span className="relative z-10 flex items-center gap-2 font-hero-mono">
                                 <BotMessageSquare className="chat-robot-icon w-6 h-6 transition-transform" />
                                 Chat with My AI Agent
                             </span>

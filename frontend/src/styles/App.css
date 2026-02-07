@@ -282,3 +282,34 @@
 .animate-heart-burst-6 {
   animation: heart-burst-6 0.5s ease-out forwards;
 }
+
+/* ============================
+   Hero Section Utilities
+   ============================ */
+
+/* Monospace font used across Hero CTAs and labels */
+.font-hero-mono {
+  font-family: 'Google Sans Code', 'Fira Code', monospace;
+  font-weight: 200;
+}
+
+/* Popup bubble base styling (dark) */
+.hero-popup-dark {
+  background: rgba(15, 23, 42, 0.85);
+  color: #93c5fd;
+  border: 2px solid rgba(96, 165, 250, 0.5);
+  box-shadow: 0 0 18px rgba(59, 130, 246, 0.35), 0 0 30px rgba(96, 165, 250, 0.18);
+}
+
+/* Popup bubble base styling (light) */
+.hero-popup-light {
+  background: rgba(239, 246, 255, 0.95);
+  color: #1e40af;
+  border: 2px solid rgba(59, 130, 246, 0.4);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+}
+
+/* Smooth CTA hover transition */
+.hero-cta-transition {
+  transition: background 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}

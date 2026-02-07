@@ -1,7 +1,8 @@
-import React, { Suspense, memo } from 'react';
+import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { SectionErrorBoundary } from '../components/common/ErrorBoundary';
+import { SectionLoader } from '../components/common/SectionLoader';
 
 // Pages
 import Home from '../pages/Home';
@@ -10,18 +11,8 @@ import ProjectDetails from '../pages/ProjectDetails';
 import CertificateDetails from '../pages/CertificateDetails';
 import Pending from '../pages/Pending';
 import UnderConstruction from '../pages/UnderConstruction';
-
-
-// Loading fallback component
-const SectionLoader = memo(({ height = '200px' }) => (
-    <div
-        className="flex items-center justify-center"
-        style={{ minHeight: height }}
-    >
-        <div className="w-8 h-8 border-2 border-cyan-500/30 border-t-cyan-500 rounded-full animate-spin" />
-    </div>
-));
-SectionLoader.displayName = 'SectionLoader';
+import NotFound from '../pages/NotFound';
+import TypingTest from '../pages/TypingTest';
 
 export const AppRoutes = ({
     portfolioData,
@@ -108,6 +99,14 @@ export const AppRoutes = ({
                 <Route
                     path="/under-construction"
                     element={<UnderConstruction darkMode={darkMode} />}
+                />
+                <Route
+                    path="/typing-test"
+                    element={<TypingTest darkMode={darkMode} />}
+                />
+                <Route
+                    path="*"
+                    element={<NotFound darkMode={darkMode} />}
                 />
             </Routes>
         </AnimatePresence>

@@ -11,17 +11,17 @@ export const getPortfolioData = (bioText) => ({
     email: "twuanminn47@gmail.com",
     github: "https://github.com/twuanmin",
     linkedin: "https://www.linkedin.com/in/twuan-min-a98356344/",
-    figma: "https://www.figma.com",
+    figma: "https://www.figma.com/@twuanmin",
     whatsapp: "https://wa.me/84934159597",
-    discord: "https://discord.com/app",
+    discord: "https://discord.com/users/twuanmin",
 
     skills: [
         "JavaScript", "TypeScript", "Java", "Python",
         "ReactJS", "NextJS",
-        "NodeJS (Express, NestJS)", "PostgreSQL",
+        "NodeJS", "ExpressJS", "NestJS", "PostgreSQL",
         "Git", "Firebase", "Machine Learning",
         "Vercel", "Angular", "Docker", "Vue.js",
-        "ExpressJS", "AWS", "Spring Boot", "Supabase", "NestJS", "Flutter", "Convex"
+        "AWS", "Spring Boot", "Supabase", "Flutter", "Convex"
     ],
 
     skillsProgress: [

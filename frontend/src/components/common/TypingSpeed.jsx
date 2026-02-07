@@ -1,8 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Keyboard, Timer, Target, Languages } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export const TypingSpeed = ({ darkMode }) => {
+    const navigate = useNavigate();
+
     return (
         <motion.div
             className={`glass-card rounded-[2.5rem] p-8 max-w-2xl mx-auto relative overflow-hidden backdrop-blur-xl transition-all duration-500 cursor-pointer ${darkMode ? 'bg-white/[0.03] border-white/15 white-glow' : 'bg-white border-blue-100 shadow-xl'}`}
@@ -39,19 +42,36 @@ export const TypingSpeed = ({ darkMode }) => {
             </div>
 
             {/* Stats Footer */}
-            <div className="flex items-center gap-8 relative z-10">
-                <div className={`flex items-center gap-2 ${darkMode ? 'text-white/80' : 'text-slate-600'}`}>
-                    <Timer size={20} className={darkMode ? "text-white/60" : "text-slate-400"} />
-                    <span className="text-xl font-bold">15s</span>
+            <div className="flex items-center justify-between relative z-10">
+                <div className="flex items-center gap-8">
+                    <div className={`flex items-center gap-2 ${darkMode ? 'text-white/80' : 'text-slate-600'}`}>
+                        <Timer size={20} className={darkMode ? "text-white/60" : "text-slate-400"} />
+                        <span className="text-xl font-bold">15s</span>
+                    </div>
+                    <div className={`flex items-center gap-2 ${darkMode ? 'text-white/80' : 'text-slate-600'}`}>
+                        <Target size={20} className={darkMode ? "text-white/60" : "text-slate-400"} />
+                        <span className="text-xl font-bold">100%</span>
+                    </div>
+                    <div className={`flex items-center gap-2 ${darkMode ? 'text-white/80' : 'text-slate-600'}`}>
+                        <Languages size={20} className={darkMode ? "text-white/60" : "text-slate-400"} />
+                        <span className="text-xl font-bold uppercase tracking-widest">en</span>
+                    </div>
                 </div>
-                <div className={`flex items-center gap-2 ${darkMode ? 'text-white/80' : 'text-slate-600'}`}>
-                    <Target size={20} className={darkMode ? "text-white/60" : "text-slate-400"} />
-                    <span className="text-xl font-bold">100%</span>
-                </div>
-                <div className={`flex items-center gap-2 ${darkMode ? 'text-white/80' : 'text-slate-600'}`}>
-                    <Languages size={20} className={darkMode ? "text-white/60" : "text-slate-400"} />
-                    <span className="text-xl font-bold uppercase tracking-widest">en</span>
-                </div>
+
+                {/* Try Your Speed button */}
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        navigate('/typing-test');
+                    }}
+                    className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 hover:scale-105 active:scale-95 ${darkMode
+                        ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50'
+                        : 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/40 hover:shadow-blue-500/60'
+                        }`}
+                >
+                    <Keyboard size={16} />
+                    Try Your Speed →
+                </button>
             </div>
         </motion.div>
     );

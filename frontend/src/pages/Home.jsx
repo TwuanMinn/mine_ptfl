@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 
 // Components
 import { SectionErrorBoundary } from '../components/common/ErrorBoundary';
+import { SectionLoader } from '../components/common/SectionLoader';
 import { Hero } from '../components/sections/Hero.jsx';
 import { About } from '../components/sections/About.jsx';
 import { Projects } from '../components/sections/Projects';
@@ -20,17 +21,6 @@ const Certificates = lazy(() => import('../components/sections/Certificates').th
 const Experience = lazy(() => import('../components/sections/Experience').then(m => ({ default: m.Experience })));
 const Contact = lazy(() => import('../components/sections/Contact').then(m => ({ default: m.Contact })));
 const Footer = lazy(() => import('../components/layout/Footer.jsx').then(m => ({ default: m.Footer })));
-
-// Loading fallback component
-const SectionLoader = memo(({ height = '200px' }) => (
-    <div
-        className="flex items-center justify-center"
-        style={{ minHeight: height }}
-    >
-        <div className="w-8 h-8 border-2 border-cyan-500/30 border-t-cyan-500 rounded-full animate-spin" />
-    </div>
-));
-SectionLoader.displayName = 'SectionLoader';
 
 // Memoized scroll to top button
 const ScrollToTopButton = memo(({ show, onClick, darkMode }) => {
