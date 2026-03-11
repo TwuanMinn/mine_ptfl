@@ -29,6 +29,35 @@ Performance optimization was a priority, with server-side rendering for fast ini
         techStack: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Framer Motion", "Vercel"]
     },
     {
+        id: 'proj-gamratic',
+        title: "Gamratic - Game Review Platform",
+        category: "Full Stack Development",
+        image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1471&auto=format&fit=crop",
+        gallery: [
+            "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=1470&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=1465&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1470&auto=format&fit=crop"
+        ],
+        description: "A premium game review and discovery platform featuring user ratings, detailed reviews, game catalogs with filtering, community discussions, and a cinematic dark UI with gold accents.",
+        fullDescription: `Gamratic is a full-stack game review and discovery platform that lets users rate, review, and discover video games. Inspired by platforms like Metacritic and IGN, it delivers a premium cinematic experience with a sleek dark UI, gold accent theming, and smooth animations throughout.
+
+The platform features a comprehensive game catalog with advanced filtering by genre, platform, and rating. Each game detail page showcases rich information including cover art, screenshots, platform availability, publisher details, and aggregated user ratings. Users can write and submit their own reviews, vote on helpful reviews, and engage with the gaming community.
+
+Key features include:
+- Game Catalog: Browse and search a curated library of games with real-time filtering by genre, platform, rating, and release date.
+- Detailed Game Pages: Rich game profiles with cover art, screenshots, metadata, critic scores, and user reviews.
+- User Reviews & Ratings: Submit star ratings and written reviews, with helpful vote functionality for community curation.
+- Community Hub: Discussion boards, featured polls, and trending topics for gaming community engagement.
+- Where to Buy: Retailer links and pricing information based on each game's available platforms.
+- Responsive Design: Fully responsive layout optimized for desktop, tablet, and mobile with a mobile-first navigation system.
+
+The frontend is built with React and Vite for blazing-fast development and optimized production builds. The design system uses CSS custom properties with a cohesive dark theme featuring glassmorphism effects, gradient overlays, and staggered entrance animations. The backend is powered by Express.js with a RESTful API architecture, handling game data, user authentication, reviews, and community features.
+
+Deployed on Vercel with optimized asset delivery, the platform demonstrates expertise in building content-rich, interactive web applications with premium visual polish.`,
+        link: "https://gamratic.vercel.app/",
+        techStack: ["React", "Vite", "Express.js", "Node.js", "CSS3", "Vercel"]
+    },
+    {
         id: 'proj-typlax',
         title: "Typlax - Visual Typing Experience",
         category: "Full Stack Development",
